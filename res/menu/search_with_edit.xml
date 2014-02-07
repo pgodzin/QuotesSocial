@@ -2,14 +2,14 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/home"
-            android:title="@string/home"
+            android:id="@+id/edit"
+            android:title="@string/edit"
             android:showAsAction="ifRoom"
-            android:icon="@android:drawable/ic_menu_upload">
+            android:icon="@android:drawable/ic_menu_edit">
 
     </item>
     <item
-            android:id="@+id/search"
+            android:id="@+id/search2"
             android:title="@string/search"
             android:showAsAction="ifRoom"
             android:icon="@android:drawable/ic_menu_search">

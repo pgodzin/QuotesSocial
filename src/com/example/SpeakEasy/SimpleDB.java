@@ -31,12 +31,13 @@ import com.amazonaws.services.simpledb.model.ListDomainsResult;
 import com.amazonaws.services.simpledb.model.PutAttributesRequest;
 import com.amazonaws.services.simpledb.model.ReplaceableAttribute;
 import com.amazonaws.services.simpledb.model.SelectRequest;
+import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 
 public class SimpleDB {
 
 	private static String nextToken = null;
 	private static int prevNumDomains = 0;
-	public static final String DOMAIN_NAME = "_domain_name";
+	public static final String DOMAIN_NAME = "Quotes";
 		
 	public static AmazonSimpleDBClient getInstance() {
         return HomePage.clientManager.sdb();
@@ -135,5 +136,44 @@ public class SimpleDB {
 	public static void deleteItemAttribute( String domainName, String itemName, String attributeName ) {
 		getInstance().deleteAttributes(  new DeleteAttributesRequest( domainName, itemName ).withAttributes( new Attribute[] { new Attribute().withName( attributeName ) } ) );
 	}
+
+    public static void addQuote( QuotePost quote ) {
+
+
+        ReplaceableAttribute quoteAttribute = new ReplaceableAttribute( "quoteText", quote.getQuoteText(), Boolean.TRUE );
+        ReplaceableAttribute authorAttribute = new ReplaceableAttribute( "author", quote.getAuthorName(), Boolean.TRUE );
+        ReplaceableAttribute timeAttribute = new ReplaceableAttribute( "timestamp", "" + quote.getTimestamp(), Boolean.TRUE );
+        ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute( "fbName", quote.getFbName(), Boolean.TRUE );
+        ReplaceableAttribute tagsAttribute = new ReplaceableAttribute( "tags", quote.getTags().toString(), Boolean.TRUE );
+
+
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(5);
+        attrs.add( quoteAttribute );
+        attrs.add( authorAttribute );
+        attrs.add( timeAttribute );
+        attrs.add( fbNameAttribute );
+        attrs.add( tagsAttribute );
+
+
+        PutAttributesRequest par = new PutAttributesRequest( DOMAIN_NAME, quote.getFbName() + quote.getTimestamp(), attrs);
+        try {
+            getInstance().putAttributes(par);
+        }
+        catch ( Exception exception ) {
+            System.out.println( "EXCEPTION = " + exception );
+        }
+    }
+
+    public static String[] getMyQuotes( String myName ) {
+        SelectRequest selectRequest = new SelectRequest( "select quoteText, author from Quotes where fbName = " + myName ).withConsistentRead( true );
+        List<Item> items = getInstance().select( selectRequest ).getItems();
+
+        String[] itemNames = new String[ items.size() ];
+        for ( int i = 0; i < items.size(); i++ ) {
+            itemNames[ i ] = ((Item)items.get( i )).getName();
+        }
+
+        return itemNames;
+    }
 	
 }

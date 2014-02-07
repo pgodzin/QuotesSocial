@@ -12,13 +12,11 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 
 public class MainPage extends SherlockActivity {
-    protected ListView quoteList;
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
-
-        SharedPreferences prefs = getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -38,6 +36,7 @@ public class MainPage extends SherlockActivity {
             case R.id.home:
                 Intent i = new Intent(MainPage.this, HomePage.class);
                 startActivity(i);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

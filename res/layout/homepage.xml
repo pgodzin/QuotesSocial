@@ -17,7 +17,8 @@
             android:textColor="@android:color/black"
             android:editable="true"
             android:textSize="15sp"
-            android:layout_toLeftOf="@+id/submit"/>
+            android:layout_toLeftOf="@+id/submit"
+            android:visibility="gone"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -29,7 +30,8 @@
             android:hint="@string/authorHint"
             android:layout_below="@+id/quoteText"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/submit"/>
+            android:layout_toLeftOf="@+id/submit"
+            android:visibility="gone"/>
 
     <Button
             android:layout_width="wrap_content"
@@ -39,7 +41,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignBottom="@+id/quoteAuthor"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:visibility="gone"/>
 
     <ListView
             android:layout_width="wrap_content"
