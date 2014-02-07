@@ -5,6 +5,10 @@
     <string name="logo">logo</string>
     <string name="search">Search</string>
     <string name="home">Home</string>
+    <string name="quoteHint">Quote</string>
+    <string name="authorHint">By</string>
+    <string name="submit">Submit</string>
+    <string name="yourquotes">Your Quotes</string>
 
 
 </resources>

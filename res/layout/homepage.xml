@@ -4,7 +4,56 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".Homepage"
+                tools:context=".HomePage"
                 android:background="@android:color/background_light">
 
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/quoteText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:hint="@string/quoteHint"
+            android:textColor="@android:color/black"
+            android:editable="true"
+            android:textSize="15sp"
+            android:layout_toLeftOf="@+id/submit"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/quoteAuthor"
+            android:textSize="15sp"
+            android:hint="@string/authorHint"
+            android:layout_below="@+id/quoteText"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/submit"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/submit"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/quoteAuthor"
+            android:clickable="true"/>
+
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView"
+            android:paddingTop="10dp"
+            android:layout_below="@+id/yourQuotes"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yourquotes"
+            android:id="@+id/yourQuotes"
+            android:layout_below="@+id/submit"
+            android:layout_alignParentLeft="true"/>
 </RelativeLayout>

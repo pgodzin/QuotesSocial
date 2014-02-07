@@ -1,0 +1,29 @@
+{"Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "sts:GetFederationToken",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:GetUser",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "sdb:*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "Stmt1389763246000",
+      "Effect": "Allow",
+      "Action": [
+        "ses:*"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}
+

@@ -15,7 +15,19 @@
       <layout url="file://$PROJECT_DIR$/res/layout/homepage.xml">
         <config>
           <device>Nexus 4</device>
+          <theme>@android:style/Theme.Holo.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/res/layout/item_list.xml">
+        <config>
+          <device>Nexus 4</device>
           <theme>@android:style/Theme.Holo</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/res/layout/item_view.xml">
+        <config>
+          <device>Nexus 4</device>
+          <theme>@android:style/Theme.Holo.Light</theme>
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/res/layout/main.xml">
@@ -24,24 +36,57 @@
           <theme>@android:style/Theme.Holo</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/res/layout/mainpage.xml">
+        <config>
+          <device>Nexus 4</device>
+          <theme>@android:style/Theme.Holo</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/res/layout/row.xml">
+        <config>
+          <device>Nexus 4</device>
+          <theme>@android:style/Theme.Holo.Light</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SpeakEasy/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="Working on homepage&#10;">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/closeQuote.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/openQuote.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AESEncryption.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonSharedPreferencesWrapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonTVMClient.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponse.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponseHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/PropertyLoader.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/RegisterDeviceRequest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Request.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Response.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/ResponseHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TokenVendingMachinePolicy.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/TokenVendingMachineService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Utilities.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/item_list.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/item_view.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/mainpage.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpeakEasy.iml" afterPath="$PROJECT_DIR$/SpeakEasy.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/homepage.xml" afterPath="$PROJECT_DIR$/res/layout/homepage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,22 +142,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" line="52" class="com.example.SpeakEasy.LoginFragment" package="com.example.SpeakEasy">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" line="69" class="com.example.SpeakEasy.LoginFragment" package="com.example.SpeakEasy">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" line="57" class="com.example.SpeakEasy.LoginFragment$1" package="com.example.SpeakEasy">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -137,38 +167,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LoginFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java">
+      <file leaf-file-name="SimpleDB.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="0" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0" vertical-offset="935" max-vertical-offset="2448">
+            <state line="22" column="18" selection-start="830" selection-end="830" vertical-scroll-proportion="0.4090909" vertical-offset="0" max-vertical-offset="2244">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="44" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="561">
+      <file leaf-file-name="homepage.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="37" column="24" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0" vertical-offset="471" max-vertical-offset="1088">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainPage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="32" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="748">
+      <file leaf-file-name="item_list.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/item_list.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_item.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/menu/search_item.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="27" selection-start="521" selection-end="521" vertical-scroll-proportion="0.74677" vertical-offset="0" max-vertical-offset="391">
+      <file leaf-file-name="item_view.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/item_view.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomePage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="33" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="1751">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#924#1572#0" expanded="true" />
+                <element signature="e#1561#1562#0" expanded="true" />
+                <element signature="e#1867#2039#0" expanded="true" />
+                <element signature="e#2028#2029#0" expanded="true" />
+                <element signature="e#2627#2799#0" expanded="true" />
+                <element signature="e#2788#2789#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -188,8 +244,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" />
-        <option value="$PROJECT_DIR$/res/layout/homepage.xml" />
         <option value="$PROJECT_DIR$/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/res/values-v14/styles.xml" />
         <option value="$PROJECT_DIR$/res/values-v14/styles_speakeasy.xml" />
@@ -199,6 +253,35 @@
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/menu/search_item.xml" />
+        <option value="$PROJECT_DIR$/res/layout/mainpage.xml" />
+        <option value="$PROJECT_DIR$/src/TokenVendingMachinePolicy.json" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AESEncryption.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonSharedPreferencesWrapper.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenRequest.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponse.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponseHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/RegisterDeviceRequest.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Request.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Response.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Utilities.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/PropertyLoader.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SESManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/ResponseHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonTVMClient.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/TokenVendingMachineService.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SdbDomainCreate.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SdbDomainList.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SdbItemCreate.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SdbItemList.java" />
+        <option value="$PROJECT_DIR$/res/layout/homepage.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" />
+        <option value="$PROJECT_DIR$/res/layout/item_view.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SdbMenu.java" />
       </list>
     </option>
   </component>
@@ -215,7 +298,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -234,6 +317,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -277,6 +361,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -384,9 +482,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable-hdpi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -397,13 +530,19 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../aws-android-sdk-1.7.1.1/lib/aws-android-sdk-1.7.1.1-core.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="NexusTester" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Android Dev\SpeakEasy\res\drawable-hdpi" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.SpeakEasy">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
@@ -583,6 +722,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
@@ -610,7 +754,15 @@
       <created>1391676964820</created>
       <updated>1391676964820</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info&#10;">
+      <created>1391677474764</created>
+      <updated>1391677474764</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Working on homepage&#10;">
+      <created>1391681044882</created>
+      <updated>1391681044882</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -635,47 +787,47 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -683,13 +835,13 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290469" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -706,7 +858,9 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info" />
+    <MESSAGE value="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info&#10;" />
+    <MESSAGE value="Working on homepage&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on homepage&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -716,309 +870,29 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/UiLifecycleHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="3460" selection-end="3460" vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="5355">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="87" selection-end="87" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="35" selection-start="94" selection-end="94" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="204">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="93" selection-start="815" selection-end="815" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="29" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="4" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="204">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="93" selection-start="815" selection-end="815" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="21" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="27" selection-start="351" selection-end="351" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/libs/android-support-v4.jar!/android/support/v4/app/FragmentTransaction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="63" selection-start="827" selection-end="827" vertical-scroll-proportion="0.34845734" vertical-offset="114" max-vertical-offset="1173" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/internal/Validate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.0" vertical-offset="109" max-vertical-offset="1309" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="0" selection-start="8789" selection-end="8789" vertical-scroll-proportion="0.0" vertical-offset="2994" max-vertical-offset="33745" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/UiLifecycleHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="3460" selection-end="3460" vertical-scroll-proportion="0.0" vertical-offset="908" max-vertical-offset="4930">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/model/GraphObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="11" selection-start="2946" selection-end="2946" vertical-scroll-proportion="1.8268734" vertical-offset="41" max-vertical-offset="13923" />
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/org/json/JSONObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="512" column="18" selection-start="18642" selection-end="18642" vertical-scroll-proportion="0.33333334" vertical-offset="8286" max-vertical-offset="12121" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1668" column="0" selection-start="75127" selection-end="75127" vertical-scroll-proportion="0.0" vertical-offset="26651" max-vertical-offset="37570" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="99" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/SessionState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="0" selection-start="3255" selection-end="3255" vertical-scroll-proportion="0.33236152" vertical-offset="1331" max-vertical-offset="1853" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/widget/LoginButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="712" column="58" selection-start="30413" selection-end="30413" vertical-scroll-proportion="8.824243" vertical-offset="7934" max-vertical-offset="11526">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Dropbox/Public/CS/Android Dev/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/android/support/v4/app/Watson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="37" selection-start="632" selection-end="632" vertical-scroll-proportion="0.3181818" vertical-offset="0" max-vertical-offset="2550" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="328">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/logo.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/ab_background_textured_speakeasy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="4" selection-start="853" selection-end="878" vertical-scroll-proportion="0.0" vertical-offset="76" max-vertical-offset="442" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-v14/styles_speakeasy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="19" selection-start="1722" selection-end="2784" vertical-scroll-proportion="0.8142077" vertical-offset="569" max-vertical-offset="1003" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1042" selection-end="1042" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="561">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/com/android/internal/view/menu/MenuItemImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="0" selection-start="6821" selection-end="6821" vertical-scroll-proportion="0.0" vertical-offset="2742" max-vertical-offset="10489">
-          <folding>
-            <element signature="e#0#20182#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6724#6725#0" expanded="false" />
-            <element signature="e#6753#6754#0" expanded="false" />
-            <element signature="e#6874#6875#0" expanded="false" />
-            <element signature="e#6911#6912#0" expanded="false" />
-            <element signature="e#6947#6948#0" expanded="false" />
-            <element signature="e#6980#6981#0" expanded="false" />
-            <element signature="e#7017#7018#0" expanded="false" />
-            <element signature="e#7047#7048#0" expanded="false" />
-            <element signature="e#7178#7179#0" expanded="false" />
-            <element signature="e#7214#7215#0" expanded="false" />
-            <element signature="e#7380#7381#0" expanded="false" />
-            <element signature="e#7426#7427#0" expanded="false" />
-            <element signature="e#7749#7750#0" expanded="false" />
-            <element signature="e#7792#7793#0" expanded="false" />
-            <element signature="e#9933#9934#0" expanded="false" />
-            <element signature="e#9964#9965#0" expanded="false" />
-            <element signature="e#10250#10251#0" expanded="false" />
-            <element signature="e#10279#10280#0" expanded="false" />
-            <element signature="e#15205#15206#0" expanded="false" />
-            <element signature="e#15241#15242#0" expanded="false" />
-            <element signature="e#15289#15290#0" expanded="false" />
-            <element signature="e#15321#15322#0" expanded="false" />
-            <element signature="e#17850#17851#0" expanded="false" />
-            <element signature="e#17888#17889#0" expanded="false" />
-            <element signature="e#18293#18526#0" expanded="false" />
-            <element signature="e#18511#18512#0" expanded="false" />
-            <element signature="e#20134#20135#0" expanded="false" />
-            <element signature="e#20178#20179#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/WindowManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1397" column="0" selection-start="65866" selection-end="65866" vertical-scroll-proportion="0.0" vertical-offset="23261" max-vertical-offset="30821">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/os/Handler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="0" selection-start="4425" selection-end="4425" vertical-scroll-proportion="0.0" vertical-offset="1495" max-vertical-offset="13192">
-          <folding />
-        </state>
+        <state line="111" column="0" selection-start="4425" selection-end="4425" vertical-scroll-proportion="0.0" vertical-offset="1495" max-vertical-offset="13192" />
       </provider>
     </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/Toast.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="342" column="0" selection-start="11089" selection-end="11089" vertical-scroll-proportion="0.33229813" vertical-offset="4908" max-vertical-offset="6749">
-          <folding>
-            <element signature="e#9937#10061#0" expanded="false" />
-            <element signature="e#10050#10051#0" expanded="false" />
-            <element signature="e#10095#10345#0" expanded="false" />
-            <element signature="e#10334#10335#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="342" column="0" selection-start="11089" selection-end="11089" vertical-scroll-proportion="0.33229813" vertical-offset="4908" max-vertical-offset="6749" />
       </provider>
     </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/os/Binder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="193" column="0" selection-start="7414" selection-end="7414" vertical-scroll-proportion="0.33236152" vertical-offset="2810" max-vertical-offset="7888">
-          <folding />
-        </state>
+        <state line="193" column="0" selection-start="7414" selection-end="7414" vertical-scroll-proportion="0.33236152" vertical-offset="2810" max-vertical-offset="7888" />
       </provider>
     </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/ViewGroup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5795" column="0" selection-start="216362" selection-end="216362" vertical-scroll-proportion="0.33333334" vertical-offset="97164" max-vertical-offset="111741">
-          <folding />
-        </state>
+        <state line="5795" column="0" selection-start="216362" selection-end="216362" vertical-scroll-proportion="0.33333334" vertical-offset="97164" max-vertical-offset="111741" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/Public/CS/Android Dev/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/internal/view/menu/MenuItemWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.33236152" vertical-offset="260" max-vertical-offset="5219">
-          <folding />
-        </state>
+        <state line="31" column="0" selection-start="1225" selection-end="1225" vertical-scroll-proportion="0.33236152" vertical-offset="260" max-vertical-offset="5219" />
       </provider>
     </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/os/Looper.java">
@@ -1028,12 +902,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="72" selection-start="868" selection-end="868" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="28" selection-start="257" selection-end="257" vertical-scroll-proportion="0.17317487" vertical-offset="0" max-vertical-offset="589">
+        <state line="21" column="72" selection-start="868" selection-end="868" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1445">
           <folding />
         </state>
       </provider>
@@ -1046,27 +915,6 @@
     <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="32" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="0" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.0" vertical-offset="636" max-vertical-offset="2227">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="44" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/res/drawable/com_facebook_place_default_icon.png">
@@ -1084,9 +932,241 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="28" selection-start="257" selection-end="257" vertical-scroll-proportion="0.27868852" vertical-offset="0" max-vertical-offset="366">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="44" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/mainpage.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="9" column="21" selection-start="0" selection-end="413" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2208" column="0" selection-start="92078" selection-end="92078" vertical-scroll-proportion="0.33229813" vertical-offset="35185" max-vertical-offset="84609" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/menu/search_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="27" selection-start="521" selection-end="521" vertical-scroll-proportion="0.74677" vertical-offset="0" max-vertical-offset="391">
+        <state line="11" column="24" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AESEncryption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="34" selection-start="1239" selection-end="1239" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonSharedPreferencesWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="33" selection-start="762" selection-end="762" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="24" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="26" selection-start="815" selection-end="815" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/GetTokenResponseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="24" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/RegisterDeviceRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="29" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="22" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Utilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="36" selection-start="1087" selection-end="1087" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TokenVendingMachinePolicy.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="20" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0" vertical-offset="27" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/src/com/facebook/Request.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1668" column="0" selection-start="75127" selection-end="75127" vertical-scroll-proportion="0.0" vertical-offset="26658" max-vertical-offset="37570">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="27" selection-start="612" selection-end="612" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/ResponseHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="19" selection-start="671" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="18" selection-start="1092" selection-end="1092" vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/AmazonTVMClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="59" selection-start="3706" selection-end="3706" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="2142">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/tvmclient/TokenVendingMachineService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="26" selection-start="1003" selection-end="1011" vertical-scroll-proportion="0.0" vertical-offset="1028" max-vertical-offset="1394">
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="99" selection-start="192" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="527">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="47" selection-start="3609" selection-end="3609" vertical-scroll-proportion="0.0" vertical-offset="1496" max-vertical-offset="2227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="19" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/PropertyLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="31" selection-start="0" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="41" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="1819">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7561" column="16" selection-start="279517" selection-end="279517" vertical-scroll-proportion="0.33274648" vertical-offset="124846" max-vertical-offset="151079">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="33" selection-start="1506" selection-end="1506" vertical-scroll-proportion="0.0" vertical-offset="355" max-vertical-offset="1751">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#924#1572#0" expanded="true" />
+            <element signature="e#1561#1562#0" expanded="true" />
+            <element signature="e#1867#2039#0" expanded="true" />
+            <element signature="e#2028#2029#0" expanded="true" />
+            <element signature="e#2627#2799#0" expanded="true" />
+            <element signature="e#2788#2789#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="37" column="24" selection-start="1508" selection-end="1508" vertical-scroll-proportion="0.0" vertical-offset="471" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/item_list.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/item_view.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="18" selection-start="830" selection-end="830" vertical-scroll-proportion="0.4090909" vertical-offset="0" max-vertical-offset="2244">
           <folding />
         </state>
       </provider>
@@ -1143,7 +1223,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>actionbarsherlock</last-edited>
+          <last-edited>SpeakEasy</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

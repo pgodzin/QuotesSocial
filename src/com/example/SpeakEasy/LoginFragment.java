@@ -1,16 +1,19 @@
 package com.example.SpeakEasy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.UiLifecycleHelper;
+import android.widget.Toast;
+import com.facebook.*;
 import com.facebook.widget.LoginButton;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class LoginFragment extends Fragment {
 
@@ -40,14 +43,16 @@ public class LoginFragment extends Fragment {
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
         if (state.isOpened()) {
 
-            /*final SharedPreferences prefs = getActivity().getSharedPreferences(
+            final SharedPreferences prefs = getActivity().getSharedPreferences(
                     "fbInfo", Context.MODE_PRIVATE);
             if (session != null && session.getState().isOpened()){
                 Log.i("sessionToken", session.getAccessToken());
                 Log.i("sessionTokenDueDate", session.getExpirationDate().toLocaleString());
             }
 
-            new Request(session, "/me?fields=name", null, HttpMethod.GET,
+            Bundle params = new Bundle();
+            params.putString("access_token", session.getAccessToken());
+            new Request(session, "/me", params, HttpMethod.GET,
                     new Request.Callback() {
                         public void onCompleted(Response response) {
                             JSONObject graphResponse = response
@@ -55,7 +60,7 @@ public class LoginFragment extends Fragment {
                                     .getInnerJSONObject();
                             try {
                                 prefs.edit().putString("name", graphResponse.getString("name")).commit();
-
+                                Toast.makeText(getActivity(), graphResponse.getString("name"), Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 Log.i(TAG,
                                         "JSON error " + e.getMessage());
@@ -64,7 +69,7 @@ public class LoginFragment extends Fragment {
                     }
             ).executeAsync();
 
-            new Request(session, "/me?fields=quotes", null, HttpMethod.GET,
+/*            new Request(session, "/me?fields=quotes", params, HttpMethod.GET,
                     new Request.Callback() {
                         public void onCompleted(Response response) {
                             JSONObject graphResponse = response
