@@ -169,6 +169,18 @@ public class SimpleDB {
         }
     }
 
+    public static List<String> searchByQuery(String queryName) {
+        SelectRequest selectRequest = new SelectRequest("select * from Quotes where fbName = '" + queryName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(((Item) items.get(i)).getName());
+        }
+
+        return itemNames;
+    }
+
     public static List<String> getMyQuotesItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();

@@ -20,9 +20,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 import com.example.SpeakEasy.tvmclient.Response;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphObject;
-import com.facebook.model.OpenGraphAction;
-import com.facebook.model.OpenGraphObject;
 import com.facebook.widget.FacebookDialog;
 
 import java.util.HashMap;
@@ -67,7 +64,7 @@ public class HomePage extends SherlockListActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.search_with_edit, menu);
+        inflater.inflate(R.menu.edit, menu);
         return true;
     }
 
@@ -202,26 +199,7 @@ public class HomePage extends SherlockListActivity {
     }
 
 
-    private void shareToFB(String quoteText) {
-
-        if (FacebookDialog.canPresentOpenGraphActionDialog(this.getApplicationContext(),
-                FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
-            OpenGraphObject quote = OpenGraphObject.Factory.createForPost
-                    (OpenGraphObject.class, "speakeasydevfest:post", "I posted a new quote!",
-                            "http://i.imgur.com/ec9p33P.jpg", null, "\"" + quoteText + "\"");
-            OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
-            action.setProperty("quote", quote);
-            action.setType("speakeasydevfest:post");
-
-            FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(HomePage.this, action, "quote")
-                    .build();
-            uiHelper.trackPendingDialogCall(shareDialog.present());
-        } else {
-            Toast.makeText(HomePage.this, "Facebook not available", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private class ValidateCredentialsTask extends
+        private class ValidateCredentialsTask extends
             AsyncTask<Class<?>, Void, com.example.SpeakEasy.tvmclient.Response> {
 
         Class<?> cls;
@@ -289,7 +267,7 @@ public class HomePage extends SherlockListActivity {
             fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    shareToFB(quoteText.getText().toString());
+                    FBUtil.shareToFB(getApplicationContext(), HomePage.this, quoteText.getText().toString(), uiHelper);
                 }
             });
 

@@ -1,19 +1,19 @@
 package com.example.SpeakEasy;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockListActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
 import com.amazonaws.services.simpledb.model.Item;
 import com.amazonaws.services.simpledb.model.SelectRequest;
 import com.facebook.UiLifecycleHelper;
@@ -22,63 +22,29 @@ import com.facebook.widget.FacebookDialog;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainPage extends SherlockListActivity {
+public class SearchableActivity extends SherlockListActivity {
 
-    public static AmazonClientManager clientManager = null;
-
-    protected List<String> itemNames;
     protected MySimpleArrayAdapter adapter;
+    protected List<String> itemNames;
     private UiLifecycleHelper uiHelper;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.searchlayout);
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
-        setContentView(R.layout.mainpage);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
-        clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
-
-        //TODO: fix
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        itemNames = SimpleDB.getFeedItemNames(getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
-
-        adapter = new MySimpleArrayAdapter(this, itemNames);
-        setListAdapter(adapter);
-
-
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.search_item, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.search:
-                onSearchRequested();
-                return true;
-            case R.id.home:
-                Intent i = new Intent(MainPage.this, HomePage.class);
-                startActivity(i);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            search(query);
         }
-    }
 
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -123,6 +89,12 @@ public class MainPage extends SherlockListActivity {
         uiHelper.onDestroy();
     }
 
+    private void search(String query) {
+        itemNames = SimpleDB.searchByQuery(query.replace(" ", ""));
+        adapter = new MySimpleArrayAdapter(this, itemNames);
+        setListAdapter(adapter);
+    }
+
     public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         private final Context context;
         private List<String> quoteItemNames;
@@ -139,23 +111,6 @@ public class MainPage extends SherlockListActivity {
         }
 
         @Override
-        public void add(String object) {
-            final Object mLock = new Object();
-            synchronized (mLock) {
-                if (quoteItemNames == null) {
-                    quoteItemNames.add(object);
-                } else {
-                    quoteItemNames.add(0, object);
-                }
-            }
-        }
-
-        @Override
-        public void remove(String object) {
-            super.remove(object);
-        }
-
-        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -164,7 +119,6 @@ public class MainPage extends SherlockListActivity {
             final TextView quoteText = (TextView) rowView.findViewById(R.id.mainItemText);
             TextView quoteAuthor = (TextView) rowView.findViewById(R.id.mainItemAuthor);
             ImageView fbShare = (ImageView) rowView.findViewById(R.id.mainFBshare);
-            ImageView follow = (ImageView) rowView.findViewById(R.id.mainFollow);
 
             final Button fav = (Button) rowView.findViewById(R.id.mainFavorite);
 
@@ -186,15 +140,10 @@ public class MainPage extends SherlockListActivity {
             final String postID = fbName.getText().toString().replace(" ", "") + timestamp;
 
             SelectRequest selectRequest = new SelectRequest("select * from " + nameSpaceless + "Favorites" + " where postID = '" + postID + "'").withConsistentRead(true);
-            final List<Item> items = clientManager.sdb().select(selectRequest).getItems();
+            final List<Item> items = HomePage.clientManager.sdb().select(selectRequest).getItems();
             if (items.size() == 1)
                 fav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
             else fav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
-            String n = SimpleDB.getAttributesForItem(nameSpaceless + "Favorites", quoteItemNames.get(position)).get("favorites");
-            final int numFavs;
-            if (n == null) numFavs = 0;
-            else numFavs = Integer.parseInt(n);
-            //fav.setText(numFavs + "");
 
             fav.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -224,18 +173,12 @@ public class MainPage extends SherlockListActivity {
             fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FBUtil.shareToFB(getApplicationContext(), MainPage.this, quoteText.getText().toString(), uiHelper);
+                    FBUtil.shareToFB(getApplicationContext(), SearchableActivity.this, quoteText.getText().toString(), uiHelper);
                 }
             });
-
-            follow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
             return rowView;
+
         }
+
     }
 }
