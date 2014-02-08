@@ -7,4 +7,27 @@
                 tools:context=".Mainpage"
                 android:background="@android:color/background_light">
 
+    <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@android:id/list"
+            android:dividerHeight = "1.0sp"
+            android:paddingTop="10dp"
+            android:footerDividersEnabled="true"
+            android:headerDividersEnabled="true"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:divider="@drawable/line"
+            android:layout_below="@+id/newsFeed"
+            android:layout_alignParentLeft="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/livefeed"
+            android:id="@+id/newsFeed"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.example.SpeakEasy;
 
 public class QuotePost {
     private String quoteText, authorName, fbName, timestamp;
+    private int favorites;
     private String[] tags;
 
     public String getQuoteText() {
@@ -44,12 +45,22 @@ public class QuotePost {
         this.tags = tags;
     }
 
-    public QuotePost(String quoteText, String authorName, String fbName, String timestamp, String[] tags) {
+    public int getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(int favorites) {
+        this.favorites = favorites;
+    }
+
+    public QuotePost(String quoteText, String authorName, String fbName, String timestamp, String[] tags, int favorites) {
 
         this.quoteText = quoteText;
         this.authorName = authorName;
         this.fbName = fbName;
         this.timestamp = timestamp;
         this.tags = tags;
+        this.favorites = favorites;
+
     }
 }

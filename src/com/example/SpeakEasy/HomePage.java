@@ -38,6 +38,8 @@ public class HomePage extends SherlockListActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
@@ -73,6 +75,9 @@ public class HomePage extends SherlockListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(HomePage.this, MainPage.class));
+                return true;
             case R.id.search:
                 Toast.makeText(HomePage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
@@ -96,18 +101,14 @@ public class HomePage extends SherlockListActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if (HomePage.clientManager.hasCredentials()) {
 
-                        } else {
-                            displayCredentialsIssueAndExit();
-                        }
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
                         String name = prefs.getString("name", "");
                         QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
-                                name, timestamp, new String[0]);
+                                name, timestamp, new String[0], 0);
                         if (!prefs.getBoolean("quotesDomainCreated", false)) {
                             SimpleDB.createDomain("Quotes");
-                            prefs.edit().putBoolean("quotesDomainCreated", true);
+                            prefs.edit().putBoolean("quotesDomainCreated", true).commit();
                         }
                         SimpleDB.addQuote(q);
                         adapter.add(name + "" + timestamp);
@@ -246,7 +247,7 @@ public class HomePage extends SherlockListActivity {
         private List<String> quoteItemNames;
 
         public MySimpleArrayAdapter(Context context, List<String> values) {
-            super(context, R.layout.item_view, values);
+            super(context, R.layout.home_item_view, values);
             this.context = context;
             this.quoteItemNames = values;
         }
@@ -268,47 +269,34 @@ public class HomePage extends SherlockListActivity {
             }
         }
 
-//        public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
-//
-//        }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.item_view, parent, false);
-            TextView fbName = (TextView) rowView.findViewById(R.id.fbName);
+            View rowView = inflater.inflate(R.layout.home_item_view, parent, false);
             final TextView quoteText = (TextView) rowView.findViewById(R.id.itemText);
             TextView quoteAuthor = (TextView) rowView.findViewById(R.id.itemAuthor);
             ImageView fbShare = (ImageView) rowView.findViewById(R.id.fbshare);
-            ImageView follow = (ImageView) rowView.findViewById(R.id.follow);
-            ImageView fav = (ImageView) rowView.findViewById(R.id.favorite);
+            Button fav = (Button) rowView.findViewById(R.id.favorite);
 
             fav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Toast.makeText(HomePage.this, "Stop trying to like you own post", Toast.LENGTH_SHORT).show();
                 }
             });
 
             fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  shareToFB(quoteText.getText().toString());
-                }
-            });
-
-            follow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
+                    shareToFB(quoteText.getText().toString());
                 }
             });
 
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-            fbName.setText(attrMap.get("fbName"));
             quoteAuthor.setText(attrMap.get("author"));
             quoteText.setText(attrMap.get("quoteText"));
+            fav.setText(attrMap.get("favorites"));
 
             return rowView;
         }

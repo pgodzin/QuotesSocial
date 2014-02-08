@@ -19,6 +19,8 @@
     <string name="quote">QuoteText</string>
     <string name="greyheart">heart</string>
     <string name="follow">follow</string>
+    <string name="homeHeart">heart</string>
+    <string name="livefeed">Live Feed</string>
 
 
 </resources>
