@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +19,28 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 import com.example.SpeakEasy.tvmclient.Response;
+import com.facebook.UiLifecycleHelper;
+import com.facebook.model.GraphObject;
+import com.facebook.model.OpenGraphAction;
+import com.facebook.model.OpenGraphObject;
+import com.facebook.widget.FacebookDialog;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class HomePage extends SherlockListActivity {
     public static AmazonClientManager clientManager = null;
-    protected ListView quoteList;
-    private QuotePost[] myQuotes;
-    //private QuoteAdapter qAdapter;
+    protected List<String> itemNames;
+    protected MySimpleArrayAdapter adapter;
+    static HomePage activity = null;
+    private UiLifecycleHelper uiHelper;
+
 
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        uiHelper = new UiLifecycleHelper(this, null);
+        uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+        activity = this;
 
         //TODO: fix
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -37,10 +48,9 @@ public class HomePage extends SherlockListActivity {
 
         clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
 
-        String[] itemNames = SimpleDB.getMyQuotesItemNames(getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
+        itemNames = SimpleDB.getMyQuotesItemNames(getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
 
-        final MySimpleArrayAdapter adapter = new MySimpleArrayAdapter(this, itemNames);
-        //quoteList.setAdapter(adapter);
+        adapter = new MySimpleArrayAdapter(this, itemNames);
         setListAdapter(adapter);
 
 
@@ -91,13 +101,17 @@ public class HomePage extends SherlockListActivity {
                             displayCredentialsIssueAndExit();
                         }
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
+                        String name = prefs.getString("name", "");
                         QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
-                                prefs.getString("name", ""), timestamp, new String[0]);
+                                name, timestamp, new String[0]);
                         if (!prefs.getBoolean("quotesDomainCreated", false)) {
                             SimpleDB.createDomain("Quotes");
                             prefs.edit().putBoolean("quotesDomainCreated", true);
                         }
                         SimpleDB.addQuote(q);
+                        adapter.add(name + "" + timestamp);
+                        adapter.notifyDataSetChanged();
+
                         quote.setText("");
                         author.setText("");
 
@@ -142,6 +156,69 @@ public class HomePage extends SherlockListActivity {
         confirm.show().show();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
+            @Override
+            public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
+                Log.e("Activity", String.format("Error: %s", error.toString()));
+            }
+
+            @Override
+            public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
+                Log.i("Activity", "Success!");
+            }
+
+
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        uiHelper.onResume();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        uiHelper.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        uiHelper.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+
+
+    private void shareToFB(String quoteText) {
+
+        if (FacebookDialog.canPresentOpenGraphActionDialog(this.getApplicationContext(),
+                FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
+            OpenGraphObject quote = OpenGraphObject.Factory.createForPost
+                    (OpenGraphObject.class, "speakeasydevfest:quote", "I posted a new quote!",
+                            "http://i.imgur.com/ec9p33P.jpg", null, quoteText);
+            OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
+            action.setProperty("quote", quote);
+            action.setType("speakeasydevfest:quote");
+
+            FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(HomePage.this, action, "quote")
+                    .build();
+            uiHelper.trackPendingDialogCall(shareDialog.present());
+        } else {
+            Toast.makeText(HomePage.this, "Facebook not available", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private class ValidateCredentialsTask extends
             AsyncTask<Class<?>, Void, com.example.SpeakEasy.tvmclient.Response> {
 
@@ -165,13 +242,34 @@ public class HomePage extends SherlockListActivity {
 
     public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         private final Context context;
-        private String[] quoteItemNames;
+        private List<String> quoteItemNames;
 
-        public MySimpleArrayAdapter(Context context, String[] values) {
+        public MySimpleArrayAdapter(Context context, List<String> values) {
             super(context, R.layout.item_view, values);
             this.context = context;
             this.quoteItemNames = values;
         }
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+        }
+
+        @Override
+        public void add(String object) {
+            final Object mLock = new Object();
+            synchronized (mLock) {
+                if (quoteItemNames == null) {
+                    quoteItemNames.add(object);
+                } else {
+                    quoteItemNames.add(0, object);
+                }
+            }
+        }
+
+//        public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+//
+//        }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -179,11 +277,35 @@ public class HomePage extends SherlockListActivity {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.item_view, parent, false);
             TextView fbName = (TextView) rowView.findViewById(R.id.fbName);
-            TextView quoteText = (TextView) rowView.findViewById(R.id.itemText);
+            final TextView quoteText = (TextView) rowView.findViewById(R.id.itemText);
             TextView quoteAuthor = (TextView) rowView.findViewById(R.id.itemAuthor);
-            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames[position]);
+            ImageView fbShare = (ImageView) rowView.findViewById(R.id.fbshare);
+            ImageView follow = (ImageView) rowView.findViewById(R.id.follow);
+            ImageView fav = (ImageView) rowView.findViewById(R.id.favorite);
+
+            fav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            fbShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                  shareToFB(quoteText.getText().toString());
+                }
+            });
+
+            follow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
             fbName.setText(attrMap.get("fbName"));
-            String fn = attrMap.get("quoteText");
             quoteAuthor.setText(attrMap.get("author"));
             quoteText.setText(attrMap.get("quoteText"));
 

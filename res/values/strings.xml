@@ -18,6 +18,7 @@
     <string name="auth">- Author</string>
     <string name="quote">QuoteText</string>
     <string name="greyheart">heart</string>
+    <string name="follow">follow</string>
 
 
 </resources>

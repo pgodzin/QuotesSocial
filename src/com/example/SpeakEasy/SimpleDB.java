@@ -164,13 +164,13 @@ public class SimpleDB {
         }
     }
 
-    public static String[] getMyQuotesItemNames( String myName ) {
-        SelectRequest selectRequest = new SelectRequest( "select itemName() from Quotes where fbName = '" + myName + "'" ).withConsistentRead( true );
+    public static List<String> getMyQuotesItemNames( String myName ) {
+        SelectRequest selectRequest = new SelectRequest( "select itemName() from Quotes where fbName = '" + myName + "' and timestamp is not null order by fbName desc" ).withConsistentRead( true );
         List<Item> items = getInstance().select( selectRequest ).getItems();
 
-        String[] itemNames = new String[ items.size() ];
+        List<String> itemNames = new ArrayList<String>();
         for ( int i = 0; i < items.size(); i++ ) {
-            itemNames[ i ] = ((Item)items.get( i )).getName();
+            itemNames.add(((Item) items.get(i)).getName());
         }
 
         return itemNames;
