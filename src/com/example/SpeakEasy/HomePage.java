@@ -37,6 +37,7 @@ public class HomePage extends SherlockListActivity {
 
 
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
@@ -205,11 +206,11 @@ public class HomePage extends SherlockListActivity {
         if (FacebookDialog.canPresentOpenGraphActionDialog(this.getApplicationContext(),
                 FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
             OpenGraphObject quote = OpenGraphObject.Factory.createForPost
-                    (OpenGraphObject.class, "speakeasydevfest:quote", "I posted a new quote!",
-                            "http://i.imgur.com/ec9p33P.jpg", null, quoteText);
+                    (OpenGraphObject.class, "speakeasydevfest:post", "I posted a new quote!",
+                            "http://i.imgur.com/ec9p33P.jpg", null, "\"" + quoteText + "\"");
             OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
             action.setProperty("quote", quote);
-            action.setType("speakeasydevfest:quote");
+            action.setType("speakeasydevfest:post");
 
             FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(HomePage.this, action, "quote")
                     .build();
