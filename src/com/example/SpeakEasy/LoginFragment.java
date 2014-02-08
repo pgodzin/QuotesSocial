@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment {
                                     .getInnerJSONObject();
                             try {
                                 prefs.edit().putString("name", graphResponse.getString("name")).commit();
-                                Toast.makeText(getActivity(), graphResponse.getString("name"), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Welcome " + graphResponse.getString("name"), Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 Log.i(TAG,
                                         "JSON error " + e.getMessage());

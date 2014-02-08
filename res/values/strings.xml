@@ -10,6 +10,14 @@
     <string name="submit">Submit</string>
     <string name="edit">Edit</string>
     <string name="yourquotes">Your Quotes</string>
+    <string name="name">Name</string>
+    <string name="openquote">openQuote</string>
+    <string name="closequote">closequote</string>
+    <string name="fbshare">fbshare</string>
+    <string name="heart">heart</string>
+    <string name="auth">- Author</string>
+    <string name="quote">QuoteText</string>
+    <string name="greyheart">heart</string>
 
 
 </resources>

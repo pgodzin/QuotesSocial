@@ -164,8 +164,8 @@ public class SimpleDB {
         }
     }
 
-    public static String[] getMyQuotes( String myName ) {
-        SelectRequest selectRequest = new SelectRequest( "select quoteText, author from Quotes where fbName = " + myName ).withConsistentRead( true );
+    public static String[] getMyQuotesItemNames( String myName ) {
+        SelectRequest selectRequest = new SelectRequest( "select itemName() from Quotes where fbName = '" + myName + "'" ).withConsistentRead( true );
         List<Item> items = getInstance().select( selectRequest ).getItems();
 
         String[] itemNames = new String[ items.size() ];

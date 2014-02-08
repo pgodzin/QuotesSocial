@@ -8,62 +8,95 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Name"
+            android:text="@string/name"
             android:id="@+id/fbName"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:textSize="15sp"
+            android:paddingTop="5dp"/>
 
     <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/imageView"
-            android:layout_below="@+id/fbName"
-            android:layout_alignParentLeft="true"
-            android:contentDescription="openQuote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView5"
+            android:src="@android:drawable/ic_input_add"
             android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:src="@drawable/openquote"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="QuoteText"
-            android:id="@+id/itemText"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_toRightOf="@+id/imageView"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="- Author"
-            android:id="@+id/itemAuther"
-            android:layout_below="@+id/imageView"
+            android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/fbName"/>
 
-    <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/imageView2"
-            android:layout_alignTop="@+id/itemAuther"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/closequote"/>
-
-    <ImageView
+    <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView3"
-            android:layout_below="@+id/imageView2"
+            android:layout_below="@+id/imageView5"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/fbshare"/>
+            android:background="@drawable/rectangle">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView4"
-            android:layout_below="@+id/itemAuther"
-            android:layout_toRightOf="@+id/imageView2"
-            android:src="@drawable/greyheart"
-            android:clickable="true"/>
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imageView"
+                android:layout_below="@+id/fbName"
+                android:layout_alignParentLeft="true"
+                android:contentDescription="@string/openquote"
+                android:paddingLeft="10dp"
+                android:src="@drawable/openquote"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/quote"
+                android:id="@+id/itemText"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_toRightOf="@+id/imageView"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/auth"
+                android:id="@+id/itemAuthor"
+                android:textSize="15sp"
+                android:layout_below="@+id/itemText"
+                android:layout_alignRight="@+id/itemText"
+                android:textStyle="italic"/>
+
+        <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imageView2"
+                android:src="@drawable/closequote"
+                android:contentDescription="@string/closequote"
+                android:paddingLeft="15dp"
+                android:layout_alignTop="@+id/itemText"
+                android:layout_toRightOf="@+id/itemText"/>
+
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+                android:id="@+id/imageView3"
+                android:src="@drawable/fbshare"
+                android:contentDescription="@string/fbshare"
+                android:scaleType="centerCrop"
+                android:clickable="true"
+                android:layout_below="@+id/itemAuthor"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"/>
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView4"
+                android:layout_alignTop="@+id/imageView3"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/greyheart"
+                android:contentDescription="heart"
+                android:scaleType="fitCenter"
+                android:paddingRight="10dp"/>
+    </RelativeLayout>
+
 </RelativeLayout>
