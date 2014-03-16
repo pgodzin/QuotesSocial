@@ -14,8 +14,6 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.amazonaws.services.simpledb.model.Item;
-import com.amazonaws.services.simpledb.model.SelectRequest;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
@@ -189,13 +187,22 @@ public class MainPage extends SherlockListActivity {
             ImageView fbShare = (ImageView) rowView.findViewById(R.id.mainFBshare);
             ImageView follow = (ImageView) rowView.findViewById(R.id.mainFollow);
 
-            final Button fav = (Button) rowView.findViewById(R.id.mainFavorite);
-
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
             fbName.setText(attrMap.get("fbName"));
             quoteAuthor.setText(attrMap.get("author"));
             quoteText.setText(attrMap.get("quoteText"));
-            fav.setText(attrMap.get("favorites"));
+
+            final String timestamp = attrMap.get("timestamp");
+            final String postID = fbName.getText().toString().replace(" ", "") + timestamp;
+
+            int numFavs = SimpleDB.favCount(postID);
+
+            Button mainFav = (Button) rowView.findViewById(R.id.mainFavorite);
+            mainFav.setText("" + numFavs);
+
+            if (Integer.parseInt(mainFav.getText().toString()) == 0) {
+                mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
+            } else mainFav.setTextColor(getResources().getColor(android.R.color.black));
 
             final SharedPreferences prefs = getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
 
@@ -205,40 +212,21 @@ public class MainPage extends SherlockListActivity {
                 prefs.edit().putBoolean(nameSpaceless + "FavoritesCreated", true).commit();
             }
 
-            final String timestamp = attrMap.get("timestamp");
-            final String postID = fbName.getText().toString().replace(" ", "") + timestamp;
+            final boolean isFav = SimpleDB.isFavoritedByUser(postID, nameSpaceless);
 
-            SelectRequest selectRequest = new SelectRequest("select * from " + nameSpaceless + "Favorites" + " where postID = '" + postID + "'").withConsistentRead(true);
-            final List<Item> items = clientManager.sdb().select(selectRequest).getItems();
-            if (items.size() == 1)
-                fav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
-            else fav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
-            String n = SimpleDB.getAttributesForItem(nameSpaceless + "Favorites", quoteItemNames.get(position)).get("favorites");
-            final int numFavs;
-            if(n==null) numFavs = 0;
-            else numFavs = Integer.parseInt(n);
-            fav.setText(numFavs + "");
+            if (isFav)
+                mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
+            else mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
 
-            fav.setOnClickListener(new View.OnClickListener() {
+            mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int numFavs = Integer.parseInt(fav.getText().toString());
-                    if (items.size() == 1) {
-                        SimpleDB.deleteItem(nameSpaceless + "Favorites", postID);
-                        HashMap<String, String> newFavs = new HashMap<String, String>();
-                        newFavs.put("favorites", "" + (numFavs - 1));
-                        //fav.setText("" + numFavs);
-                        SimpleDB.updateAttributesForItem("Quotes", postID, newFavs);
+                    if (isFav) {
+                        SimpleDB.deleteItem("Favorites", postID + "_likedBy_" + nameSpaceless);
                         adapter.notifyDataSetChanged();
-                    } else if (items.size() == 0) {
-                        SimpleDB.createItem("Quotes", postID);
-                        HashMap<String, String> newFavs = new HashMap<String, String>();
-                        newFavs.put("favorites", "" + (numFavs + 1));
-                        //fav.setText("" + numFavs);
-                        SimpleDB.updateAttributesForItem("Quotes", postID, newFavs);
+                    } else {
                         SimpleDB.addToFavoriteTable(postID, nameSpaceless);
                         adapter.notifyDataSetChanged();
-
                     }
 
                 }

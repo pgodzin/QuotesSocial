@@ -25,7 +25,7 @@ public class SimpleDB {
 
     private static String nextToken = null;
     private static int prevNumDomains = 0;
-    public static final String DOMAIN_NAME = "Quotes";
+    public static final String QUOTES = "Quotes";
 
     public static AmazonSimpleDBClient getInstance() {
         if (MainPage.clientManager != null)
@@ -128,10 +128,15 @@ public class SimpleDB {
     }
 
     public static void addToFavoriteTable(String postID, String accountName){
-        ReplaceableAttribute favoritedPostID = new ReplaceableAttribute("postID", postID, Boolean.TRUE);
-        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(1);
+        ReplaceableAttribute favoritedPostID = new ReplaceableAttribute("postID", postID, Boolean.FALSE);
+        ReplaceableAttribute accName = new ReplaceableAttribute("likedBy", accountName, Boolean.FALSE);
+
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(2);
         attrs.add(favoritedPostID);
-        PutAttributesRequest par = new PutAttributesRequest(accountName +"Favorites", postID, attrs);
+        attrs.add(accName);
+
+
+        PutAttributesRequest par = new PutAttributesRequest("Favorites", postID + "_likedBy_" + accountName, attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -143,13 +148,11 @@ public class SimpleDB {
     public static void addQuote(QuotePost quote) {
 
 
-        ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.TRUE);
-        ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.TRUE);
-        ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.TRUE);
-        ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.TRUE);
-        ReplaceableAttribute tagsAttribute = new ReplaceableAttribute("tags", quote.getTags().toString(), Boolean.TRUE);
-        ReplaceableAttribute favsAttribute = new ReplaceableAttribute("favorites", "" + quote.getFavorites(), Boolean.TRUE);
-
+        ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.FALSE);
+        ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.FALSE);
+        ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.FALSE);
+        ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.FALSE);
+        ReplaceableAttribute tagsAttribute = new ReplaceableAttribute("tags", quote.getTags().toString(), Boolean.FALSE);
 
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(6);
         attrs.add(quoteAttribute);
@@ -157,11 +160,8 @@ public class SimpleDB {
         attrs.add(timeAttribute);
         attrs.add(fbNameAttribute);
         attrs.add(tagsAttribute);
-        attrs.add(favsAttribute);
 
-
-
-        PutAttributesRequest par = new PutAttributesRequest(DOMAIN_NAME, quote.getFbName() + quote.getTimestamp(), attrs);
+        PutAttributesRequest par = new PutAttributesRequest(QUOTES, quote.getFbName() + quote.getTimestamp(), attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -179,6 +179,18 @@ public class SimpleDB {
         }
 
         return itemNames;
+    }
+
+    public static int favCount(String postId){
+        SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "'").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+        return Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
+    }
+
+    public static boolean isFavoritedByUser(String postId, String name){
+        SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+        return 1 == Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
     }
 
     public static List<String> getFeedItemNames(String myName) {
