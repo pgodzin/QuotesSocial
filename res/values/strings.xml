@@ -21,6 +21,10 @@
     <string name="follow">follow</string>
     <string name="homeHeart">heart</string>
     <string name="livefeed">Live Feed</string>
+    <string name="pick_category">Pick the Categories for your Quote</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+
 
 
 </resources>

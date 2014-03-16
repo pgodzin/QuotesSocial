@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>Advice</item>
+        <item>Funny</item>
+        <item>Inspirational</item>
+        <item>Love</item>
+        <item>Movies</item>
+    </string-array>
+</resources>

@@ -63,12 +63,12 @@
             android:focusable="false"
             android:paddingTop="5dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignBottom="@+id/favorite"/>
+            android:layout_alignBottom="@+id/homeFavorite"/>
 
     <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/favorite"
+            android:id="@+id/homeFavorite"
             android:background="@drawable/greyheart"
             android:contentDescription="@string/homeHeart"
             android:paddingRight="5dp"

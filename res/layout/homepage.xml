@@ -44,21 +44,6 @@
             android:clickable="true"
             android:visibility="gone"/>
 
-    <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@android:id/list"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="10.0sp"
-            android:paddingTop="10dp"
-            android:layout_below="@+id/yourQuotes"
-            android:layout_alignParentLeft="true"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            />
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,4 +51,14 @@
             android:id="@+id/yourQuotes"
             android:layout_below="@+id/submit"
             android:layout_alignParentLeft="true"/>
+
+    <fragment
+            android:id="@+id/listFragment"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:name="com.example.SpeakEasy.HomePageListFragment"
+            android:layout_below="@+id/yourQuotes"
+            android:layout_alignParentLeft="true">
+
+    </fragment>
 </RelativeLayout>
