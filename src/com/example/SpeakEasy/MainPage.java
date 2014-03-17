@@ -2,34 +2,74 @@ package com.example.SpeakEasy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.example.SpeakEasy.categoryActivities.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
-
 
 public class MainPage extends SherlockFragmentActivity {
 
     public static AmazonClientManager clientManager = null;
-
     protected UiLifecycleHelper uiHelper;
+
+    private String[] categoryTitles;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
+        setTitle("Main Feed");
         setContentView(R.layout.mainpage);
 
-        TextView tv = (TextView) findViewById(R.id.newsFeed);
-        tv.setText(R.string.livefeed);
+        categoryTitles = getResources().getStringArray(R.array.navigationDrawerCategories);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(getTitle());
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle(getTitle());
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+        // Set the drawer toggle as the DrawerListener
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.activity_list_item, android.R.id.text1, categoryTitles));
+        // Set the list's click listener
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
 
         //TODO: fix
@@ -43,6 +83,18 @@ public class MainPage extends SherlockFragmentActivity {
         Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
     }*/
 
+    /* Called whenever we call invalidateOptionsMenu() */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // If the nav drawer is open, hide action items related to the content view
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menu.findItem(R.id.search).setVisible(!drawerOpen);
+        menu.findItem(R.id.home).setVisible(!drawerOpen);
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
@@ -53,7 +105,16 @@ public class MainPage extends SherlockFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+
         switch (item.getItemId()) {
+            case android.R.id.home:
+                if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+                    mDrawerLayout.closeDrawer(mDrawerList);
+                } else {
+                    mDrawerLayout.openDrawer(mDrawerList);
+                }
+                return true;
+
             case R.id.search:
                 Toast.makeText(MainPage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
@@ -64,6 +125,19 @@ public class MainPage extends SherlockFragmentActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
 
@@ -108,6 +182,49 @@ public class MainPage extends SherlockFragmentActivity {
     public void onDestroy() {
         super.onDestroy();
         uiHelper.onDestroy();
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    /**
+     * Swaps fragments in the main content view
+     */
+    private void selectItem(int position) {
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = null;
+        // Create a new fragment and specify the planet to show based on position
+        switch (position) {
+            case 0:
+                Toast.makeText(this, "Following not yet implemented", Toast.LENGTH_SHORT).show();
+                break;
+            case 1:
+                fragment = new AdviceFeedFragment();
+                break;
+            case 2:
+                fragment = new FunnyFeedFragment();
+                break;
+            case 3:
+                fragment = new InsipirationalFeedFragment();
+                break;
+            case 4:
+                fragment = new LoveFeedFragment();
+                break;
+            case 5:
+                fragment = new MovieFeedFragment();
+                break;
+        }
+        fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+
+        // Highlight the selected item, update the title, and close the drawer
+        mDrawerList.setItemChecked(position, true);
+        getSupportActionBar().setTitle(categoryTitles[position] + "Quotes");
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
 }

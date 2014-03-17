@@ -30,6 +30,9 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="category">Category</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
 
 
 </resources>

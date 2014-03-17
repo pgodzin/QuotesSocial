@@ -7,4 +7,12 @@
         <item>Love</item>
         <item>Movie</item>
     </string-array>
+    <string-array name="navigationDrawerCategories">
+        <item>Following</item>
+        <item>Advice</item>
+        <item>Funny</item>
+        <item>Inspirational</item>
+        <item>Love</item>
+        <item>Movie</item>
+    </string-array>
 </resources>
