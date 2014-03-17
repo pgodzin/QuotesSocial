@@ -1,9 +1,10 @@
 package com.example.SpeakEasy;
 
+import java.util.ArrayList;
+
 public class QuotePost {
     private String quoteText, authorName, fbName, timestamp;
-    private int favorites;
-    private String[] tags;
+    private ArrayList<Integer> categories;
 
     public String getQuoteText() {
         return quoteText;
@@ -37,30 +38,21 @@ public class QuotePost {
         this.timestamp = timestamp;
     }
 
-    public String[] getTags() {
-        return tags;
+    public ArrayList<Integer> getCategories() {
+        return categories;
     }
 
-    public void setTags(String[] tags) {
-        this.tags = tags;
+    public void setCategories(ArrayList<Integer> categories) {
+        this.categories = categories;
     }
 
-    public int getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(int favorites) {
-        this.favorites = favorites;
-    }
-
-    public QuotePost(String quoteText, String authorName, String fbName, String timestamp, String[] tags, int favorites) {
+   public QuotePost(String quoteText, String authorName, String fbName, String timestamp, ArrayList<Integer> categories) {
 
         this.quoteText = quoteText;
         this.authorName = authorName;
         this.fbName = fbName;
         this.timestamp = timestamp;
-        this.tags = tags;
-        this.favorites = favorites;
+        this.categories = categories;
 
     }
 }

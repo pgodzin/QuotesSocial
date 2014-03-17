@@ -50,7 +50,8 @@
             android:text="@string/yourquotes"
             android:id="@+id/yourQuotes"
             android:layout_below="@+id/submit"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"/>
 
     <fragment
             android:id="@+id/listFragment"
@@ -58,7 +59,8 @@
             android:layout_width="match_parent"
             android:name="com.example.SpeakEasy.HomePageListFragment"
             android:layout_below="@+id/yourQuotes"
-            android:layout_alignParentLeft="true">
+            android:layout_alignParentLeft="true"
+            android:layout_margin="1dp">
 
     </fragment>
 </RelativeLayout>

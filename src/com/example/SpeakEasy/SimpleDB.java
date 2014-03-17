@@ -127,7 +127,7 @@ public class SimpleDB {
         getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName).withAttributes(new Attribute[]{new Attribute().withName(attributeName)}));
     }
 
-    public static void addToFavoriteTable(String postID, String accountName){
+    public static void addToFavoriteTable(String postID, String accountName) {
         ReplaceableAttribute favoritedPostID = new ReplaceableAttribute("postID", postID, Boolean.FALSE);
         ReplaceableAttribute accName = new ReplaceableAttribute("likedBy", accountName, Boolean.FALSE);
 
@@ -144,22 +144,54 @@ public class SimpleDB {
         }
     }
 
+    public static void addPostIDToDomain(String postID, String tableName) {
+        ReplaceableAttribute postIDAttribute = new ReplaceableAttribute("postID", postID, Boolean.FALSE);
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(1);
+        attrs.add(postIDAttribute);
+
+        PutAttributesRequest par = new PutAttributesRequest(tableName, postID, attrs);
+        try {
+            getInstance().putAttributes(par);
+        } catch (Exception exception) {
+            System.out.println("EXCEPTION = " + exception);
+        }
+    }
 
     public static void addQuote(QuotePost quote) {
-
 
         ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.FALSE);
         ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.FALSE);
         ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.FALSE);
         ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.FALSE);
-        ReplaceableAttribute tagsAttribute = new ReplaceableAttribute("tags", quote.getTags().toString(), Boolean.FALSE);
 
-        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(6);
+        ArrayList<Integer> categories = quote.getCategories();
+        int numCategories = categories.size();
+
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(4 + numCategories);
         attrs.add(quoteAttribute);
         attrs.add(authorAttribute);
         attrs.add(timeAttribute);
         attrs.add(fbNameAttribute);
-        attrs.add(tagsAttribute);
+
+        for (int i = 0; i < numCategories; i++) {
+            switch ((Integer) categories.get(i)) {
+                case 0:
+                    attrs.add(new ReplaceableAttribute("category", "advice", Boolean.FALSE));
+                    break;
+                case 1:
+                    attrs.add(new ReplaceableAttribute("category", "funny", Boolean.FALSE));
+                    break;
+                case 2:
+                    attrs.add(new ReplaceableAttribute("category", "inspirational", Boolean.FALSE));
+                    break;
+                case 3:
+                    attrs.add(new ReplaceableAttribute("category", "love", Boolean.FALSE));
+                    break;
+                case 4:
+                    attrs.add(new ReplaceableAttribute("category", "movie", Boolean.FALSE));
+                    break;
+            }
+        }
 
         PutAttributesRequest par = new PutAttributesRequest(QUOTES, quote.getFbName() + quote.getTimestamp(), attrs);
         try {
@@ -181,13 +213,13 @@ public class SimpleDB {
         return itemNames;
     }
 
-    public static int favCount(String postId){
+    public static int favCount(String postId) {
         SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
     }
 
-    public static boolean isFavoritedByUser(String postId, String name){
+    public static boolean isFavoritedByUser(String postId, String name) {
         SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return 1 == Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
@@ -195,6 +227,18 @@ public class SimpleDB {
 
     public static List<String> getFeedItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(((Item) items.get(i)).getName());
+        }
+
+        return itemNames;
+    }
+
+    public static List<String> getFeedItemNamesByCategory(String category) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category == '" + category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -23,20 +24,22 @@ import com.facebook.widget.FacebookDialog;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainPage extends SherlockListActivity {
+public class MainPage extends SherlockFragmentActivity {
 
     public static AmazonClientManager clientManager = null;
 
     protected List<String> itemNames;
     protected MySimpleArrayAdapter adapter;
-    private UiLifecycleHelper uiHelper;
-
+    protected UiLifecycleHelper uiHelper;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.mainpage);
+
+        TextView tv = (TextView) findViewById(R.id.newsFeed);
+        tv.setText(R.string.livefeed);
 
         clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
 
@@ -52,10 +55,10 @@ public class MainPage extends SherlockListActivity {
 
     }
 
-    @Override
+    /*    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

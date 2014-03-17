@@ -19,7 +19,7 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
+        final ArrayList mSelectedItems = new ArrayList<Integer>();  // Where we track the selected items
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Set the dialog title
         builder.setTitle(R.string.pick_category)
@@ -55,14 +55,12 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
                         String name = prefs.getString("name", "");
                         QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
-                                name, timestamp, new String[0], 0);
-                        if (!prefs.getBoolean("quotesDomainCreated", false)) {
-                            SimpleDB.createDomain("Quotes");
-                            prefs.edit().putBoolean("quotesDomainCreated", true).commit();
-                        }
+                                name, timestamp, mSelectedItems);
+
                         SimpleDB.addQuote(q);
 
-                        HomePageListFragment.addQuoteToAdapter(name + "" + timestamp);
+                        String postID = name + "" + timestamp;
+                        HomePageListFragment.addQuoteToAdapter(postID);
 
                         quote.setText("");
                         author.setText("");
@@ -70,6 +68,7 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         b.setVisibility(View.GONE);
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);
+
                         dismiss();
                     }
                 })

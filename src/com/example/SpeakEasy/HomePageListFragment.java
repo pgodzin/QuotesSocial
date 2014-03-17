@@ -30,7 +30,7 @@ public class HomePageListFragment extends SherlockListFragment {
         uiHelper.onCreate(savedInstanceState);
         adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
         setListAdapter(adapter);
-        return inflater.inflate(R.layout.homepage_list, container, false);
+        return inflater.inflate(R.layout.list_fragment, container, false);
     }
 
     public static void addQuoteToAdapter(String itemName){
