@@ -1,5 +1,6 @@
 package com.example.SpeakEasy;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import java.util.List;
 public class MainPageListFragment extends SherlockListFragment {
     protected List<String> itemNames;
     protected static MySimpleArrayAdapter adapter;
-    private UiLifecycleHelper uiHelper;
+    protected UiLifecycleHelper uiHelper;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -32,10 +33,15 @@ public class MainPageListFragment extends SherlockListFragment {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNames(name);
                 adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setListAdapter(adapter);
 
+                    }
+                });
             }
         }).start();
-        setListAdapter(adapter);
 
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
@@ -64,9 +70,9 @@ public class MainPageListFragment extends SherlockListFragment {
         uiHelper.onDestroy();
     }
 
-    private void shareToFB(String quoteText) {
+    public static void shareToFB(Activity activity, String quoteText, UiLifecycleHelper uiHelper) {
 
-        if (FacebookDialog.canPresentOpenGraphActionDialog(getActivity().getApplicationContext(),
+        if (FacebookDialog.canPresentOpenGraphActionDialog(activity.getApplicationContext(),
                 FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
             OpenGraphObject quote = OpenGraphObject.Factory.createForPost
                     (OpenGraphObject.class, "speakeasydevfest:post", "I loved this quote!",
@@ -75,11 +81,11 @@ public class MainPageListFragment extends SherlockListFragment {
             action.setProperty("quote", quote);
             action.setType("speakeasydevfest:love");
 
-            FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(getActivity(), action, "quote")
+            FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(activity, action, "quote")
                     .build();
             uiHelper.trackPendingDialogCall(shareDialog.present());
         } else {
-            Toast.makeText(getActivity(), "Facebook not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Facebook not available", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -174,7 +180,7 @@ public class MainPageListFragment extends SherlockListFragment {
             fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    shareToFB(quoteText.getText().toString());
+                    shareToFB(getActivity(), quoteText.getText().toString(), uiHelper);
                 }
             });
 

@@ -205,21 +205,25 @@ public class MainPage extends SherlockFragmentActivity {
                 break;
             case 1:
                 fragment = new AdviceFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
                 break;
             case 2:
                 fragment = new FunnyFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
                 break;
             case 3:
                 fragment = new InsipirationalFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
                 break;
             case 4:
                 fragment = new LoveFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
                 break;
             case 5:
                 fragment = new MovieFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
                 break;
         }
-        fragmentTransaction.replace(R.id.content_frame, fragment).commit();
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);

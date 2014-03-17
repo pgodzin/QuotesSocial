@@ -238,7 +238,7 @@ public class SimpleDB {
     }
 
     public static List<String> getFeedItemNamesByCategory(String category) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category == '" + category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category = '" + category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
