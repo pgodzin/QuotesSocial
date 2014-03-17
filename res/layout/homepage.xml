@@ -54,7 +54,7 @@
             android:paddingLeft="5dp"/>
 
     <fragment
-            android:id="@+id/listFragment"
+            android:id="@+id/homeListFragment"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:name="com.example.SpeakEasy.HomePageListFragment"

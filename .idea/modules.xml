@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/SpeakEasy.iml" filepath="$PROJECT_DIR$/SpeakEasy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/actionbarsherlock.iml" filepath="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/actionbarsherlock.iml" />
       <module fileurl="file://$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/facebook.iml" filepath="$PROJECT_DIR$/../facebook-android-sdk-3.6.0/facebook/facebook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SlidingMenu-master/library/library.iml" filepath="$PROJECT_DIR$/../SlidingMenu-master/library/library.iml" />
     </modules>
   </component>
 </project>

@@ -27,6 +27,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="actionbarsherlock" />
+    <orderEntry type="module" module-name="library" />
   </component>
 </module>
 

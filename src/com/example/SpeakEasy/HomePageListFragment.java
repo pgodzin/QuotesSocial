@@ -24,9 +24,8 @@ public class HomePageListFragment extends SherlockListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        itemNames = SimpleDB.getMyQuotesItemNames(getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
-        adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
-        uiHelper = new UiLifecycleHelper(getActivity(), null);
+        itemNames = SimpleDB.getMyQuotesItemNames(this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
+        uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
         adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
         setListAdapter(adapter);

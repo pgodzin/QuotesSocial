@@ -10,7 +10,7 @@
             android:label="@string/app_name"
             android:icon="@drawable/launcher"
             android:logo="@drawable/launcher"
-            android:theme="@style/Theme.Speakeasy" >
+            android:theme="@style/Theme.Speakeasy">
         <activity
                 android:name="Login"
                 android:label="@string/app_name">
@@ -22,23 +22,10 @@
         <activity android:name="com.facebook.LoginActivity"/>
         <activity android:name=".MainPage"/>
         <activity android:name=".HomePage"/>
-        <activity
-                android:name=".categoryActivities.FunnyFeedActivity"
-                android:label="funnyfeed"/>
-        <activity
-                android:name=".categoryActivities.MovieFeedActivity"
-                android:label="moviefeed"/>
-        <activity
-                android:name=".categoryActivities.InsipirationalFeedActivity"
-                android:label="inspirationalfeed"/>
-        <activity
-                android:name=".categoryActivities.LoveFeedActivity"
-                android:label="lovefeed"/>
-        <activity
-                android:name=".categoryActivities.AdviceFeedActivity"
-                android:label="advicefeed"/>
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/app_id"/>
 
     </application>
 </manifest>
