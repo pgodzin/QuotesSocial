@@ -8,6 +8,7 @@
         <item>Movie</item>
     </string-array>
     <string-array name="navigationDrawerCategories">
+        <item>Main Feed</item>
         <item>Following</item>
         <item>Advice</item>
         <item>Funny</item>

@@ -27,6 +27,7 @@ public class HomePageListFragment extends SherlockListFragment {
         itemNames = SimpleDB.getMyQuotesItemNames(this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
+        getActivity().setTitle("Main Feed");
         adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
         setListAdapter(adapter);
         return inflater.inflate(R.layout.list_fragment, container, false);
@@ -120,7 +121,7 @@ public class HomePageListFragment extends SherlockListFragment {
             quoteAuthor.setText(attrMap.get("author"));
             quoteText.setText(attrMap.get("quoteText"));
 
-            int numFavs = SimpleDB.favCount(attrMap.get("fbName") + attrMap.get("timestamp"));
+            int numFavs = SimpleDB.favCount(attrMap.get("fbName").replace(" ", "") + attrMap.get("timestamp"));
 
             Button homeFav = (Button) rowView.findViewById(R.id.homeFavorite);
             homeFav.setText("" + numFavs);

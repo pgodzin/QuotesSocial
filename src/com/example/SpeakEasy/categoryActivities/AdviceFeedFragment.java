@@ -15,6 +15,7 @@ public class AdviceFeedFragment extends MainPageListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
+        getActivity().setTitle("Advice Quotes");
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNamesByCategory("advice");

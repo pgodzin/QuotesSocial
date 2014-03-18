@@ -39,6 +39,7 @@ public class MainPage extends SherlockFragmentActivity {
         uiHelper.onCreate(savedInstanceState);
         setTitle("Main Feed");
         setContentView(R.layout.mainpage);
+        getSupportFragmentManager().beginTransaction().add(R.id.content_frame, new MainPageListFragment()).commit();
 
         categoryTitles = getResources().getStringArray(R.array.navigationDrawerCategories);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -198,36 +199,45 @@ public class MainPage extends SherlockFragmentActivity {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment fragment = null;
-        // Create a new fragment and specify the planet to show based on position
+        // Create a new fragment and specify the feed to show based on position
         switch (position) {
             case 0:
+                fragment = new MainPageListFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();                break;
+            case 1:
                 Toast.makeText(this, "Following not yet implemented", Toast.LENGTH_SHORT).show();
                 break;
-            case 1:
-                fragment = new AdviceFeedFragment();
-                fragmentTransaction.replace(R.id.mainListFragment, fragment).commit();
-                break;
             case 2:
-                fragment = new FunnyFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                fragment = new AdviceFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 3:
-                fragment = new InsipirationalFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                fragment = new FunnyFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 4:
-                fragment = new LoveFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                fragment = new InsipirationalFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 5:
+                fragment = new LoveFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
+                break;
+            case 6:
                 fragment = new MovieFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
                 break;
         }
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        getSupportActionBar().setTitle(categoryTitles[position] + "Quotes");
+        //getSupportActionBar().setTitle(categoryTitles[position] + "Quotes");
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
