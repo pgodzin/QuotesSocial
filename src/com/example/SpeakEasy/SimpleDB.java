@@ -163,15 +163,17 @@ public class SimpleDB {
         ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.FALSE);
         ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.FALSE);
         ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.FALSE);
+        ReplaceableAttribute numFavorites = new ReplaceableAttribute("favorites", "0", Boolean.TRUE);
 
         ArrayList<Integer> categories = quote.getCategories();
         int numCategories = categories.size();
 
-        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(4 + numCategories);
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(5 + numCategories);
         attrs.add(quoteAttribute);
         attrs.add(authorAttribute);
         attrs.add(timeAttribute);
         attrs.add(fbNameAttribute);
+        attrs.add(numFavorites);
 
         for (int i = 0; i < numCategories; i++) {
             switch ((Integer) categories.get(i)) {
@@ -193,7 +195,7 @@ public class SimpleDB {
             }
         }
 
-        PutAttributesRequest par = new PutAttributesRequest(QUOTES, quote.getFbName() + quote.getTimestamp(), attrs);
+        PutAttributesRequest par = new PutAttributesRequest(QUOTES, quote.getFbName().replace(" ", "") + quote.getTimestamp(), attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -214,15 +216,15 @@ public class SimpleDB {
     }
 
     public static int favCount(String postId) {
-        SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "'").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select favorites from Quotes where itemName() = '" + postId + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
     }
 
     public static boolean isFavoritedByUser(String postId, String name) {
-        SelectRequest selectRequest = new SelectRequest("select count(*) from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
-        return 1 == Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
+        return items.size() > 0;
     }
 
     public static List<String> getFeedItemNames(String myName) {

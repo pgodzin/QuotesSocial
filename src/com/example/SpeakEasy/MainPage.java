@@ -205,7 +205,7 @@ public class MainPage extends SherlockFragmentActivity {
                 break;
             case 1:
                 fragment = new AdviceFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                fragmentTransaction.replace(R.id.mainListFragment, fragment).commit();
                 break;
             case 2:
                 fragment = new FunnyFeedFragment();

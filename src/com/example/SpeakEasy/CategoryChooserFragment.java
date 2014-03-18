@@ -53,7 +53,7 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
 
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
-                        String name = prefs.getString("name", "").replace(" ", "");
+                        String name = prefs.getString("name", "");
                         QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
                                 name, timestamp, mSelectedItems);
 

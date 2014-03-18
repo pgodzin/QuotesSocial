@@ -89,7 +89,18 @@ public class MainPageListFragment extends SherlockListFragment {
         }
     }
 
-    public class MySimpleArrayAdapter extends ArrayAdapter<String> {
+    protected static class ViewHolder {
+        TextView fbName;
+        TextView quoteText;
+        TextView quoteAuthor;
+        ImageView fbShare;
+        ImageView follow;
+        Button mainFav;
+        String postID;
+        String timestamp;
+    }
+
+    protected class MySimpleArrayAdapter extends ArrayAdapter<String> {
         private final Context context;
         private List<String> quoteItemNames;
 
@@ -121,34 +132,44 @@ public class MainPageListFragment extends SherlockListFragment {
             super.remove(object);
         }
 
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            final View rowView = inflater.inflate(R.layout.main_item_view, parent, false);
-            final TextView fbName = (TextView) rowView.findViewById(R.id.mainFBName);
-            final TextView quoteText = (TextView) rowView.findViewById(R.id.mainItemText);
-            TextView quoteAuthor = (TextView) rowView.findViewById(R.id.mainItemAuthor);
-            ImageView fbShare = (ImageView) rowView.findViewById(R.id.mainFBshare);
-            ImageView follow = (ImageView) rowView.findViewById(R.id.mainFollow);
 
-            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-            fbName.setText(attrMap.get("fbName"));
-            quoteAuthor.setText(attrMap.get("author"));
-            quoteText.setText(attrMap.get("quoteText"));
 
-            final String timestamp = attrMap.get("timestamp");
-            final String postID = fbName.getText().toString().replace(" ", "") + timestamp;
+            final ViewHolder viewHolder;
+            if (convertView == null) {
 
-            int numFavs = SimpleDB.favCount(postID);
+                // inflate the layout
+                LayoutInflater inflater = (LayoutInflater) context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.main_item_view, parent, false);
 
-            Button mainFav = (Button) rowView.findViewById(R.id.mainFavorite);
-            mainFav.setText("" + numFavs);
+                // well set up the ViewHolder
+                viewHolder = new ViewHolder();
+                viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
+                viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
+                viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
+                viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.mainFBshare);
+                viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
 
-            if (Integer.parseInt(mainFav.getText().toString()) == 0) {
-                mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
-            } else mainFav.setTextColor(getResources().getColor(android.R.color.black));
+                HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+                viewHolder.fbName.setText(attrMap.get("fbName"));
+                viewHolder.quoteAuthor.setText(attrMap.get("author"));
+                viewHolder.quoteText.setText(attrMap.get("quoteText"));
 
+                viewHolder.timestamp = attrMap.get("timestamp");
+                viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
+
+                viewHolder.mainFav = (Button) convertView.findViewById(R.id.mainFavorite);
+
+                convertView.setTag(viewHolder);
+
+            } else {
+                // we've just avoided calling findViewById() on resource every time
+                // just use the viewHolder
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
             final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
 
             final String nameSpaceless = prefs.getString("name", "").replace(" ", "");
@@ -157,41 +178,55 @@ public class MainPageListFragment extends SherlockListFragment {
                 prefs.edit().putBoolean(nameSpaceless + "FavoritesCreated", true).commit();
             }
 
-            final boolean isFav = SimpleDB.isFavoritedByUser(postID, nameSpaceless);
+            final int numFavs = SimpleDB.favCount(viewHolder.postID);
+            viewHolder.mainFav.setText("" + numFavs);// store the holder with the view.
+
+            if (Integer.parseInt(viewHolder.mainFav.getText().toString()) == 0) {
+                viewHolder.mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
+            } else viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
+
+            final boolean isFav = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
 
             if (isFav)
-                mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
-            else mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
+                viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.redheart));
+            else viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.greyheart));
 
-            mainFav.setOnClickListener(new View.OnClickListener() {
+            viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    HashMap<String,String> newFavAttr = new HashMap<String, String>();
                     if (isFav) {
-                        SimpleDB.deleteItem("Favorites", postID + "_likedBy_" + nameSpaceless);
+                        SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
+                        newFavAttr.put("favorites", "" + (numFavs - 1));
+                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
                         adapter.notifyDataSetChanged();
                     } else {
-                        SimpleDB.addToFavoriteTable(postID, nameSpaceless);
+                        SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
+                        newFavAttr.put("favorites", "" + (numFavs + 1));
+                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
                         adapter.notifyDataSetChanged();
                     }
 
                 }
             });
 
-            fbShare.setOnClickListener(new View.OnClickListener() {
+            viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    shareToFB(getActivity(), quoteText.getText().toString(), uiHelper);
+                    shareToFB(getActivity(), viewHolder.quoteText.getText().toString(), uiHelper);
                 }
             });
 
-            follow.setOnClickListener(new View.OnClickListener() {
+            viewHolder.follow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
             });
 
-            return rowView;
+            return convertView;
         }
+
+
     }
 }
