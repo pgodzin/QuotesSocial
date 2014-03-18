@@ -5,14 +5,16 @@
               android:id="@+id/main_listfrag"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:padding="1dp">
+              android:padding="1dp"
+              android:background="@android:color/transparent">
 
     <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:drawSelectorOnTop="false">
+            android:drawSelectorOnTop="false"
+            android:layout_margin="2dp">
 
     </ListView>
 
