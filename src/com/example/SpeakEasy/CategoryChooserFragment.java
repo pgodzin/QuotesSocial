@@ -14,8 +14,12 @@ import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 
 import java.util.ArrayList;
 
+/**
+ * This fragment is opened when a quote is submitted in the HomePage.
+ * The user can choose 0 or more categories for the quote to go into,
+ * and upon selection, the class saves the quote into the SimpleDB
+ */
 public class CategoryChooserFragment extends SherlockDialogFragment {
-    //protected HomePageListFragment.MySimpleArrayAdapter adapter;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -57,14 +61,17 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
                                 name, timestamp, mSelectedItems);
 
+                        //save the quote to the database
                         SimpleDB.addQuote(q);
 
+                        //add itemName to main activity's ListAdapter
                         String postID = name + "" + timestamp;
                         HomePageListFragment.addQuoteToAdapter(postID);
 
                         quote.setText("");
                         author.setText("");
 
+                        //hide the UI to enter a quote
                         b.setVisibility(View.GONE);
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);

@@ -18,7 +18,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.example.SpeakEasy.categoryActivities.*;
+import com.example.SpeakEasy.categoryFragments.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 
@@ -219,7 +219,7 @@ public class MainPage extends SherlockFragmentActivity {
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 4:
-                fragment = new InsipirationalFeedFragment();
+                fragment = new InspirationalFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();
                 break;

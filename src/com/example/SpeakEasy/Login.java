@@ -3,6 +3,9 @@ package com.example.SpeakEasy;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+/**
+ * Main Activity opened on Launch if not signed in
+ */
 public class Login extends FragmentActivity {
     private LoginFragment mainFragment;
 

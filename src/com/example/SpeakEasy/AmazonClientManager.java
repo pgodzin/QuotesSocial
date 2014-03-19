@@ -20,9 +20,6 @@ public class AmazonClientManager {
     private AmazonSimpleDBClient sdbClient = null;
     private SharedPreferences sharedPreferences = null;
 
-//    public AmazonClientManager() {
-//    }
-
     public AmazonClientManager(SharedPreferences settings) {
         this.sharedPreferences = settings;
     }

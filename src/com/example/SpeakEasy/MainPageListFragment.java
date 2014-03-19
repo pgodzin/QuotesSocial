@@ -162,7 +162,6 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
 
                 viewHolder.mainFav = (Button) convertView.findViewById(R.id.mainFavorite);
-
                 convertView.setTag(viewHolder);
 
             } else {
@@ -171,12 +170,11 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
+            final String yourName = prefs.getString("name", "");
+            final String nameSpaceless = yourName.replace(" ", "");
 
-            final String nameSpaceless = prefs.getString("name", "").replace(" ", "");
-            if (!prefs.getBoolean(nameSpaceless + "FavoritesCreated", false)) {
-                SimpleDB.createDomain(nameSpaceless + "Favorites");
-                prefs.edit().putBoolean(nameSpaceless + "FavoritesCreated", true).commit();
-            }
+            if(viewHolder.fbName.getText().toString().equals(yourName))
+                viewHolder.follow.setVisibility(View.GONE);
 
             final int numFavs = SimpleDB.favCount(viewHolder.postID);
             viewHolder.mainFav.setText("" + numFavs);// store the holder with the view.

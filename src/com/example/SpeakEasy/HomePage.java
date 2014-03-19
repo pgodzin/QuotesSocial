@@ -21,17 +21,21 @@ import com.example.SpeakEasy.tvmclient.Response;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 
+/**
+ * This class is reachable from any other quote feed by pressing a menu option.
+ * That option is replaced by a pencil icon, which when pressed opens a
+ * UI to submit a new quote.
+ */
 public class HomePage extends SherlockFragmentActivity {
     public static AmazonClientManager clientManager = null;
     private UiLifecycleHelper uiHelper;
-
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        setTitle("Home Page");
+        setTitle("Your Quotes");
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
@@ -53,12 +57,14 @@ public class HomePage extends SherlockFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            //Home Icon press returns to MainPage
             case android.R.id.home:
                 startActivity(new Intent(HomePage.this, MainPage.class));
                 return true;
             case R.id.search:
                 Toast.makeText(HomePage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
+            //Submit a new quote
             case R.id.edit:
                 final Button b = (Button) findViewById(R.id.submit);
                 final EditText quote = (EditText) findViewById(R.id.quoteText);
@@ -86,21 +92,10 @@ public class HomePage extends SherlockFragmentActivity {
         }
     }
 
+    //DialogFragment to select 0 or more categories
     public void selectCategories() {
         DialogFragment newFragment = new CategoryChooserFragment();
         newFragment.show(getSupportFragmentManager(), "categories");
-    }
-
-    protected void displayCredentialsIssueAndExit() {
-        AlertDialog.Builder confirm = new AlertDialog.Builder(this);
-        confirm.setTitle("Credential Problem!");
-        confirm.setMessage("AWS Credentials not configured correctly");
-        confirm.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                HomePage.this.finish();
-            }
-        });
-        confirm.show().show();
     }
 
     protected void displayErrorAndExit(Response response) {

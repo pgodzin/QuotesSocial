@@ -16,24 +16,38 @@ import com.facebook.widget.FacebookDialog;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * ListFragment that displays user's own posts
+ */
 public class HomePageListFragment extends SherlockListFragment {
     protected List<String> itemNames;
     protected static MySimpleArrayAdapter adapter;
     private UiLifecycleHelper uiHelper;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        itemNames = SimpleDB.getMyQuotesItemNames(this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", ""));
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //Get user's quotes
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle("Main Feed");
-        adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
-        setListAdapter(adapter);
+        getActivity().setTitle("Home Feed");
+        final String name = this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        new Thread(new Runnable() {
+            public void run() {
+                itemNames = SimpleDB.getMyQuotesItemNames(name);
+                adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        setListAdapter(adapter);
+
+                    }
+                });
+            }
+        }).start();
         return inflater.inflate(R.layout.list_fragment, container, false);
     }
 
-    public static void addQuoteToAdapter(String itemName){
+    public static void addQuoteToAdapter(String itemName) {
         adapter.add(itemName);
         adapter.notifyDataSetChanged();
     }
@@ -62,6 +76,10 @@ public class HomePageListFragment extends SherlockListFragment {
         uiHelper.onDestroy();
     }
 
+    /**
+     * When fbShare icon is pressed, create on OpenGraphAction that says you posted a new quote
+     * @param quoteText
+     */
     private void shareToFB(String quoteText) {
 
         if (FacebookDialog.canPresentOpenGraphActionDialog(getActivity().getApplicationContext(),
@@ -81,6 +99,19 @@ public class HomePageListFragment extends SherlockListFragment {
         }
     }
 
+    protected static class ViewHolder {
+        TextView quoteText;
+        TextView quoteAuthor;
+        ImageView fbShare;
+        Button homeFav;
+        String postID;
+        String timestamp;
+    }
+
+    /**
+     * Custom Array Adapter - different from MainPage one as it does not
+     * show name of the poster as they are all your posts.
+     */
     public class MySimpleArrayAdapter extends ArrayAdapter<String> {
         private final Context context;
         private List<String> quoteItemNames;
@@ -110,41 +141,61 @@ public class HomePageListFragment extends SherlockListFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.home_item_view, parent, false);
-            final TextView quoteText = (TextView) rowView.findViewById(R.id.itemText);
-            TextView quoteAuthor = (TextView) rowView.findViewById(R.id.itemAuthor);
-            ImageView fbShare = (ImageView) rowView.findViewById(R.id.fbshare);
+            final ViewHolder viewHolder;
+            if (convertView == null) {
 
-            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-            quoteAuthor.setText(attrMap.get("author"));
-            quoteText.setText(attrMap.get("quoteText"));
+                // inflate the layout
+                LayoutInflater inflater = (LayoutInflater) context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.home_item_view, parent, false);
 
-            int numFavs = SimpleDB.favCount(attrMap.get("fbName").replace(" ", "") + attrMap.get("timestamp"));
+                // set up the ViewHolder
+                viewHolder = new ViewHolder();
+                viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
+                viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
+                viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.fbshare);
 
-            Button homeFav = (Button) rowView.findViewById(R.id.homeFavorite);
-            homeFav.setText("" + numFavs);
+                HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+                viewHolder.quoteAuthor.setText(attrMap.get("author"));
+                viewHolder.quoteText.setText(attrMap.get("quoteText"));
 
-            if (Integer.parseInt(homeFav.getText().toString()) == 0) {
-                homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
-            } else homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                viewHolder.timestamp = attrMap.get("timestamp");
+                viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
 
-            homeFav.setOnClickListener(new View.OnClickListener() {
+                viewHolder.homeFav = (Button) convertView.findViewById(R.id.homeFavorite);
+                convertView.setTag(viewHolder);
+
+            } else {
+                // we've just avoided calling findViewById() on resource every time
+                // just use the viewHolder
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+
+
+            int numFavs = SimpleDB.favCount(viewHolder.postID);
+
+            viewHolder.homeFav.setText("" + numFavs);
+
+            //don't show number of favorites if 0
+            if (Integer.parseInt(viewHolder.homeFav.getText().toString()) == 0) {
+                viewHolder.homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
+            } else viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+
+            viewHolder.homeFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getActivity(), "Stop trying to like your own post", Toast.LENGTH_SHORT).show();
                 }
             });
 
-            fbShare.setOnClickListener(new View.OnClickListener() {
+            viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    shareToFB(quoteText.getText().toString());
+                    shareToFB(viewHolder.quoteText.getText().toString());
                 }
             });
 
-            return rowView;
+            return convertView;
         }
     }
 }

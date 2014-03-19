@@ -1,4 +1,4 @@
-package com.example.SpeakEasy.categoryActivities;
+package com.example.SpeakEasy.categoryFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import com.example.SpeakEasy.R;
 import com.example.SpeakEasy.SimpleDB;
 import com.facebook.UiLifecycleHelper;
 
+/**
+ * ListFragment that displays all the quotes posted with a 'funny' category tag
+ */
 public class FunnyFeedFragment extends MainPageListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

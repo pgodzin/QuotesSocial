@@ -1,17 +1,3 @@
-/*
- * Copyright 2010-2012 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License").
- * You may not use this file except in compliance with the License.
- * A copy of the License is located at
- *
- *  http://aws.amazon.com/apache2.0
- *
- * or in the "license" file accompanying this file. This file is distributed
- * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the License for the specific language governing
- * permissions and limitations under the License.
- */
 package com.example.SpeakEasy;
 
 import com.amazonaws.services.simpledb.AmazonSimpleDBClient;
@@ -21,6 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Util class for database transactions
+ */
 public class SimpleDB {
 
     private static String nextToken = null;
@@ -42,6 +31,12 @@ public class SimpleDB {
         return getDomainNames(numDomains, null);
     }
 
+    /**
+     *
+     * @param numDomains
+     * @param nextToken
+     * @return list of domain names
+     */
     private static List<String> getDomainNames(int numDomains, String nextToken) {
         ListDomainsRequest req = new ListDomainsRequest();
         req.setMaxNumberOfDomains(numDomains);
@@ -94,6 +89,12 @@ public class SimpleDB {
         return itemNames;
     }
 
+    /**
+     * A map of attriutes for a specific item in a table
+     * @param domainName table name
+     * @param itemName itemName for the item
+     * @return
+     */
     public static HashMap<String, String> getAttributesForItem(String domainName, String itemName) {
         GetAttributesRequest getRequest = new GetAttributesRequest(domainName, itemName).withConsistentRead(true);
         GetAttributesResult getResult = getInstance().getAttributes(getRequest);
@@ -109,6 +110,12 @@ public class SimpleDB {
         return attributes;
     }
 
+    /**
+     * Update attribute values
+     * @param domainName table name
+     * @param itemName  itemName for the item
+     * @param attributes map of attribute name and value to replace
+     */
     public static void updateAttributesForItem(String domainName, String itemName, HashMap<String, String> attributes) {
         List<ReplaceableAttribute> replaceableAttributes = new ArrayList<ReplaceableAttribute>(attributes.size());
 
@@ -119,6 +126,11 @@ public class SimpleDB {
         getInstance().putAttributes(new PutAttributesRequest(domainName, itemName, replaceableAttributes));
     }
 
+    /**
+     * Delete an item
+     * @param domainName table name
+     * @param itemName itemName for the item
+     */
     public static void deleteItem(String domainName, String itemName) {
         getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName));
     }
@@ -127,6 +139,11 @@ public class SimpleDB {
         getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName).withAttributes(new Attribute[]{new Attribute().withName(attributeName)}));
     }
 
+    /**
+     * Table that determines if a a post is favorited by a specific user
+     * @param postID id for specific quote
+     * @param accountName user name
+     */
     public static void addToFavoriteTable(String postID, String accountName) {
         ReplaceableAttribute favoritedPostID = new ReplaceableAttribute("postID", postID, Boolean.FALSE);
         ReplaceableAttribute accName = new ReplaceableAttribute("likedBy", accountName, Boolean.FALSE);
@@ -157,6 +174,10 @@ public class SimpleDB {
         }
     }
 
+    /**
+     * Add a quote to the Quotes Table
+     * @param quote
+     */
     public static void addQuote(QuotePost quote) {
 
         ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.FALSE);
@@ -175,6 +196,7 @@ public class SimpleDB {
         attrs.add(fbNameAttribute);
         attrs.add(numFavorites);
 
+        //add every category to the attribute - can have multiple values
         for (int i = 0; i < numCategories; i++) {
             switch ((Integer) categories.get(i)) {
                 case 0:
@@ -203,6 +225,11 @@ public class SimpleDB {
         }
     }
 
+    /**
+     *
+     * @param myName
+     * @return itemNames of all the Quotes created by the user to be shown in the HomePage
+     */
     public static List<String> getMyQuotesItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
@@ -215,18 +242,34 @@ public class SimpleDB {
         return itemNames;
     }
 
+    /**
+     * Retrieve the number of favorites a specific post has
+     * @param postId
+     * @return
+     */
     public static int favCount(String postId) {
         SelectRequest selectRequest = new SelectRequest("select favorites from Quotes where itemName() = '" + postId + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
     }
 
+    /**
+     * Check whether the user has favorited a specific post
+     * @param postId
+     * @param name
+     * @return
+     */
     public static boolean isFavoritedByUser(String postId, String name) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return items.size() > 0;
     }
 
+    /**
+     * Retrieve itemNames for all quotes that were not posted by the user
+     * @param myName
+     * @return
+     */
     public static List<String> getFeedItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
@@ -239,6 +282,11 @@ public class SimpleDB {
         return itemNames;
     }
 
+    /**
+     * Get quotes by a specific category
+     * @param category
+     * @return
+     */
     public static List<String> getFeedItemNamesByCategory(String category) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category = '" + category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();

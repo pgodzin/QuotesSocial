@@ -15,6 +15,9 @@ import com.facebook.widget.LoginButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Fragment that logs in the user
+ */
 public class LoginFragment extends Fragment {
 
     private static final String TAG = "LoginFragment";
@@ -68,23 +71,6 @@ public class LoginFragment extends Fragment {
                         }
                     }
             ).executeAsync();
-
-/*            new Request(session, "/me?fields=quotes", params, HttpMethod.GET,
-                    new Request.Callback() {
-                        public void onCompleted(Response response) {
-                            JSONObject graphResponse = response
-                                    .getGraphObject()
-                                    .getInnerJSONObject();
-                            try {
-                                prefs.edit().putString("quotes", graphResponse.getString("quotes")).commit();
-
-                            } catch (JSONException e) {
-                                Log.i(TAG,
-                                        "JSON error " + e.getMessage());
-                            }
-                        }
-                    }
-            ).executeAsync();*/
 
             Intent i = new Intent(getActivity(), MainPage.class);
             startActivity(i);

@@ -1,4 +1,4 @@
-package com.example.SpeakEasy.categoryActivities;
+package com.example.SpeakEasy.categoryFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,15 +9,18 @@ import com.example.SpeakEasy.R;
 import com.example.SpeakEasy.SimpleDB;
 import com.facebook.UiLifecycleHelper;
 
-public class InsipirationalFeedFragment extends MainPageListFragment {
+/**
+ * ListFragment that displays all the quotes posted with a 'love' category tag
+ */
+public class LoveFeedFragment extends MainPageListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle("Inspirational Quotes");
+        getActivity().setTitle("Love Quotes");
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getFeedItemNamesByCategory("inspirational");
+                itemNames = SimpleDB.getFeedItemNamesByCategory("love");
                 adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
