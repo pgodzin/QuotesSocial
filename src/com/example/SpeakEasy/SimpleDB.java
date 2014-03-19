@@ -283,6 +283,24 @@ public class SimpleDB {
     }
 
     /**
+     * Retrieve itemNames for all quotes that were not posted by the user in order of favorites
+     * @param myName
+     * @return
+     */
+    public static List<String> getPopularFeedItemNames(String myName) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName + "' and favorites is not null order by favorites desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(((Item) items.get(i)).getName());
+        }
+
+        return itemNames;
+    }
+
+
+    /**
      * Get quotes by a specific category
      * @param category
      * @return

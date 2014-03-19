@@ -204,31 +204,37 @@ public class MainPage extends SherlockFragmentActivity {
             case 0:
                 fragment = new MainPageListFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();                break;
+                fragmentTransaction.addToBackStack(null).commit();
+                break;
             case 1:
-                Toast.makeText(this, "Following not yet implemented", Toast.LENGTH_SHORT).show();
+                fragment = new PopularFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 2:
+                Toast.makeText(this, "Following not yet implemented", Toast.LENGTH_SHORT).show();
+                break;
+            case 3:
                 fragment = new AdviceFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
-            case 3:
+            case 4:
                 fragment = new FunnyFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
-            case 4:
+            case 5:
                 fragment = new InspirationalFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
-            case 5:
+            case 6:
                 fragment = new LoveFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
-            case 6:
+            case 7:
                 fragment = new MovieFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
                 fragmentTransaction.addToBackStack(null).commit();

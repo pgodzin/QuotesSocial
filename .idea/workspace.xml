@@ -50,23 +50,11 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="homepage">
-      <change type="MOVED" beforePath="C:\Android Dev\SpeakEasy\src\com\example\SpeakEasy\categoryActivities\AdviceFeedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java" />
-      <change type="MOVED" beforePath="C:\Android Dev\SpeakEasy\src\com\example\SpeakEasy\categoryActivities\FunnyFeedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/FunnyFeedFragment.java" />
-      <change type="MOVED" beforePath="C:\Android Dev\SpeakEasy\src\com\example\SpeakEasy\categoryActivities\InsipirationalFeedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/InspirationalFeedFragment.java" />
-      <change type="MOVED" beforePath="C:\Android Dev\SpeakEasy\src\com\example\SpeakEasy\categoryActivities\LoveFeedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/LoveFeedFragment.java" />
-      <change type="MOVED" beforePath="C:\Android Dev\SpeakEasy\src\com\example\SpeakEasy\categoryActivities\MovieFeedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/MovieFeedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" />
+    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="homepage refactored using ViewHolder, some documentation added">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/QuotePost.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/QuotePost.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/homepage.xml" afterPath="$PROJECT_DIR$/res/layout/homepage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/arrays.xml" afterPath="$PROJECT_DIR$/res/values/arrays.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="untitled.iws" />
@@ -138,6 +126,81 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" line="203" class="com.example.SpeakEasy.MainPageListFragment.MySimpleArrayAdapter$1" package="com.example.SpeakEasy">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" line="198" class="com.example.SpeakEasy.MainPageListFragment.MySimpleArrayAdapter$1" package="com.example.SpeakEasy">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" line="154" class="com.example.SpeakEasy.categoryFragments.PopularFeedFragment.MyPopularArrayAdapter$1$1" package="com.example.SpeakEasy.categoryFragments">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" line="138" class="com.example.SpeakEasy.categoryFragments.PopularFeedFragment.MyPopularArrayAdapter$1$1" package="com.example.SpeakEasy.categoryFragments">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" line="118" class="com.example.SpeakEasy.categoryFragments.PopularFeedFragment.MyPopularArrayAdapter" package="com.example.SpeakEasy.categoryFragments">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -148,11 +211,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HomePage.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java">
+      <file leaf-file-name="PopularFeedFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="60" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.44466403" vertical-offset="100" max-vertical-offset="4075">
+            <state line="82" column="57" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.1724138" vertical-offset="1765" max-vertical-offset="4650">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5203#7217#0" expanded="true" />
+                <element signature="e#5378#5394#0" expanded="true" />
+                <element signature="e#5961#6223#0" expanded="true" />
+                <element signature="e#6188#6189#0" expanded="true" />
+                <element signature="e#6832#7094#0" expanded="true" />
+                <element signature="e#7059#7060#0" expanded="true" />
+                <element signature="e#7202#7203#0" expanded="true" />
+                <element signature="e#7260#7480#0" expanded="true" />
+                <element signature="e#7465#7466#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccessibilityManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/accessibility/AccessibilityManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="213" column="0" selection-start="7211" selection-end="7211" vertical-scroll-proportion="0.0" vertical-offset="4335" max-vertical-offset="10525">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewGroup.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/ViewGroup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3496" column="0" selection-start="130732" selection-end="130732" vertical-scroll-proportion="0.0" vertical-offset="85764" max-vertical-offset="164325">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextView.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/TextView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7504" column="0" selection-start="277555" selection-end="277555" vertical-scroll-proportion="0.0" vertical-offset="182276" max-vertical-offset="222175">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9558" column="0" selection-start="370758" selection-end="370758" vertical-scroll-proportion="0.0" vertical-offset="234889" max-vertical-offset="465050">
+              <folding>
+                <element signature="e#370783#370784#0" expanded="true" />
+                <element signature="e#375874#375875#0" expanded="true" />
+                <element signature="e#375902#375903#0" expanded="true" />
+                <element signature="e#394289#394290#0" expanded="true" />
+                <element signature="e#394325#394326#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -160,7 +276,7 @@
       <file leaf-file-name="MainPageListFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="24" selection-start="8056" selection-end="8056" vertical-scroll-proportion="0.0" vertical-offset="4478" max-vertical-offset="5525">
+            <state line="101" column="0" selection-start="3309" selection-end="3564" vertical-scroll-proportion="0.0" vertical-offset="2050" max-vertical-offset="5525">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,55 +284,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainpage.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/mainpage.xml">
+      <file leaf-file-name="MainPage.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="34" selection-start="482" selection-end="534" vertical-scroll-proportion="-9.0" vertical-offset="46" max-vertical-offset="900">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="55" selection-start="380" selection-end="380" vertical-scroll-proportion="-5.645161" vertical-offset="0" max-vertical-offset="1575">
+            <state line="206" column="0" selection-start="7587" selection-end="7587" vertical-scroll-proportion="0.0" vertical-offset="4482" max-vertical-offset="5875">
               <folding>
-                <element signature="e#667#686#0" expanded="true" />
-                <element signature="e#1193#1213#0" expanded="true" />
-                <element signature="e#1539#1555#0" expanded="true" />
+                <element signature="e#2001#2021#0" expanded="true" />
+                <element signature="e#2023#2044#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main_item_view.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="55" selection-start="217" selection-end="264" vertical-scroll-proportion="-4.032258" vertical-offset="0" max-vertical-offset="2975">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home_item_view.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/home_item_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="37" selection-start="92" selection-end="92" vertical-scroll-proportion="-1.6129032" vertical-offset="0" max-vertical-offset="2225">
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -234,7 +310,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/app/FragmentActivity.java" />
         <option value="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/app/FragmentListActivity.java" />
         <option value="$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/app/SherlockListActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/homepage_list.xml" />
@@ -263,12 +338,10 @@
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/FunnyFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/LoveFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/MovieFeedFragment.java" />
-        <option value="$PROJECT_DIR$/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/res/layout/main_listfragment.xml" />
         <option value="$PROJECT_DIR$/res/layout/mainpage.xml" />
         <option value="$PROJECT_DIR$/res/layout/main_item_view.xml" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/InsipirationalFeedFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/FunnyFeedFragment.java" />
@@ -280,11 +353,14 @@
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/PropertyLoader.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/QuotePost.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java" />
         <option value="$PROJECT_DIR$/res/layout/homepage.xml" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
+        <option value="$PROJECT_DIR$/res/values/arrays.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" />
       </list>
     </option>
   </component>
@@ -829,7 +905,11 @@
       <created>1395131943375</created>
       <updated>1395131943375</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="homepage refactored using ViewHolder, some documentation added">
+      <created>1395187576194</created>
+      <updated>1395187576194</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -942,7 +1022,8 @@
     <MESSAGE value="refactored adapter using ViewHolder, favorites now an attribute instead of using count aggregation, working on drawer transaction" />
     <MESSAGE value="category fragment properly replacing from drawer" />
     <MESSAGE value="background changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="background changed" />
+    <MESSAGE value="homepage refactored using ViewHolder, some documentation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="homepage refactored using ViewHolder, some documentation added" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -953,69 +1034,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/internal/ActionBarSherlockNative.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0" vertical-offset="339" max-vertical-offset="8550">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/app/SherlockFragmentActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1574" selection-end="1574" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="7475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/com/android/internal/widget/ActionBarView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="527" column="0" selection-start="19909" selection-end="19909" vertical-scroll-proportion="0.0" vertical-offset="11210" max-vertical-offset="40450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/com/android/internal/app/ActionBarImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="385" column="0" selection-start="13627" selection-end="13627" vertical-scroll-proportion="0.0" vertical-offset="7910" max-vertical-offset="28750">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/AdapterView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="301" column="0" selection-start="9378" selection-end="9378" vertical-scroll-proportion="0.0" vertical-offset="6539" max-vertical-offset="29100">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/src/com/actionbarsherlock/internal/app/ActionBarWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="0" selection-start="3644" selection-end="3644" vertical-scroll-proportion="0.33333334" vertical-offset="2514" max-vertical-offset="11825">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/BaseAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.0" vertical-offset="151" max-vertical-offset="1850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/ArrayAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="2433" selection-end="2433" vertical-scroll-proportion="0.0" vertical-offset="676" max-vertical-offset="12300">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/AbsListView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2176" column="0" selection-start="73453" selection-end="73453" vertical-scroll-proportion="0.332696" vertical-offset="51876" max-vertical-offset="162125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/ContextThemeWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="82" column="0" selection-start="2839" selection-end="2839" vertical-scroll-proportion="0.0" vertical-offset="1426" max-vertical-offset="3325">
@@ -1058,15 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7830" column="0" selection-start="303182" selection-end="303182" vertical-scroll-proportion="0.0" vertical-offset="192089" max-vertical-offset="464950">
-          <folding>
-            <element signature="e#303211#303212#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Android/extras/android/support/v4/android-support-v4.jar!/android/support/v4/app/NoSaveStateFrameLayout.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="34" selection-start="252" selection-end="252" vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="475">
@@ -1105,13 +1114,6 @@
     <entry file="jar://C:/Program Files (x86)/Android/extras/android/support/v4/android-support-v4.jar!/android/support/v4/app/FragmentTransaction.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="63" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.35147393" vertical-offset="445" max-vertical-offset="1725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="23" selection-start="327" selection-end="327" vertical-scroll-proportion="0.49407116" vertical-offset="0" max-vertical-offset="600">
           <folding />
         </state>
       </provider>
@@ -1177,18 +1179,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="331" selection-end="420" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="925">
-          <folding>
-            <element signature="e#786#1234#0" expanded="true" />
-            <element signature="e#1032#1208#0" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/FunnyFeedFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="65" selection-start="400" selection-end="400" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
@@ -1224,35 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="54" selection-start="3811" selection-end="3811" vertical-scroll-proportion="0.0" vertical-offset="1225" max-vertical-offset="2100">
-          <folding>
-            <element signature="e#1067#1089#0" expanded="true" />
-            <element signature="e#1369#2161#0" expanded="true" />
-            <element signature="e#2134#2135#0" expanded="true" />
-            <element signature="e#2248#2259#0" expanded="true" />
-            <element signature="e#2261#4051#0" expanded="true" />
-            <element signature="e#4032#4033#0" expanded="true" />
-            <element signature="e#4088#4103#0" expanded="true" />
-            <element signature="e#4105#4323#0" expanded="true" />
-            <element signature="e#4304#4305#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="49" selection-start="6533" selection-end="6533" vertical-scroll-proportion="1.2006881" vertical-offset="2853" max-vertical-offset="4600">
-          <folding>
-            <element signature="e#6864#7111#0" expanded="true" />
-            <element signature="e#7096#7097#0" expanded="true" />
-            <element signature="e#7165#7371#0" expanded="true" />
-            <element signature="e#7356#7357#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/PropertyLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="56" column="14" selection-start="1688" selection-end="1768" vertical-scroll-proportion="0.79931194" vertical-offset="603" max-vertical-offset="1550">
@@ -1270,25 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="40" selection-start="11604" selection-end="11604" vertical-scroll-proportion="0.56995416" vertical-offset="6628" max-vertical-offset="7700">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2121#2143#0" expanded="true" />
-            <element signature="e#2530#2552#0" expanded="true" />
-            <element signature="e#3787#3803#0" expanded="true" />
-            <element signature="e#4471#4493#0" expanded="true" />
-            <element signature="e#5927#5949#0" expanded="true" />
-            <element signature="e#6552#6574#0" expanded="true" />
-            <element signature="e#7763#7785#0" expanded="true" />
-            <element signature="e#9743#9751#0" expanded="true" />
-            <element signature="e#11391#11399#0" expanded="true" />
-            <element signature="e#12051#12059#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="50" selection-start="161" selection-end="161" vertical-scroll-proportion="0.14124294" vertical-offset="0" max-vertical-offset="885">
@@ -1302,22 +1244,6 @@
           <folding>
             <element signature="e#3097#3307#0" expanded="true" />
             <element signature="e#3300#3301#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="58" selection-start="8370" selection-end="8370" vertical-scroll-proportion="1.3339921" vertical-offset="4350" max-vertical-offset="5725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="24" selection-start="8056" selection-end="8056" vertical-scroll-proportion="0.0" vertical-offset="4478" max-vertical-offset="5525">
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1342,16 +1268,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/home_item_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="37" selection-start="92" selection-end="92" vertical-scroll-proportion="-1.6129032" vertical-offset="0" max-vertical-offset="2225">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/homepage.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="55" selection-start="380" selection-end="380" vertical-scroll-proportion="-5.645161" vertical-offset="0" max-vertical-offset="1575">
@@ -1366,10 +1282,174 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="16" selection-start="0" selection-end="1333" vertical-scroll-proportion="0.0" vertical-offset="25" max-vertical-offset="725">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/home_item_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="37" selection-start="92" selection-end="92" vertical-scroll-proportion="0.10526316" vertical-offset="0" max-vertical-offset="2225">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="60" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.44466403" vertical-offset="100" max-vertical-offset="4075">
+        <state line="32" column="60" selection-start="1163" selection-end="1163" vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="4075">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="23" selection-start="1083" selection-end="1206" vertical-scroll-proportion="0.0" vertical-offset="307" max-vertical-offset="4450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="506">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="19" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="625">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="206" column="0" selection-start="7587" selection-end="7587" vertical-scroll-proportion="0.0" vertical-offset="4482" max-vertical-offset="5875">
+          <folding>
+            <element signature="e#2001#2021#0" expanded="true" />
+            <element signature="e#2023#2044#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="290" column="69" selection-start="11845" selection-end="11845" vertical-scroll-proportion="0.36511156" vertical-offset="7070" max-vertical-offset="8150">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2121#2143#0" expanded="true" />
+            <element signature="e#2530#2552#0" expanded="true" />
+            <element signature="e#3787#3803#0" expanded="true" />
+            <element signature="e#4471#4493#0" expanded="true" />
+            <element signature="e#5927#5949#0" expanded="true" />
+            <element signature="e#6552#6574#0" expanded="true" />
+            <element signature="e#7763#7785#0" expanded="true" />
+            <element signature="e#9743#9751#0" expanded="true" />
+            <element signature="e#11391#11399#0" expanded="true" />
+            <element signature="e#12096#12104#0" expanded="true" />
+            <element signature="e#12757#12765#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="54" selection-start="3810" selection-end="3810" vertical-scroll-proportion="2.5720081" vertical-offset="107" max-vertical-offset="1800">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="0" selection-start="3309" selection-end="3564" vertical-scroll-proportion="0.0" vertical-offset="2050" max-vertical-offset="5525">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7504" column="0" selection-start="277555" selection-end="277555" vertical-scroll-proportion="0.0" vertical-offset="182276" max-vertical-offset="222175">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/accessibility/AccessibilityManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="213" column="0" selection-start="7211" selection-end="7211" vertical-scroll-proportion="0.0" vertical-offset="4335" max-vertical-offset="10525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/BaseAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="0" selection-start="2474" selection-end="2474" vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="1850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/ViewGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3496" column="0" selection-start="130732" selection-end="130732" vertical-scroll-proportion="0.0" vertical-offset="85764" max-vertical-offset="164325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9558" column="0" selection-start="370758" selection-end="370758" vertical-scroll-proportion="0.0" vertical-offset="234889" max-vertical-offset="465050">
+          <folding>
+            <element signature="e#370783#370784#0" expanded="true" />
+            <element signature="e#375874#375875#0" expanded="true" />
+            <element signature="e#375902#375903#0" expanded="true" />
+            <element signature="e#394289#394290#0" expanded="true" />
+            <element signature="e#394325#394326#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/ListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="713" column="0" selection-start="25038" selection-end="25038" vertical-scroll-proportion="0.3326613" vertical-offset="16560" max-vertical-offset="92000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Android/sources/android-18/android/widget/AbsListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2210" column="0" selection-start="74739" selection-end="74739" vertical-scroll-proportion="0.3326613" vertical-offset="52735" max-vertical-offset="162125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="57" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.1724138" vertical-offset="1765" max-vertical-offset="4650">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5203#7217#0" expanded="true" />
+            <element signature="e#5378#5394#0" expanded="true" />
+            <element signature="e#5961#6223#0" expanded="true" />
+            <element signature="e#6188#6189#0" expanded="true" />
+            <element signature="e#6832#7094#0" expanded="true" />
+            <element signature="e#7059#7060#0" expanded="true" />
+            <element signature="e#7202#7203#0" expanded="true" />
+            <element signature="e#7260#7480#0" expanded="true" />
+            <element signature="e#7465#7466#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
