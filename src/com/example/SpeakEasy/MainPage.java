@@ -212,8 +212,9 @@ public class MainPage extends SherlockFragmentActivity {
                 fragmentTransaction.addToBackStack(null).commit();
                 break;
             case 2:
-                Toast.makeText(this, "Following not yet implemented", Toast.LENGTH_SHORT).show();
-                break;
+                fragment = new FollowingFeedFragment();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null).commit();                break;
             case 3:
                 fragment = new AdviceFeedFragment();
                 fragmentTransaction.replace(R.id.content_frame, fragment);

@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * ListFragment that displays all the quotes posted with an 'advice' category tag
- */
+ * ListFragment that displays all the quotes posted in order of number of favorites
+ * */
 public class PopularFeedFragment extends MainPageListFragment {
     MyPopularArrayAdapter adapter;
 
@@ -128,6 +128,7 @@ public class PopularFeedFragment extends MainPageListFragment {
                 mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
             else mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
 
+            //TODO: doesn't always redraw when improper ordering
             mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

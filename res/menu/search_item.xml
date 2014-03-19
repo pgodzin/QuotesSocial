@@ -5,7 +5,7 @@
             android:id="@+id/home"
             android:title="@string/home"
             android:showAsAction="ifRoom"
-            android:icon="@android:drawable/ic_menu_upload">
+            android:icon="@drawable/home_icon">
 
     </item>
     <item

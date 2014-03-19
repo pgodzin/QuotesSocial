@@ -78,6 +78,7 @@ public class HomePageListFragment extends SherlockListFragment {
 
     /**
      * When fbShare icon is pressed, create on OpenGraphAction that says you posted a new quote
+     *
      * @param quoteText
      */
     private void shareToFB(String quoteText) {
@@ -151,16 +152,8 @@ public class HomePageListFragment extends SherlockListFragment {
 
                 // set up the ViewHolder
                 viewHolder = new ViewHolder();
-                viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
-                viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
+
                 viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.fbshare);
-
-                HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-                viewHolder.quoteAuthor.setText(attrMap.get("author"));
-                viewHolder.quoteText.setText(attrMap.get("quoteText"));
-
-                viewHolder.timestamp = attrMap.get("timestamp");
-                viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
 
                 viewHolder.homeFav = (Button) convertView.findViewById(R.id.homeFavorite);
                 convertView.setTag(viewHolder);
@@ -170,7 +163,14 @@ public class HomePageListFragment extends SherlockListFragment {
                 // just use the viewHolder
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+            viewHolder.quoteAuthor.setText(attrMap.get("author"));
+            viewHolder.quoteText.setText(attrMap.get("quoteText"));
 
+            viewHolder.timestamp = attrMap.get("timestamp");
+            viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
+            viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
+            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
 
             int numFavs = SimpleDB.favCount(viewHolder.postID);
 

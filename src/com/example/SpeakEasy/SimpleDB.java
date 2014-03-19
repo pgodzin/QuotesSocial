@@ -140,7 +140,7 @@ public class SimpleDB {
     }
 
     /**
-     * Table that determines if a a post is favorited by a specific user
+     * Adds a quote and the user who favorited it to the Favorites table
      * @param postID id for specific quote
      * @param accountName user name
      */
@@ -159,6 +159,39 @@ public class SimpleDB {
         } catch (Exception exception) {
             System.out.println("EXCEPTION = " + exception);
         }
+    }
+
+    /**
+     * Adds a user and the user who will follow them to the Following table
+     * @param nameToFollow the name of the person whose post are going to be followed
+     * @param followerName name of user who pressed the follow icon
+     */
+    public static void addToFollowingTable(String nameToFollow, String followerName) {
+        ReplaceableAttribute followedName = new ReplaceableAttribute("followedName", nameToFollow, Boolean.FALSE);
+        ReplaceableAttribute followedBy = new ReplaceableAttribute("followedBy", followerName, Boolean.FALSE);
+
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(2);
+        attrs.add(followedName);
+        attrs.add(followedBy);
+
+        PutAttributesRequest par = new PutAttributesRequest("Following", nameToFollow + "_followedBy_" + followerName, attrs);
+        try {
+            getInstance().putAttributes(par);
+        } catch (Exception exception) {
+            System.out.println("EXCEPTION = " + exception);
+        }
+    }
+
+    /**
+     * Check whether the user has followed a specific user
+     * @param posterName name of user who posted the quote and is now being followed
+     * @param userName name of the user who pressed the follow icon
+     * @return
+     */
+    public static boolean isFollowedByUser(String posterName, String userName) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedName = '" + posterName + "' and followedBy = '" + userName + "'").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+        return items.size() > 0;
     }
 
     public static void addPostIDToDomain(String postID, String tableName) {
@@ -276,7 +309,34 @@ public class SimpleDB {
 
         List<String> itemNames = new ArrayList<String>();
         for (int i = 0; i < items.size(); i++) {
-            itemNames.add(((Item) items.get(i)).getName());
+            itemNames.add((items.get(i)).getName());
+        }
+
+        return itemNames;
+    }
+
+    /**
+     * Retrieve quotes posted by posters the user is following
+     * @param myName
+     * @return
+     */
+    public static List<String> getFollowingFeedItemNames(String myName) {
+        //Work-around for no nested queries in SimpleDB
+        SelectRequest selectRequestNames = new SelectRequest("select followedName from Following where followedBy = '" + myName + "'").withConsistentRead(true);
+        List<Item> names = getInstance().select(selectRequestNames).getItems();
+
+                String set = "(";
+        for (int j = 0; j < names.size(); j++) {
+            set += "'" + names.get(j).getAttributes().get(0).getValue() + "',";
+        }
+        set = set.substring(0, set.length() - 1) + ")";
+
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName in " + set + " and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add((items.get(i)).getName());
         }
 
         return itemNames;

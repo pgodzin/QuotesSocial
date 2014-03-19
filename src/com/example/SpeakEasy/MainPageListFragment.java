@@ -148,18 +148,9 @@ public class MainPageListFragment extends SherlockListFragment {
                 // well set up the ViewHolder
                 viewHolder = new ViewHolder();
                 viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
-                viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
-                viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
+
                 viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.mainFBshare);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
-
-                HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-                viewHolder.fbName.setText(attrMap.get("fbName"));
-                viewHolder.quoteAuthor.setText(attrMap.get("author"));
-                viewHolder.quoteText.setText(attrMap.get("quoteText"));
-
-                viewHolder.timestamp = attrMap.get("timestamp");
-                viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
 
                 viewHolder.mainFav = (Button) convertView.findViewById(R.id.mainFavorite);
                 convertView.setTag(viewHolder);
@@ -169,11 +160,22 @@ public class MainPageListFragment extends SherlockListFragment {
                 // just use the viewHolder
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+            viewHolder.fbName.setText(attrMap.get("fbName"));
+
+            viewHolder.timestamp = attrMap.get("timestamp");
+            viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
+
+            viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
+            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
+            viewHolder.quoteAuthor.setText(attrMap.get("author"));
+            viewHolder.quoteText.setText(attrMap.get("quoteText"));
+
             final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
             final String yourName = prefs.getString("name", "");
             final String nameSpaceless = yourName.replace(" ", "");
 
-            if(viewHolder.fbName.getText().toString().equals(yourName))
+            if (viewHolder.fbName.getText().toString().equals(yourName))
                 viewHolder.follow.setVisibility(View.GONE);
 
             final int numFavs = SimpleDB.favCount(viewHolder.postID);
@@ -189,10 +191,15 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.redheart));
             else viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.greyheart));
 
+            final String posterName = viewHolder.fbName.getText().toString();
+            final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
+            if (isFollowed)
+                viewHolder.follow.setVisibility(View.INVISIBLE);
+
             viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HashMap<String,String> newFavAttr = new HashMap<String, String>();
+                    HashMap<String, String> newFavAttr = new HashMap<String, String>();
                     if (isFav) {
                         SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
                         newFavAttr.put("favorites", "" + (numFavs - 1));
@@ -218,7 +225,8 @@ public class MainPageListFragment extends SherlockListFragment {
             viewHolder.follow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    SimpleDB.addToFollowingTable(posterName, yourName);
+                    adapter.notifyDataSetChanged();
                 }
             });
 
