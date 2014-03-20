@@ -32,7 +32,6 @@ public class SimpleDB {
     }
 
     /**
-     *
      * @param numDomains
      * @param nextToken
      * @return list of domain names
@@ -91,8 +90,9 @@ public class SimpleDB {
 
     /**
      * A map of attributes for a specific item in a table
+     *
      * @param domainName table name
-     * @param itemName itemName for the item
+     * @param itemName   itemName for the item
      * @return
      */
     public static HashMap<String, String> getAttributesForItem(String domainName, String itemName) {
@@ -112,8 +112,9 @@ public class SimpleDB {
 
     /**
      * Update attribute values
+     *
      * @param domainName table name
-     * @param itemName  itemName for the item
+     * @param itemName   itemName for the item
      * @param attributes map of attribute name and value to replace
      */
     public static void updateAttributesForItem(String domainName, String itemName, HashMap<String, String> attributes) {
@@ -128,8 +129,9 @@ public class SimpleDB {
 
     /**
      * Delete an item
+     *
      * @param domainName table name
-     * @param itemName itemName for the item
+     * @param itemName   itemName for the item
      */
     public static void deleteItem(String domainName, String itemName) {
         getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName));
@@ -141,7 +143,8 @@ public class SimpleDB {
 
     /**
      * Adds a quote and the user who favorited it to the Favorites table
-     * @param postID id for specific quote
+     *
+     * @param postID      id for specific quote
      * @param accountName user name
      */
     public static void addToFavoriteTable(String postID, String accountName) {
@@ -163,6 +166,7 @@ public class SimpleDB {
 
     /**
      * Adds a user and the user who will follow them to the Following table
+     *
      * @param nameToFollow the name of the person whose post are going to be followed
      * @param followerName name of user who pressed the follow icon
      */
@@ -184,8 +188,9 @@ public class SimpleDB {
 
     /**
      * Check whether the user has followed a specific user
+     *
      * @param posterName name of user who posted the quote and is now being followed
-     * @param userName name of the user who pressed the follow icon
+     * @param userName   name of the user who pressed the follow icon
      * @return
      */
     public static boolean isFollowedByUser(String posterName, String userName) {
@@ -209,6 +214,7 @@ public class SimpleDB {
 
     /**
      * Add a quote to the Quotes Table
+     *
      * @param quote
      */
     public static void addQuote(QuotePost quote) {
@@ -259,7 +265,6 @@ public class SimpleDB {
     }
 
     /**
-     *
      * @param myName
      * @return itemNames of all the Quotes created by the user to be shown in the HomePage
      */
@@ -277,6 +282,7 @@ public class SimpleDB {
 
     /**
      * Retrieve the number of favorites a specific post has
+     *
      * @param postId
      * @return
      */
@@ -288,6 +294,7 @@ public class SimpleDB {
 
     /**
      * Check whether the user has favorited a specific post
+     *
      * @param postId
      * @param name
      * @return
@@ -300,6 +307,7 @@ public class SimpleDB {
 
     /**
      * Retrieve itemNames for all quotes that were not posted by the user
+     *
      * @param myName
      * @return
      */
@@ -317,6 +325,7 @@ public class SimpleDB {
 
     /**
      * Retrieve quotes posted by posters the user is following
+     *
      * @param myName
      * @return
      */
@@ -325,7 +334,7 @@ public class SimpleDB {
         SelectRequest selectRequestNames = new SelectRequest("select followedName from Following where followedBy = '" + myName + "'").withConsistentRead(true);
         List<Item> names = getInstance().select(selectRequestNames).getItems();
 
-                String set = "(";
+        String set = "(";
         for (int j = 0; j < names.size(); j++) {
             set += "'" + names.get(j).getAttributes().get(0).getValue() + "',";
         }
@@ -344,6 +353,7 @@ public class SimpleDB {
 
     /**
      * Retrieve itemNames for all quotes that were not posted by the user in order of favorites
+     *
      * @param myName
      * @return
      */
@@ -359,9 +369,28 @@ public class SimpleDB {
         return itemNames;
     }
 
+    /**
+     * Get quotes by a specific user
+     *
+     * @param name
+     * @return
+     */
+    public static List<String> getUserItemNamesByCategory(String name) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(((Item) items.get(i)).getName());
+        }
+
+        return itemNames;
+    }
+
 
     /**
      * Get quotes by a specific category
+     *
      * @param category
      * @return
      */

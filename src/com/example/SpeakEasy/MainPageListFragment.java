@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.example.SpeakEasy.categoryFragments.UserFeedFragment;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
@@ -234,6 +236,16 @@ public class MainPageListFragment extends SherlockListFragment {
                 }
             });
 
+            viewHolder.fbName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Fragment fragment = new UserFeedFragment(posterName);
+                    fragmentTransaction.replace(R.id.content_frame, fragment);
+                    fragmentTransaction.addToBackStack(null).commit();
+                }
+            });
             return convertView;
         }
 

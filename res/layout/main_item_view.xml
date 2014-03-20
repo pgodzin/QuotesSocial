@@ -14,7 +14,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:textSize="15sp"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            android:clickable="true"
+            android:textColor="#060c4d"
+            android:textStyle="bold"/>
 
     <ImageView
             android:layout_width="wrap_content"
