@@ -43,7 +43,8 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                                     mSelectedItems.remove(Integer.valueOf(which));
                                 }
                             }
-                        })
+                        }
+                )
                         // Set the action buttons
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
@@ -59,11 +60,15 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
 
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
                         String name = prefs.getString("name", "");
-                        QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
+                        final QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
                                 name, timestamp, mSelectedItems);
 
-                        //save the quote to the database
-                        SimpleDB.addQuote(q);
+                        //save the quote to the database in another thread
+                        new Thread(new Runnable() {
+                            public void run() {
+                                SimpleDB.addQuote(q);
+                            }
+                        }).start();
 
                         //add itemName to main activity's ListAdapter
                         String postID = name + "" + timestamp;
@@ -79,12 +84,6 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);
 
-                        /*dismiss();
-                        try {
-                            Thread.sleep(5000);
-                        } catch(InterruptedException ex) {
-                            Thread.currentThread().interrupt();
-                        }  */
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

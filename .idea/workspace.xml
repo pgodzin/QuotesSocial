@@ -59,11 +59,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.SpeakEasy" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="homepage fix but doesnt update automatically">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/UserFeedFragment.java" />
+    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="username clickable to show all quotes by that user">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/main_item_view.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="untitled.iws" />
@@ -208,11 +207,13 @@
       <file leaf-file-name="MainPageListFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4487" max-vertical-offset="5500">
-              <caret line="246" column="76" selection-start-line="246" selection-start-column="70" selection-end-line="246" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4716" max-vertical-offset="6200">
+              <caret line="230" column="45" selection-start-line="230" selection-start-column="45" selection-end-line="230" selection-end-column="45" />
               <folding>
-                <element signature="e#9944#10541#0" expanded="true" />
-                <element signature="e#10526#10527#0" expanded="true" />
+                <element signature="e#7214#8709#0" expanded="true" />
+                <element signature="e#7576#8674#0" expanded="true" />
+                <element signature="e#8651#8652#0" expanded="true" />
+                <element signature="e#8694#8695#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -221,35 +222,53 @@
       <file leaf-file-name="UserFeedFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/UserFeedFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="775">
-              <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="725">
+              <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdviceFeedFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="725">
+              <caret line="33" column="19" selection-start-line="21" selection-start-column="8" selection-end-line="33" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryChooserFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="2150">
+              <caret line="70" column="36" selection-start-line="66" selection-start-column="24" selection-end-line="70" selection-end-column="35" />
               <folding>
-                <element signature="e#570#571#0" expanded="true" />
-                <element signature="e#610#611#0" expanded="true" />
+                <element signature="e#1096#1118#0" expanded="true" />
+                <element signature="e#2294#2305#0" expanded="true" />
+                <element signature="e#2307#4452#0" expanded="true" />
+                <element signature="e#3520#3694#0" expanded="true" />
+                <element signature="e#3667#3668#0" expanded="true" />
+                <element signature="e#4433#4434#0" expanded="true" />
+                <element signature="e#4489#4504#0" expanded="true" />
+                <element signature="e#4506#4724#0" expanded="true" />
+                <element signature="e#4705#4706#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_item_view.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="3050">
-              <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainPage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
+      <file leaf-file-name="HomePageListFragment.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4324" max-vertical-offset="5850">
-              <caret line="199" column="108" selection-start-line="198" selection-start-column="8" selection-end-line="199" selection-end-column="108" />
-              <folding />
+            <state vertical-scroll-proportion="0.5379877" vertical-offset="4138" max-vertical-offset="4925">
+              <caret line="189" column="57" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6367#7186#0" expanded="true" />
+                <element signature="e#7171#7172#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -312,13 +331,13 @@
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/PopularFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
         <option value="$PROJECT_DIR$/res/menu/search_item.xml" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/FollowingFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/UserFeedFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
         <option value="$PROJECT_DIR$/res/layout/main_item_view.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
       </list>
     </option>
   </component>
@@ -502,42 +521,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -621,19 +604,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -659,6 +629,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -772,22 +755,8 @@
       <AnalysisUIOptions />
     </option>
   </component>
-  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
-    <option name="USER" value="" />
-    <option name="PASSWORD" value="" />
-    <option name="mySSHConnectionTimeout" value="30000" />
-    <option name="mySSHReadTimeout" value="30000" />
-    <option name="LAST_MERGED_REVISION" />
-    <option name="MERGE_DRY_RUN" value="false" />
-    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
-    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
-    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
-    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
-    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
-    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <option name="FORCE_UPDATE" value="false" />
-    <option name="IGNORE_EXTERNALS" value="false" />
-    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -883,7 +852,11 @@
       <created>1395289246001</created>
       <updated>1395289246001</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="username clickable to show all quotes by that user">
+      <created>1395294570531</created>
+      <updated>1395294570531</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -913,7 +886,6 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -934,6 +906,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -942,13 +915,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293348" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24946581" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32715377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -961,8 +934,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293348" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41330424" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1003,7 +976,8 @@
     <MESSAGE value="popular quotes implemented - small bug left where doesn't always redraw" />
     <MESSAGE value="following functionality added" />
     <MESSAGE value="homepage fix but doesnt update automatically" />
-    <option name="LAST_COMMIT_MESSAGE" value="homepage fix but doesnt update automatically" />
+    <MESSAGE value="username clickable to show all quotes by that user" />
+    <option name="LAST_COMMIT_MESSAGE" value="username clickable to show all quotes by that user" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1014,24 +988,6 @@
           <line>59</line>
           <properties />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java</url>
-          <line>166</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java</url>
-          <line>200</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java</url>
-          <line>199</line>
-          <properties />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
       </breakpoints>
       <option name="time" value="13" />
     </breakpoint-manager>
@@ -1041,14 +997,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/arrays.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="625">
@@ -1103,13 +1051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3326613" vertical-offset="52735" max-vertical-offset="162125">
           <caret line="2210" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="19" max-vertical-offset="725">
-          <caret line="15" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1340,37 +1281,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3988" max-vertical-offset="5150">
-          <caret line="166" column="43" selection-start-line="166" selection-start-column="43" selection-end-line="166" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1225#1671#0" expanded="true" />
-            <element signature="e#1469#1645#0" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#6844#7091#0" expanded="true" />
-            <element signature="e#7076#7077#0" expanded="true" />
-            <element signature="e#7145#7351#0" expanded="true" />
-            <element signature="e#7336#7337#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5728953" vertical-offset="1021" max-vertical-offset="1975">
-          <caret line="71" column="111" selection-start-line="71" selection-start-column="111" selection-end-line="71" selection-end-column="111" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8789" max-vertical-offset="10200">
           <caret line="363" column="87" selection-start-line="363" selection-start-column="0" selection-end-line="364" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1378,37 +1292,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="800">
           <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/UserFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="775">
-          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-          <folding>
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#610#611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4324" max-vertical-offset="5850">
-          <caret line="199" column="108" selection-start-line="198" selection-start-column="8" selection-end-line="199" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4487" max-vertical-offset="5500">
-          <caret line="246" column="76" selection-start-line="246" selection-start-column="70" selection-end-line="246" selection-end-column="70" />
-          <folding>
-            <element signature="e#9944#10541#0" expanded="true" />
-            <element signature="e#10526#10527#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1420,6 +1303,81 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="3050">
           <caret line="25" column="48" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/UserFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="775">
+          <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3664384" vertical-offset="3174" max-vertical-offset="4075">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.652968" vertical-offset="349" max-vertical-offset="5850">
+          <caret line="199" column="108" selection-start-line="198" selection-start-column="8" selection-end-line="199" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1037" max-vertical-offset="2150">
+          <caret line="70" column="36" selection-start-line="66" selection-start-column="24" selection-end-line="70" selection-end-column="35" />
+          <folding>
+            <element signature="e#1096#1118#0" expanded="true" />
+            <element signature="e#2294#2305#0" expanded="true" />
+            <element signature="e#2307#4452#0" expanded="true" />
+            <element signature="e#3520#3694#0" expanded="true" />
+            <element signature="e#3667#3668#0" expanded="true" />
+            <element signature="e#4433#4434#0" expanded="true" />
+            <element signature="e#4489#4504#0" expanded="true" />
+            <element signature="e#4506#4724#0" expanded="true" />
+            <element signature="e#4705#4706#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="725">
+          <caret line="33" column="19" selection-start-line="21" selection-start-column="8" selection-end-line="33" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4716" max-vertical-offset="6200">
+          <caret line="230" column="45" selection-start-line="230" selection-start-column="45" selection-end-line="230" selection-end-column="45" />
+          <folding>
+            <element signature="e#7214#8709#0" expanded="true" />
+            <element signature="e#7576#8674#0" expanded="true" />
+            <element signature="e#8651#8652#0" expanded="true" />
+            <element signature="e#8694#8695#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5379877" vertical-offset="4138" max-vertical-offset="4925">
+          <caret line="189" column="57" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6367#7186#0" expanded="true" />
+            <element signature="e#7171#7172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -3,6 +3,7 @@ package com.example.SpeakEasy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -181,43 +182,79 @@ public class MainPageListFragment extends SherlockListFragment {
             if (viewHolder.fbName.getText().toString().equals(yourName))
                 viewHolder.follow.setVisibility(View.GONE);
 
-            final int numFavs = SimpleDB.favCount(viewHolder.postID);
-            viewHolder.mainFav.setText("" + numFavs);// store the holder with the view.
-
-            if (Integer.parseInt(viewHolder.mainFav.getText().toString()) == 0) {
-                viewHolder.mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
-            } else viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
-
-            final boolean isFav = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
-
-            if (isFav)
-                viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.redheart));
-            else viewHolder.mainFav.setBackground(convertView.getResources().getDrawable(R.drawable.greyheart));
+            final Resources res = convertView.getResources();
 
             final String posterName = viewHolder.fbName.getText().toString();
-            final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
-            if (isFollowed || posterName.equals(yourName))
-                viewHolder.follow.setVisibility(View.INVISIBLE);
-            else viewHolder.follow.setVisibility(View.VISIBLE);
+            final int[] numFavs = new int[1];
+            final boolean[] isFav = new boolean[1];
+            new Thread(new Runnable() {
+                public void run() {
+                    numFavs[0] = SimpleDB.favCount(viewHolder.postID);
+                    isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
+                    final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewHolder.mainFav.setText("" + numFavs[0]);
+                            //don't show number of favorites if 0
+                            if (Integer.parseInt(viewHolder.mainFav.getText().toString()) == 0) {
+                                viewHolder.mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
+                            } else viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
+
+                            if (isFav[0])
+                                viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.redheart));
+                            else viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.greyheart));
+
+                            if (isFollowed || posterName.equals(yourName))
+                                viewHolder.follow.setVisibility(View.INVISIBLE);
+                            else viewHolder.follow.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                }
+            }).start();
+
 
             viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HashMap<String, String> newFavAttr = new HashMap<String, String>();
+                    final HashMap<String, String> newFavAttr = new HashMap<String, String>();
                     if (posterName.equals(yourName))
                         Toast.makeText(getActivity(), "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
-                    if (isFav) {
-                        SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
-                        newFavAttr.put("favorites", "" + (numFavs - 1));
-                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                        adapter.notifyDataSetChanged();
-                    } else {
-                        SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
-                        newFavAttr.put("favorites", "" + (numFavs + 1));
-                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                        adapter.notifyDataSetChanged();
-                    }
+                    if (isFav[0]) {
+                        new Thread(new Runnable() {
+                            public void run() {
+                                SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
+                                newFavAttr.put("favorites", "" + (numFavs[0] - 1));
+                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyDataSetChanged();
 
+                                    }
+                                });
+                            }
+                        }).start();
+
+                    } else {
+                        new Thread(new Runnable() {
+                            public void run() {
+                                SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
+                                newFavAttr.put("favorites", "" + (numFavs[0] + 1));
+                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyDataSetChanged();
+
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
                 }
             });
 
@@ -231,8 +268,18 @@ public class MainPageListFragment extends SherlockListFragment {
             viewHolder.follow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SimpleDB.addToFollowingTable(posterName, yourName);
-                    adapter.notifyDataSetChanged();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            SimpleDB.addToFollowingTable(posterName, yourName);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.notifyDataSetChanged();
+
+                                }
+                            });
+                        }
+                    }).start();
                 }
             });
 

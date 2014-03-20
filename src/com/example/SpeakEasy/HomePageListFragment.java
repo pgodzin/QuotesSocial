@@ -174,14 +174,22 @@ public class HomePageListFragment extends SherlockListFragment {
             viewHolder.timestamp = attrMap.get("timestamp");
             viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
 
-            int numFavs = SimpleDB.favCount(viewHolder.postID);
+            new Thread(new Runnable() {
+                public void run() {
+                    final int numFavs = SimpleDB.favCount(viewHolder.postID);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewHolder.homeFav.setText("" + numFavs);
+                            //don't show number of favorites if 0
+                            if (Integer.parseInt(viewHolder.homeFav.getText().toString()) == 0) {
+                                viewHolder.homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
+                            } else viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                        }
+                    });
 
-            viewHolder.homeFav.setText("" + numFavs);
-
-            //don't show number of favorites if 0
-            if (Integer.parseInt(viewHolder.homeFav.getText().toString()) == 0) {
-                viewHolder.homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
-            } else viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                }
+            }).start();
 
             viewHolder.homeFav.setOnClickListener(new View.OnClickListener() {
                 @Override
