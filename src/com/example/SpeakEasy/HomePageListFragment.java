@@ -163,14 +163,16 @@ public class HomePageListFragment extends SherlockListFragment {
                 // just use the viewHolder
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+
+            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
+            viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
+
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
-
             viewHolder.timestamp = attrMap.get("timestamp");
             viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
-            viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
-            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
 
             int numFavs = SimpleDB.favCount(viewHolder.postID);
 

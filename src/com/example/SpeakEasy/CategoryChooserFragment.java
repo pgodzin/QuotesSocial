@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 
@@ -66,7 +67,9 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
 
                         //add itemName to main activity's ListAdapter
                         String postID = name + "" + timestamp;
-                        HomePageListFragment.addQuoteToAdapter(postID);
+                        //HomePageListFragment.addQuoteToAdapter(postID);
+                        // TODO: How can this quote be available right after?
+                        Toast.makeText(getActivity(), "Your quote has been added!", Toast.LENGTH_SHORT).show();
 
                         quote.setText("");
                         author.setText("");
@@ -76,7 +79,12 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);
 
-                        dismiss();
+                        /*dismiss();
+                        try {
+                            Thread.sleep(5000);
+                        } catch(InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                        }  */
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

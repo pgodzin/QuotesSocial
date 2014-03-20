@@ -28,6 +28,7 @@ public class MainPageListFragment extends SherlockListFragment {
         final String name = this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
+        getActivity().setTitle("Main Feed");
         //TODO: why is this necessary?
         new Thread(new Runnable() {
             public void run() {
@@ -147,7 +148,6 @@ public class MainPageListFragment extends SherlockListFragment {
 
                 // well set up the ViewHolder
                 viewHolder = new ViewHolder();
-                viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
 
                 viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.mainFBshare);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
@@ -161,6 +161,7 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+            viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
             viewHolder.fbName.setText(attrMap.get("fbName"));
 
             viewHolder.timestamp = attrMap.get("timestamp");
@@ -193,13 +194,16 @@ public class MainPageListFragment extends SherlockListFragment {
 
             final String posterName = viewHolder.fbName.getText().toString();
             final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
-            if (isFollowed)
+            if (isFollowed || posterName.equals(yourName))
                 viewHolder.follow.setVisibility(View.INVISIBLE);
+            else viewHolder.follow.setVisibility(View.VISIBLE);
 
             viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     HashMap<String, String> newFavAttr = new HashMap<String, String>();
+                    if (posterName.equals(yourName))
+                        Toast.makeText(getActivity(), "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
                     if (isFav) {
                         SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
                         newFavAttr.put("favorites", "" + (numFavs - 1));

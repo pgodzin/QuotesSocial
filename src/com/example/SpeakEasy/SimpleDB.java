@@ -90,7 +90,7 @@ public class SimpleDB {
     }
 
     /**
-     * A map of attriutes for a specific item in a table
+     * A map of attributes for a specific item in a table
      * @param domainName table name
      * @param itemName itemName for the item
      * @return
