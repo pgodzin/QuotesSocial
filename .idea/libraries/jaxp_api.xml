@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jaxp-api">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../aws-android-sdk-1.7.1.1/third-party/jaxp-1.4.4/jaxp-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
