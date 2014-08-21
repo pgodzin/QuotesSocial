@@ -17,7 +17,6 @@ public class PropertyLoader {
         if (instance == null) {
             instance = new PropertyLoader();
         }
-
         return instance;
     }
 

@@ -11,7 +11,6 @@ import java.util.List;
  * Util class for database transactions
  */
 public class SimpleDB {
-
     private static String nextToken = null;
     private static int prevNumDomains = 0;
     public static final String QUOTES = "Quotes";
@@ -53,7 +52,6 @@ public class SimpleDB {
         } else {
             return getDomainNames(prevNumDomains, nextToken);
         }
-
     }
 
     public static void createDomain(String domainName) {
@@ -84,7 +82,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames[i] = ((Item) items.get(i)).getName();
         }
-
         return itemNames;
     }
 
@@ -103,10 +100,8 @@ public class SimpleDB {
         for (Object attribute : getResult.getAttributes()) {
             String name = ((Attribute) attribute).getName();
             String value = ((Attribute) attribute).getValue();
-
             attributes.put(name, value);
         }
-
         return attributes;
     }
 
@@ -119,11 +114,9 @@ public class SimpleDB {
      */
     public static void updateAttributesForItem(String domainName, String itemName, HashMap<String, String> attributes) {
         List<ReplaceableAttribute> replaceableAttributes = new ArrayList<ReplaceableAttribute>(attributes.size());
-
         for (String attributeName : attributes.keySet()) {
             replaceableAttributes.add(new ReplaceableAttribute().withName(attributeName).withValue(attributes.get(attributeName)).withReplace(true));
         }
-
         getInstance().putAttributes(new PutAttributesRequest(domainName, itemName, replaceableAttributes));
     }
 
@@ -138,7 +131,8 @@ public class SimpleDB {
     }
 
     public static void deleteItemAttribute(String domainName, String itemName, String attributeName) {
-        getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName).withAttributes(new Attribute[]{new Attribute().withName(attributeName)}));
+        getInstance().deleteAttributes(new DeleteAttributesRequest(domainName, itemName)
+                .withAttributes(new Attribute[]{new Attribute().withName(attributeName)}));
     }
 
     /**
@@ -154,7 +148,6 @@ public class SimpleDB {
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(2);
         attrs.add(favoritedPostID);
         attrs.add(accName);
-
 
         PutAttributesRequest par = new PutAttributesRequest("Favorites", postID + "_likedBy_" + accountName, attrs);
         try {
@@ -218,7 +211,6 @@ public class SimpleDB {
      * @param quote
      */
     public static void addQuote(QuotePost quote) {
-
         ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.FALSE);
         ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.FALSE);
         ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.FALSE);
@@ -237,7 +229,7 @@ public class SimpleDB {
 
         //add every category to the attribute - can have multiple values
         for (int i = 0; i < numCategories; i++) {
-            switch ((Integer) categories.get(i)) {
+            switch (categories.get(i)) {
                 case 0:
                     attrs.add(new ReplaceableAttribute("category", "advice", Boolean.FALSE));
                     break;
@@ -253,6 +245,8 @@ public class SimpleDB {
                 case 4:
                     attrs.add(new ReplaceableAttribute("category", "movie", Boolean.FALSE));
                     break;
+                default:
+                    throw new IllegalArgumentException("Too many categories.");
             }
         }
 
@@ -276,7 +270,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add(((Item) items.get(i)).getName());
         }
-
         return itemNames;
     }
 
@@ -319,7 +312,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add((items.get(i)).getName());
         }
-
         return itemNames;
     }
 
@@ -347,7 +339,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add((items.get(i)).getName());
         }
-
         return itemNames;
     }
 
@@ -365,7 +356,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add(((Item) items.get(i)).getName());
         }
-
         return itemNames;
     }
 
@@ -383,7 +373,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add(((Item) items.get(i)).getName());
         }
-
         return itemNames;
     }
 
@@ -402,8 +391,6 @@ public class SimpleDB {
         for (int i = 0; i < items.size(); i++) {
             itemNames.add(((Item) items.get(i)).getName());
         }
-
         return itemNames;
     }
-
 }

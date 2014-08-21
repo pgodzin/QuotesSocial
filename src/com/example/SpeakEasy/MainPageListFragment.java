@@ -32,7 +32,6 @@ public class MainPageListFragment extends SherlockListFragment {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle("Main Feed");
-        //TODO: why is this necessary?
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNames(name);
@@ -46,7 +45,6 @@ public class MainPageListFragment extends SherlockListFragment {
                 });
             }
         }).start();
-
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
 
@@ -75,7 +73,6 @@ public class MainPageListFragment extends SherlockListFragment {
     }
 
     public static void shareToFB(Activity activity, String quoteText, UiLifecycleHelper uiHelper) {
-
         if (FacebookDialog.canPresentOpenGraphActionDialog(activity.getApplicationContext(),
                 FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
             OpenGraphObject quote = OpenGraphObject.Factory.createForPost
@@ -84,7 +81,6 @@ public class MainPageListFragment extends SherlockListFragment {
             OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
             action.setProperty("quote", quote);
             action.setType("speakeasydevfest:love");
-
             FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(activity, action, "quote")
                     .build();
             uiHelper.trackPendingDialogCall(shareDialog.present());
@@ -136,40 +132,32 @@ public class MainPageListFragment extends SherlockListFragment {
             super.remove(object);
         }
 
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
-
             final ViewHolder viewHolder;
             if (convertView == null) {
-
                 // inflate the layout
                 LayoutInflater inflater = (LayoutInflater) context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.main_item_view, parent, false);
 
-                // well set up the ViewHolder
+                // set up the ViewHolder
                 viewHolder = new ViewHolder();
-
                 viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.mainFBshare);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
-
                 viewHolder.mainFav = (Button) convertView.findViewById(R.id.mainFavorite);
                 convertView.setTag(viewHolder);
-
             } else {
                 // we've just avoided calling findViewById() on resource every time
                 // just use the viewHolder
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
             viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
             viewHolder.fbName.setText(attrMap.get("fbName"));
-
             viewHolder.timestamp = attrMap.get("timestamp");
             viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
-
             viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
@@ -179,11 +167,11 @@ public class MainPageListFragment extends SherlockListFragment {
             final String yourName = prefs.getString("name", "");
             final String nameSpaceless = yourName.replace(" ", "");
 
-            if (viewHolder.fbName.getText().toString().equals(yourName))
+            if (viewHolder.fbName.getText().toString().equals(yourName)) {
                 viewHolder.follow.setVisibility(View.GONE);
+            }
 
             final Resources res = convertView.getResources();
-
             final String posterName = viewHolder.fbName.getText().toString();
             final int[] numFavs = new int[1];
             final boolean[] isFav = new boolean[1];
@@ -200,29 +188,33 @@ public class MainPageListFragment extends SherlockListFragment {
                             //don't show number of favorites if 0
                             if (Integer.parseInt(viewHolder.mainFav.getText().toString()) == 0) {
                                 viewHolder.mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
-                            } else viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
+                            } else {
+                                viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
+                            }
 
-                            if (isFav[0])
+                            if (isFav[0]) {
                                 viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.redheart));
-                            else viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.greyheart));
+                            } else {
+                                viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.greyheart));
+                            }
 
-                            if (isFollowed || posterName.equals(yourName))
+                            if (isFollowed || posterName.equals(yourName)) {
                                 viewHolder.follow.setVisibility(View.INVISIBLE);
-                            else viewHolder.follow.setVisibility(View.VISIBLE);
+                            } else {
+                                viewHolder.follow.setVisibility(View.VISIBLE);
+                            }
                         }
                     });
-
                 }
             }).start();
-
 
             viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final HashMap<String, String> newFavAttr = new HashMap<String, String>();
-                    if (posterName.equals(yourName))
+                    if (posterName.equals(yourName)) {
                         Toast.makeText(getActivity(), "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
-                    if (isFav[0]) {
+                    } else if (isFav[0]) {
                         new Thread(new Runnable() {
                             public void run() {
                                 SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
@@ -233,12 +225,10 @@ public class MainPageListFragment extends SherlockListFragment {
                                     @Override
                                     public void run() {
                                         adapter.notifyDataSetChanged();
-
                                     }
                                 });
                             }
                         }).start();
-
                     } else {
                         new Thread(new Runnable() {
                             public void run() {
@@ -249,7 +239,6 @@ public class MainPageListFragment extends SherlockListFragment {
                                     @Override
                                     public void run() {
                                         adapter.notifyDataSetChanged();
-
                                     }
                                 });
                             }
@@ -275,7 +264,6 @@ public class MainPageListFragment extends SherlockListFragment {
                                 @Override
                                 public void run() {
                                     adapter.notifyDataSetChanged();
-
                                 }
                             });
                         }
@@ -295,7 +283,5 @@ public class MainPageListFragment extends SherlockListFragment {
             });
             return convertView;
         }
-
-
     }
 }

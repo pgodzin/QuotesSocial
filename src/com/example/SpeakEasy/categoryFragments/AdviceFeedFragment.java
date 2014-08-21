@@ -13,7 +13,6 @@ import com.facebook.UiLifecycleHelper;
  * ListFragment that displays all the quotes posted with an 'advice' category tag
  */
 public class AdviceFeedFragment extends MainPageListFragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
@@ -33,6 +32,5 @@ public class AdviceFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
-
     }
 }

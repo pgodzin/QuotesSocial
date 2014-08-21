@@ -72,13 +72,12 @@ public class MainPage extends SherlockFragmentActivity {
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-
-        //TODO: fix
+        // TODO: fix
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
 
+    // TODO: Maybe pop up full screen quote with comment feed
     /*    @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
@@ -91,7 +90,6 @@ public class MainPage extends SherlockFragmentActivity {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
         menu.findItem(R.id.search).setVisible(!drawerOpen);
         menu.findItem(R.id.home).setVisible(!drawerOpen);
-
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -106,7 +104,6 @@ public class MainPage extends SherlockFragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
-
         switch (item.getItemId()) {
             case android.R.id.home:
                 if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
@@ -115,8 +112,8 @@ public class MainPage extends SherlockFragmentActivity {
                     mDrawerLayout.openDrawer(mDrawerList);
                 }
                 return true;
-
             case R.id.search:
+                // TODO: Make users, authors, and words searchable
                 Toast.makeText(MainPage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.home:
@@ -145,7 +142,6 @@ public class MainPage extends SherlockFragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
             @Override
             public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
@@ -156,8 +152,6 @@ public class MainPage extends SherlockFragmentActivity {
             public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
                 Log.i("Activity", "Success!");
             }
-
-
         });
     }
 
@@ -192,60 +186,48 @@ public class MainPage extends SherlockFragmentActivity {
         }
     }
 
+    public void replaceFragment(Fragment fragment, android.support.v4.app.FragmentTransaction fragmentTransaction) {
+        fragmentTransaction.replace(R.id.content_frame, fragment);
+        fragmentTransaction.addToBackStack(null).commit();
+    }
+
     /**
      * Swaps fragments in the main content view
      */
     private void selectItem(int position) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment = null;
+        Fragment fragment;
         // Create a new fragment and specify the feed to show based on position
         switch (position) {
             case 0:
-                fragment = new MainPageListFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new MainPageListFragment(), fragmentTransaction);
                 break;
             case 1:
-                fragment = new PopularFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new PopularFeedFragment(), fragmentTransaction);
                 break;
             case 2:
-                fragment = new FollowingFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();                break;
+                replaceFragment(new FollowingFeedFragment(), fragmentTransaction);
+                break;
             case 3:
-                fragment = new AdviceFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new AdviceFeedFragment(), fragmentTransaction);
                 break;
             case 4:
-                fragment = new FunnyFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new FunnyFeedFragment(), fragmentTransaction);
                 break;
             case 5:
-                fragment = new InspirationalFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new InspirationalFeedFragment(), fragmentTransaction);
                 break;
             case 6:
-                fragment = new LoveFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new LoveFeedFragment(), fragmentTransaction);
                 break;
             case 7:
-                fragment = new MovieFeedFragment();
-                fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null).commit();
+                replaceFragment(new MovieFeedFragment(), fragmentTransaction);
                 break;
         }
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        //getSupportActionBar().setTitle(categoryTitles[position] + "Quotes");
         mDrawerLayout.closeDrawer(mDrawerList);
     }
-
 }

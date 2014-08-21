@@ -21,7 +21,6 @@ public class UserFeedFragment extends MainPageListFragment {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle(username);
-
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getUserItemNamesByCategory(username);
@@ -36,6 +35,5 @@ public class UserFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
-
     }
 }

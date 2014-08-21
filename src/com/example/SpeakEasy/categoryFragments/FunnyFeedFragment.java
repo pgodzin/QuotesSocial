@@ -32,6 +32,5 @@ public class FunnyFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
-
     }
 }

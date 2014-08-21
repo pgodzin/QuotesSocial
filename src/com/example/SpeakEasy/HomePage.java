@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.DialogFragment;
@@ -43,7 +42,6 @@ public class HomePage extends SherlockFragmentActivity {
         //TODO: fix
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
     }
 
     @Override
@@ -62,6 +60,7 @@ public class HomePage extends SherlockFragmentActivity {
                 startActivity(new Intent(HomePage.this, MainPage.class));
                 return true;
             case R.id.search:
+                // TODO: fix search
                 Toast.makeText(HomePage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
             //Submit a new quote
@@ -78,13 +77,10 @@ public class HomePage extends SherlockFragmentActivity {
                     quote.setVisibility(View.VISIBLE);
                     author.setVisibility(View.VISIBLE);
                 }
-
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         selectCategories();
-
                     }
                 });
             default:
@@ -92,7 +88,7 @@ public class HomePage extends SherlockFragmentActivity {
         }
     }
 
-    //DialogFragment to select 0 or more categories
+    // DialogFragment to select 0 or more categories
     public void selectCategories() {
         DialogFragment newFragment = new CategoryChooserFragment();
         newFragment.show(getSupportFragmentManager(), "categories");
@@ -101,14 +97,13 @@ public class HomePage extends SherlockFragmentActivity {
     protected void displayErrorAndExit(Response response) {
         AlertDialog.Builder confirm = new AlertDialog.Builder(this);
         if (response == null) {
-            confirm.setTitle("Error Code Unkown");
-            confirm.setMessage("Please review the README file.");
+            confirm.setTitle("Error Code Unknown");
+            confirm.setMessage("Please review the log file.");
         } else {
             confirm.setTitle("Error Code [" + response.getResponseCode() + "]");
             confirm.setMessage(response.getResponseMessage()
-                    + "\nPlease review the README file.");
+                    + "\nPlease review the log file.");
         }
-
         confirm.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 HomePage.this.finish();
@@ -120,7 +115,6 @@ public class HomePage extends SherlockFragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         uiHelper.onActivityResult(requestCode, resultCode, data, new FacebookDialog.Callback() {
             @Override
             public void onError(FacebookDialog.PendingCall pendingCall, Exception error, Bundle data) {
@@ -131,8 +125,6 @@ public class HomePage extends SherlockFragmentActivity {
             public void onComplete(FacebookDialog.PendingCall pendingCall, Bundle data) {
                 Log.i("Activity", "Success!");
             }
-
-
         });
     }
 
@@ -159,26 +151,4 @@ public class HomePage extends SherlockFragmentActivity {
         super.onDestroy();
         uiHelper.onDestroy();
     }
-
-    private class ValidateCredentialsTask extends
-            AsyncTask<Class<?>, Void, com.example.SpeakEasy.tvmclient.Response> {
-
-        Class<?> cls;
-
-        protected com.example.SpeakEasy.tvmclient.Response doInBackground(Class<?>... classes) {
-
-            cls = classes[0];
-            return HomePage.clientManager.validateCredentials();
-        }
-
-        protected void onPostExecute(com.example.SpeakEasy.tvmclient.Response response) {
-            if (response != null && response.requestWasSuccessful()) {
-                startActivity(new Intent(HomePage.this, cls));
-            } else {
-                HomePage.this.displayErrorAndExit(response);
-            }
-        }
-
-    }
-
 }

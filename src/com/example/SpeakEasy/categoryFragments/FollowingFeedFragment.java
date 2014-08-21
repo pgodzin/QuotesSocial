@@ -15,7 +15,6 @@ import com.facebook.UiLifecycleHelper;
  * ListFragment that displays all the quotes posted with an 'advice' category tag
  */
 public class FollowingFeedFragment extends MainPageListFragment {
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
@@ -23,7 +22,6 @@ public class FollowingFeedFragment extends MainPageListFragment {
         getActivity().setTitle("Followed Quotes");
         final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
         final String name = prefs.getString("name", "");
-
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFollowingFeedItemNames(name);
@@ -38,6 +36,5 @@ public class FollowingFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
-
     }
 }

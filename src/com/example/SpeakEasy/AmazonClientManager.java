@@ -34,29 +34,19 @@ public class AmazonClientManager {
     }
 
     public Response validateCredentials() {
-
         Response ableToGetToken = Response.SUCCESSFUL;
-
         if (AmazonSharedPreferencesWrapper
                 .areCredentialsExpired(this.sharedPreferences)) {
-
             synchronized (this) {
-
                 if (AmazonSharedPreferencesWrapper
                         .areCredentialsExpired(this.sharedPreferences)) {
-
                     Log.i(LOG_TAG, "Credentials were expired.");
-
                     AmazonTVMClient tvm = new AmazonTVMClient(this.sharedPreferences,
                             PropertyLoader.getInstance().getTokenVendingMachineURL(),
                             PropertyLoader.getInstance().useSSL());
-
                     ableToGetToken = tvm.anonymousRegister();
-
                     if (ableToGetToken.requestWasSuccessful()) {
-
                         ableToGetToken = tvm.getToken();
-
                         if (ableToGetToken.requestWasSuccessful()) {
                             Log.i(LOG_TAG, "Creating New Credentials.");
                             initClients();
@@ -64,19 +54,14 @@ public class AmazonClientManager {
                     }
                 }
             }
-
         } else if (sdbClient == null) {
-
             synchronized (this) {
-
                 if (sdbClient == null) {
-
                     Log.i(LOG_TAG, "Creating New Credentials.");
                     initClients();
                 }
             }
         }
-
         return ableToGetToken;
     }
 
@@ -88,11 +73,8 @@ public class AmazonClientManager {
     private void initClients() {
         AWSCredentials credentials = AmazonSharedPreferencesWrapper
                 .getCredentialsFromSharedPreferences(this.sharedPreferences);
-
         Region region = Region.getRegion(Regions.US_EAST_1);
-
         sdbClient = new AmazonSimpleDBClient(credentials);
         sdbClient.setRegion(region);
     }
-
 }

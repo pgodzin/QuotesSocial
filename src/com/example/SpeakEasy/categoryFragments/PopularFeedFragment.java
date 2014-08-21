@@ -43,9 +43,7 @@ public class PopularFeedFragment extends MainPageListFragment {
                 });
             }
         }).start();
-
         return inflater.inflate(R.layout.main_listfragment, container, false);
-
     }
 
     protected class MyPopularArrayAdapter extends ArrayAdapter<String> {
@@ -82,53 +80,52 @@ public class PopularFeedFragment extends MainPageListFragment {
             super.remove(object);
         }
 
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
             // inflate the layout
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.main_item_view, parent, false);
 
-            // well set up the ViewHolder
+            // set up the ViewHolder
             TextView fbName = (TextView) rowView.findViewById(R.id.mainFBName);
             final TextView quoteText = (TextView) rowView.findViewById(R.id.mainItemText);
             TextView quoteAuthor = (TextView) rowView.findViewById(R.id.mainItemAuthor);
             ImageView fbShare = (ImageView) rowView.findViewById(R.id.mainFBshare);
             ImageView follow = (ImageView) rowView.findViewById(R.id.mainFollow);
+            Button mainFav = (Button) rowView.findViewById(R.id.mainFavorite);
 
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
             fbName.setText(attrMap.get("fbName"));
             quoteAuthor.setText(attrMap.get("author"));
             quoteText.setText(attrMap.get("quoteText"));
-
             String timestamp = attrMap.get("timestamp");
             final String postID = fbName.getText().toString().replace(" ", "") + timestamp;
-
-            Button mainFav = (Button) rowView.findViewById(R.id.mainFavorite);
 
             final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
             final String yourName = prefs.getString("name", "");
             final String nameSpaceless = yourName.replace(" ", "");
 
-            if (fbName.getText().toString().equals(yourName))
+            if (fbName.getText().toString().equals(yourName)) {
                 follow.setVisibility(View.GONE);
+            }
 
             final int numFavs = SimpleDB.favCount(postID);
-            mainFav.setText("" + numFavs);// store the holder with the view.
-
+            mainFav.setText("" + numFavs);
             if (Integer.parseInt(mainFav.getText().toString()) == 0) {
                 mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
-            } else mainFav.setTextColor(getResources().getColor(android.R.color.black));
+            } else {
+                mainFav.setTextColor(getResources().getColor(android.R.color.black));
+            }
 
             final boolean isFav = SimpleDB.isFavoritedByUser(postID, nameSpaceless);
-
-            if (isFav)
+            if (isFav) {
                 mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.redheart));
-            else mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
+            } else {
+                mainFav.setBackground(rowView.getResources().getDrawable(R.drawable.greyheart));
+            }
 
-            //TODO: doesn't always redraw when improper ordering
+            // TODO: doesn't always redraw when improper ordering
             mainFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -148,7 +145,6 @@ public class PopularFeedFragment extends MainPageListFragment {
                                 });
                             }
                         }).start();
-
                     } else {
                         new Thread(new Runnable() {
                             public void run() {
@@ -165,7 +161,6 @@ public class PopularFeedFragment extends MainPageListFragment {
                             }
                         }).start();
                     }
-
                 }
             });
 
@@ -176,18 +171,14 @@ public class PopularFeedFragment extends MainPageListFragment {
                 }
             });
 
+            // TODO: figure out follow
             follow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
             });
-
             return rowView;
         }
-
-
     }
-
-
 }

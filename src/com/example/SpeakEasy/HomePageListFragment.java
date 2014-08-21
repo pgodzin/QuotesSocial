@@ -26,7 +26,6 @@ public class HomePageListFragment extends SherlockListFragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //Get user's quotes
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle("Home Feed");
@@ -78,11 +77,9 @@ public class HomePageListFragment extends SherlockListFragment {
 
     /**
      * When fbShare icon is pressed, create on OpenGraphAction that says you posted a new quote
-     *
-     * @param quoteText
      */
     private void shareToFB(String quoteText) {
-
+        // TODO: consider adding badges for sharing
         if (FacebookDialog.canPresentOpenGraphActionDialog(getActivity().getApplicationContext(),
                 FacebookDialog.OpenGraphActionDialogFeature.OG_ACTION_DIALOG)) {
             OpenGraphObject quote = OpenGraphObject.Factory.createForPost
@@ -91,7 +88,6 @@ public class HomePageListFragment extends SherlockListFragment {
             OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
             action.setProperty("quote", quote);
             action.setType("speakeasydevfest:post");
-
             FacebookDialog shareDialog = new FacebookDialog.OpenGraphActionDialogBuilder(getActivity(), action, "quote")
                     .build();
             uiHelper.trackPendingDialogCall(shareDialog.present());
@@ -144,7 +140,6 @@ public class HomePageListFragment extends SherlockListFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder viewHolder;
             if (convertView == null) {
-
                 // inflate the layout
                 LayoutInflater inflater = (LayoutInflater) context
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -152,12 +147,9 @@ public class HomePageListFragment extends SherlockListFragment {
 
                 // set up the ViewHolder
                 viewHolder = new ViewHolder();
-
                 viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.fbshare);
-
                 viewHolder.homeFav = (Button) convertView.findViewById(R.id.homeFavorite);
                 convertView.setTag(viewHolder);
-
             } else {
                 // we've just avoided calling findViewById() on resource every time
                 // just use the viewHolder
@@ -168,7 +160,6 @@ public class HomePageListFragment extends SherlockListFragment {
 
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
             viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
-
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
             viewHolder.timestamp = attrMap.get("timestamp");
@@ -184,7 +175,9 @@ public class HomePageListFragment extends SherlockListFragment {
                             //don't show number of favorites if 0
                             if (Integer.parseInt(viewHolder.homeFav.getText().toString()) == 0) {
                                 viewHolder.homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
-                            } else viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                            } else {
+                                viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                            }
                         }
                     });
 
@@ -204,7 +197,6 @@ public class HomePageListFragment extends SherlockListFragment {
                     shareToFB(viewHolder.quoteText.getText().toString());
                 }
             });
-
             return convertView;
         }
     }

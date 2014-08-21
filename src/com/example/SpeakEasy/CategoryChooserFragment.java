@@ -45,19 +45,16 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                             }
                         }
                 )
-                        // Set the action buttons
+                // Set the action buttons
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked OK, so save the mSelectedItems results somewhere
                         // or return them to the component that opened the dialog
-
                         final Button b = (Button) getActivity().findViewById(R.id.submit);
                         final EditText quote = (EditText) getActivity().findViewById(R.id.quoteText);
                         final EditText author = (EditText) getActivity().findViewById(R.id.quoteAuthor);
-
                         final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
-
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
                         String name = prefs.getString("name", "");
                         final QuotePost q = new QuotePost(quote.getText().toString(), author.getText().toString(),
@@ -75,7 +72,6 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         //HomePageListFragment.addQuoteToAdapter(postID);
                         // TODO: How can this quote be available right after?
                         Toast.makeText(getActivity(), "Your quote has been added!", Toast.LENGTH_SHORT).show();
-
                         quote.setText("");
                         author.setText("");
 
@@ -83,7 +79,6 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         b.setVisibility(View.GONE);
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);
-
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -92,7 +87,6 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         dismiss();
                     }
                 });
-
         return builder.create();
     }
 }

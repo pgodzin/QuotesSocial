@@ -35,11 +35,8 @@ public class LoginFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main, container, false);
-
         LoginButton authButton = (LoginButton) view.findViewById(R.id.authButton);
         authButton.setFragment(this);
-
-
         return view;
     }
 
@@ -99,7 +96,6 @@ public class LoginFragment extends Fragment {
                 (session.isOpened() || session.isClosed())) {
             onSessionStateChange(session, session.getState(), null);
         }
-
         uiHelper.onResume();
     }
 

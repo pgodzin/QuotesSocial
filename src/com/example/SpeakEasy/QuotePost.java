@@ -13,7 +13,6 @@ public class QuotePost {
         return quoteText;
     }
 
-
     public String getAuthorName() {
         return authorName;
     }
@@ -30,13 +29,12 @@ public class QuotePost {
         return categories;
     }
 
-   public QuotePost(String quoteText, String authorName, String fbName, String timestamp, ArrayList<Integer> categories) {
-
+    public QuotePost(String quoteText, String authorName, String fbName, String timestamp,
+                     ArrayList<Integer> categories) {
         this.quoteText = quoteText;
         this.authorName = authorName;
         this.fbName = fbName;
         this.timestamp = timestamp;
         this.categories = categories;
-
     }
 }
