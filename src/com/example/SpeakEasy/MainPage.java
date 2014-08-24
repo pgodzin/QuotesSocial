@@ -93,7 +93,6 @@ public class MainPage extends SherlockFragmentActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();

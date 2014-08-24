@@ -187,7 +187,8 @@ public class SimpleDB {
      * @return
      */
     public static boolean isFollowedByUser(String posterName, String userName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedName = '" + posterName + "' and followedBy = '" + userName + "'").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedName = '" +
+                posterName + "' and followedBy = '" + userName + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return items.size() > 0;
     }
@@ -250,7 +251,8 @@ public class SimpleDB {
             }
         }
 
-        PutAttributesRequest par = new PutAttributesRequest(QUOTES, quote.getFbName().replace(" ", "") + quote.getTimestamp(), attrs);
+        PutAttributesRequest par =
+                new PutAttributesRequest(QUOTES, quote.getFbName().replace(" ", "") + quote.getTimestamp(), attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -263,7 +265,8 @@ public class SimpleDB {
      * @return itemNames of all the Quotes created by the user to be shown in the HomePage
      */
     public static List<String> getMyQuotesItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName +
+                "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -280,7 +283,9 @@ public class SimpleDB {
      * @return
      */
     public static int favCount(String postId) {
-        SelectRequest selectRequest = new SelectRequest("select favorites from Quotes where itemName() = '" + postId + "'").withConsistentRead(true);
+        SelectRequest selectRequest =
+                new SelectRequest("select favorites from Quotes where itemName() = '" + postId + "'")
+                        .withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return Integer.parseInt(items.get(0).getAttributes().get(0).getValue());
     }
@@ -293,7 +298,8 @@ public class SimpleDB {
      * @return
      */
     public static boolean isFavoritedByUser(String postId, String name) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId + "' and likedBy = '" + name + "'").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId +
+                "' and likedBy = '" + name + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return items.size() > 0;
     }
@@ -305,7 +311,8 @@ public class SimpleDB {
      * @return
      */
     public static List<String> getFeedItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
+                "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -323,7 +330,8 @@ public class SimpleDB {
      */
     public static List<String> getFollowingFeedItemNames(String myName) {
         //Work-around for no nested queries in SimpleDB
-        SelectRequest selectRequestNames = new SelectRequest("select followedName from Following where followedBy = '" + myName + "'").withConsistentRead(true);
+        SelectRequest selectRequestNames = new SelectRequest("select followedName from Following where followedBy = '" +
+                myName + "'").withConsistentRead(true);
         List<Item> names = getInstance().select(selectRequestNames).getItems();
 
         String set = "(";
@@ -332,7 +340,8 @@ public class SimpleDB {
         }
         set = set.substring(0, set.length() - 1) + ")";
 
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName in " + set + " and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName in " + set +
+                " and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -349,7 +358,8 @@ public class SimpleDB {
      * @return
      */
     public static List<String> getPopularFeedItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName + "' and favorites is not null order by favorites desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
+                "' and favorites is not null order by favorites desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -366,7 +376,8 @@ public class SimpleDB {
      * @return
      */
     public static List<String> getUserItemNamesByCategory(String name) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name +
+                "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -384,7 +395,8 @@ public class SimpleDB {
      * @return
      */
     public static List<String> getFeedItemNamesByCategory(String category) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category = '" + category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category = '" +
+                category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();

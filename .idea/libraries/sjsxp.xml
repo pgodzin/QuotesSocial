@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="sjsxp">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../aws-android-sdk-1.7.1.1/third-party/sjsxp-1_0_2/sjsxp.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

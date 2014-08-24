@@ -32,7 +32,8 @@
     <string name="category">Category</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-
+    <string name="shareToFB">Share to Facebook</string>
+    <string name="favorite">Favorite</string>
 
 
 </resources>

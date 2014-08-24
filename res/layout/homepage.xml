@@ -1,58 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".HomePage"
-                android:background="@drawable/whitebg">
-        >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePage">
 
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/quoteText"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:hint="@string/quoteHint"
-            android:textColor="@android:color/black"
-            android:editable="true"
-            android:textSize="15sp"
-            android:layout_toLeftOf="@+id/submit"
-            android:visibility="gone"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quoteText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:hint="@string/quoteHint"
+        android:textColor="@android:color/black"
+        android:editable="true"
+        android:textSize="15sp"
+        android:layout_toLeftOf="@+id/submit"
+        android:visibility="gone" />
 
     <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/quoteAuthor"
-            android:textSize="15sp"
-            android:hint="@string/authorHint"
-            android:layout_below="@+id/quoteText"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/submit"
-            android:visibility="gone"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/quoteAuthor"
+        android:textSize="15sp"
+        android:hint="@string/authorHint"
+        android:layout_below="@+id/quoteText"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/submit"
+        android:visibility="gone" />
 
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/submit"
-            android:id="@+id/submit"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignBottom="@+id/quoteAuthor"
-            android:clickable="true"
-            android:visibility="gone"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:id="@+id/submit"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/quoteAuthor"
+        android:clickable="true"
+        android:visibility="gone" />
 
     <fragment
-            android:id="@+id/homeListFragment"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:name="com.example.SpeakEasy.HomePageListFragment"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="1dp"
-            android:layout_below="@+id/submit">
+        android:id="@+id/homeListFragment"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:name="com.example.SpeakEasy.HomePageListFragment"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="1dp"
+        android:layout_below="@+id/submit">
 
     </fragment>
 </RelativeLayout>

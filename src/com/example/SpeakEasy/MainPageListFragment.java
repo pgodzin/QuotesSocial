@@ -9,7 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.example.SpeakEasy.categoryFragments.UserFeedFragment;
 import com.facebook.UiLifecycleHelper;
@@ -93,9 +96,9 @@ public class MainPageListFragment extends SherlockListFragment {
         TextView fbName;
         TextView quoteText;
         TextView quoteAuthor;
-        ImageView fbShare;
+        TextView fbShare;
         ImageView follow;
-        Button mainFav;
+        TextView mainFav;
         String postID;
         String timestamp;
     }
@@ -143,9 +146,9 @@ public class MainPageListFragment extends SherlockListFragment {
 
                 // set up the ViewHolder
                 viewHolder = new ViewHolder();
-                viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.mainFBshare);
+                viewHolder.fbShare = (TextView) convertView.findViewById(R.id.mainFBshare);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
-                viewHolder.mainFav = (Button) convertView.findViewById(R.id.mainFavorite);
+                viewHolder.mainFav = (TextView) convertView.findViewById(R.id.mainFavorite);
                 convertView.setTag(viewHolder);
             } else {
                 // we've just avoided calling findViewById() on resource every time
@@ -173,7 +176,7 @@ public class MainPageListFragment extends SherlockListFragment {
 
             final Resources res = convertView.getResources();
             final String posterName = viewHolder.fbName.getText().toString();
-            final int[] numFavs = new int[1];
+/*            final int[] numFavs = new int[1];
             final boolean[] isFav = new boolean[1];
             new Thread(new Runnable() {
                 public void run() {
@@ -270,7 +273,7 @@ public class MainPageListFragment extends SherlockListFragment {
                     }).start();
                 }
             });
-
+*/
             viewHolder.fbName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

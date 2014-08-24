@@ -1,117 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/feed_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@android:color/transparent">
 
-    <TextView
-            android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/feed_item_margin"
+        android:layout_marginRight="@dimen/feed_item_margin"
+        android:layout_marginTop="@dimen/feed_item_margin"
+        android:background="@drawable/bg_parent_rounded_corner"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="2dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/name"
-            android:id="@+id/mainFBName"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="15sp"
-            android:paddingTop="5dp"
-            android:clickable="true"
-            android:textColor="#060c4d"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/feed_item_padding_left_right"
+            android:paddingRight="@dimen/feed_item_padding_left_right">
 
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mainFollow"
-            android:src="@android:drawable/ic_input_add"
-            android:paddingLeft="10dp"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/mainFBName"
-            android:focusable="false"
-            android:contentDescription="@string/follow"
-            android:clickable="true"/>
-
-    <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle"
-            android:layout_below="@+id/mainFollow"
-            android:layout_alignParentLeft="true">
-
-        <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/mainOpenQuote"
-                android:layout_below="@+id/mainFBName"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/name"
+                android:id="@+id/mainFBName"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
-                android:contentDescription="@string/openquote"
-                android:paddingLeft="10dp"
-                android:src="@drawable/openquote"/>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/quote"
-                android:id="@+id/mainItemText"
-                android:layout_alignTop="@+id/mainOpenQuote"
-                android:layout_toRightOf="@+id/mainOpenQuote"
-                android:textSize="20sp"
-                android:paddingLeft="15dp"
-                android:paddingTop="10dp"
-                android:maxWidth="275dp"/>
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/auth"
-                android:id="@+id/mainItemAuthor"
                 android:textSize="15sp"
-                android:layout_below="@+id/mainItemText"
-                android:layout_alignRight="@+id/mainItemText"
-                android:textStyle="italic"/>
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
+                android:clickable="true"
+                android:textColor="#060c4d"
+                android:textStyle="bold"/>
 
-        <ImageView
+            <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:id="@+id/mainCloseQuote"
-                android:src="@drawable/closequote"
-                android:contentDescription="@string/closequote"
-                android:paddingLeft="15dp"
-                android:layout_alignTop="@+id/mainOpenQuote"
-                android:layout_toRightOf="@+id/mainItemText"/>
-
-        <ImageView
-                android:layout_width="100dp"
-                android:layout_height="25dp"
-                android:id="@+id/mainFBshare"
-                android:src="@drawable/fbshare"
-                android:contentDescription="@string/fbshare"
                 android:scaleType="centerCrop"
-                android:clickable="true"
+                android:id="@+id/mainFollow"
+                android:src="@android:drawable/ic_input_add"
                 android:paddingLeft="10dp"
-                android:paddingBottom="10dp"
-                android:layout_alignParentLeft="true"
-                android:focusable="false"
-                android:paddingTop="5dp"
-                android:layout_alignBottom="@+id/mainFavorite"/>
-
-        <Button
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/mainFavorite"
-                android:background="@drawable/greyheart"
-                android:contentDescription="heart"
-                android:paddingRight="5dp"
-                android:layout_below="@+id/mainItemAuthor"
-                android:layout_alignParentRight="true"
                 android:paddingBottom="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/mainFBName"
                 android:focusable="false"
-                android:clickable="true"
-                android:text="0"
-                android:textSize="15sp"
-                />
-    </RelativeLayout>
+                android:contentDescription="@string/follow"
+                android:clickable="true"/>
 
-</RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainFollow"
+                android:layout_alignParentLeft="true">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/mainOpenQuote"
+                    android:layout_below="@+id/mainFBName"
+                    android:layout_alignParentLeft="true"
+                    android:contentDescription="@string/openquote"
+                    android:src="@drawable/openquote"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/quote"
+                    android:id="@+id/mainItemText"
+                    android:layout_alignTop="@+id/mainOpenQuote"
+                    android:layout_toRightOf="@+id/mainOpenQuote"
+                    android:textSize="15sp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:maxWidth="225dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/auth"
+                    android:id="@+id/mainItemAuthor"
+                    android:textSize="15sp"
+                    android:layout_below="@+id/mainItemText"
+                    android:layout_alignRight="@+id/mainItemText"
+                    android:textStyle="italic"
+                    android:paddingBottom="15dp"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/mainCloseQuote"
+                    android:src="@drawable/closequote"
+                    android:contentDescription="@string/closequote"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignTop="@+id/mainOpenQuote"
+                    android:layout_toRightOf="@+id/mainItemText"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_parent_rounded_left_corner_gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mainFavorite"
+                    android:contentDescription="favorite"
+                    android:gravity="center"
+                    android:text="@string/favorite"
+                    android:textColor="#FF4F4F4F"
+                    android:paddingRight="10dp"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:id="@+id/heart"
+                    android:src="@drawable/greyheart"
+                    android:layout_alignTop="@id/mainFavorite"
+                    android:layout_toLeftOf="@id/mainFavorite"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_parent_rounded_right_corner_gray">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mainFBshare"
+                    android:contentDescription="@string/fbshare"
+                    android:clickable="true"
+                    android:paddingLeft="5dp"
+                    android:gravity="center"
+                    android:focusable="false"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/shareToFB"
+                    android:textColor="#ff4f4f4f"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:paddingRight="10dp"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/shareIcon"
+                    android:src="@drawable/fbshare"
+                    android:layout_alignTop="@id/mainFBshare"
+                    android:layout_toLeftOf="@id/mainFBshare"
+                    android:layout_marginTop="5dp"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

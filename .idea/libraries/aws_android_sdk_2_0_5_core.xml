@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aws-android-sdk-2.0.5-core">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../aws-android-sdk-2.0.5/lib/release/aws-android-sdk-2.0.5-core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
