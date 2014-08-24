@@ -75,47 +75,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="redesigned main_item_view">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/aws_android_sdk_2_0_5_core.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/aws_android_sdk_2_0_5_sdb.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/bg_parent_rounded_corner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/bg_parent_rounded_left_corner_gray.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/bg_parent_rounded_right_corner_gray.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\apache_codec_commons_codec_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\commons_codec_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\commons_logging_1_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\httpcomponents_client_4_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\jackson_annotations_2_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\jackson_core_2_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\jackson_databind_2_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\jaxp_api.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\lib.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\libs2.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\libs3.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\libs4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\.idea\libraries\sjsxp.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Phil\Android\SpeakEasy\res\drawable-hdpi\closeQuote.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/closequote.png" />
-      <change type="MOVED" beforePath="C:\Users\Phil\Android\SpeakEasy\res\drawable-hdpi\openQuote.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/openquote.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_drawer.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_drawer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpeakEasy.iml" afterPath="$PROJECT_DIR$/SpeakEasy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TokenVendingMachinePolicy.json" afterPath="$PROJECT_DIR$/src/TokenVendingMachinePolicy.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/category_view.xml" afterPath="$PROJECT_DIR$/res/layout/category_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/colors.xml" afterPath="$PROJECT_DIR$/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/drawer_list_item.xml" afterPath="$PROJECT_DIR$/res/layout/drawer_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/home_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/home_item_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/homepage.xml" afterPath="$PROJECT_DIR$/res/layout/homepage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/list_fragment.xml" afterPath="$PROJECT_DIR$/res/layout/list_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_item_view.xml" afterPath="$PROJECT_DIR$/res/layout/main_item_view.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_listfragment.xml" afterPath="$PROJECT_DIR$/res/layout/main_listfragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/mainpage.xml" afterPath="$PROJECT_DIR$/res/layout/mainpage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/rectangle.xml" afterPath="$PROJECT_DIR$/res/drawable/rectangle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -253,8 +214,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -265,7 +226,7 @@
       <file leaf-file-name="mainpage.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/mainpage.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.4074073" vertical-offset="0" max-vertical-offset="612">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="119" max-vertical-offset="612">
               <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
@@ -278,32 +239,58 @@
       <file leaf-file-name="MainPage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3048" max-vertical-offset="3655">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1802" max-vertical-offset="4029">
               <caret line="106" column="35" selection-start-line="106" selection-start-column="35" selection-end-line="106" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainPageListFragment.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainPageListFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2365" max-vertical-offset="4437">
-              <caret line="178" column="2" selection-start-line="178" selection-start-column="2" selection-end-line="178" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.27054796" vertical-offset="3650" max-vertical-offset="4930">
+              <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#12258#12855#0" expanded="true" />
-                <element signature="e#12840#12841#0" expanded="true" />
+                <element signature="e#7509#9265#0" expanded="true" />
+                <element signature="e#7871#9231#0" expanded="true" />
+                <element signature="e#9208#9209#0" expanded="true" />
+                <element signature="e#9250#9251#0" expanded="true" />
+                <element signature="e#9327#13133#0" expanded="true" />
+                <element signature="e#9502#9518#0" expanded="true" />
+                <element signature="e#9775#11479#0" expanded="true" />
+                <element signature="e#9900#10694#0" expanded="true" />
+                <element signature="e#10659#10660#0" expanded="true" />
+                <element signature="e#11159#11421#0" expanded="true" />
+                <element signature="e#11386#11387#0" expanded="true" />
+                <element signature="e#11452#11453#0" expanded="true" />
+                <element signature="e#11554#13069#0" expanded="true" />
+                <element signature="e#11679#12400#0" expanded="true" />
+                <element signature="e#12365#12366#0" expanded="true" />
+                <element signature="e#12749#13011#0" expanded="true" />
+                <element signature="e#12976#12977#0" expanded="true" />
+                <element signature="e#13042#13043#0" expanded="true" />
+                <element signature="e#13118#13119#0" expanded="true" />
+                <element signature="e#13187#13418#0" expanded="true" />
+                <element signature="e#13403#13404#0" expanded="true" />
+                <element signature="e#13471#14134#0" expanded="true" />
+                <element signature="e#13603#14092#0" expanded="true" />
+                <element signature="e#13800#14042#0" expanded="true" />
+                <element signature="e#14011#14012#0" expanded="true" />
+                <element signature="e#14069#14070#0" expanded="true" />
+                <element signature="e#14119#14120#0" expanded="true" />
+                <element signature="e#14187#14784#0" expanded="true" />
+                <element signature="e#14769#14770#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_item_view.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main_item_view.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72357726" vertical-offset="2691" max-vertical-offset="3298">
-              <caret line="174" column="44" selection-start-line="174" selection-start-column="44" selection-end-line="174" selection-end-column="44" />
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1688" max-vertical-offset="3587">
+              <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
               <folding>
                 <element signature="e#450#475#0" expanded="true" />
                 <element signature="e#511#536#0" expanded="true" />
@@ -316,20 +303,22 @@
                 <element signature="e#3259#3274#0" expanded="true" />
                 <element signature="e#3893#3907#0" expanded="true" />
                 <element signature="e#4510#4530#0" expanded="true" />
-                <element signature="e#7181#7198#0" expanded="true" />
+                <element signature="e#6337#6355#0" expanded="true" />
+                <element signature="e#7974#7991#0" expanded="true" />
+                <element signature="e#8300#8319#0" expanded="true" />
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
+          <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bg_parent_rounded_corner.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_corner.xml">
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-              <caret line="11" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="782">
+              <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -348,7 +337,7 @@
       <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8888888" vertical-offset="34" max-vertical-offset="527">
+            <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="527">
               <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
               <folding />
             </state>
@@ -372,7 +361,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/category_activity.xml" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/AdviceFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/FunnyFeedFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryActivities/LoveFeedFragment.java" />
@@ -416,13 +404,14 @@
         <option value="$PROJECT_DIR$/../aws-android-sdk-1.7.1.1/src/com/amazonaws/http/HttpClientFactory.java" />
         <option value="$PROJECT_DIR$/../aws-android-sdk-1.7.1.1/src/com/amazonaws/http/AmazonHttpClient.java" />
         <option value="$PROJECT_DIR$/../aws-android-sdk-test/amazonaws/http/AmazonHttpClient.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
         <option value="$PROJECT_DIR$/res/layout/homepage.xml" />
         <option value="$PROJECT_DIR$/res/drawable/bg_parent_rounder_corner_gray.xml" />
         <option value="$PROJECT_DIR$/res/drawable/bg_parent_rounded_corner_gray.xml" />
         <option value="$PROJECT_DIR$/res/drawable/bg_parent_rounded_right_corner_gray.xml" />
         <option value="$PROJECT_DIR$/res/layout/mainpage.xml" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/main_item_view.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
       </list>
     </option>
   </component>
@@ -820,6 +809,14 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
     <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
       <module name="" />
       <setting name="path" value="" />
@@ -831,27 +828,6 @@
       <setting name="testName" value="" />
       <setting name="testKind" value="Class" />
       <setting name="showProgressMessages" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -879,6 +855,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -928,19 +917,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -959,6 +935,19 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="untitled" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1164,7 +1153,6 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3945055" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1173,7 +1161,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32824427" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4503937" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.296063" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.59370077" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3284553" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1184,6 +1172,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32755905" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1250,8 +1239,26 @@
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java</url>
+          <line>185</line>
+          <properties />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java</url>
+          <line>192</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java</url>
+          <line>193</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="15" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1263,10 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
           <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#467#468#0" expanded="false" />
-            <element signature="e#507#508#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1274,11 +1277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1745" max-vertical-offset="2329">
           <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3223#3415#0" expanded="false" />
-            <element signature="e#3396#3397#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1311,7 +1309,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="364" max-vertical-offset="935">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1414,7 +1411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="606" max-vertical-offset="1156">
           <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1422,7 +1418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
           <caret line="26" column="60" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1452,7 +1447,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
           <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1486,7 +1480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="425">
           <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1502,7 +1495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="1394">
           <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1510,7 +1502,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08401977" vertical-offset="0" max-vertical-offset="629">
           <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1533,14 +1524,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_corner.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="11" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/btn_cab_done_speakeasy.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
@@ -1549,31 +1532,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_left_corner_gray.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="17" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="8" />
-          <folding>
-            <element signature="e#304#335#0" expanded="true" />
-            <element signature="e#478#510#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_right_corner_gray.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="408">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#304#335#0" expanded="false" />
-            <element signature="e#479#511#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8888888" vertical-offset="34" max-vertical-offset="527">
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="527">
           <caret line="5" column="50" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
           <folding />
         </state>
@@ -1584,7 +1545,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/mainpage.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4074073" vertical-offset="0" max-vertical-offset="612">
+        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="612">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
@@ -1634,18 +1595,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2365" max-vertical-offset="4437">
-          <caret line="178" column="2" selection-start-line="178" selection-start-column="2" selection-end-line="178" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#12258#12855#0" expanded="true" />
-            <element signature="e#12840#12841#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1100" max-vertical-offset="3655">
@@ -1664,10 +1613,42 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
+    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_right_corner_gray.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72357726" vertical-offset="2691" max-vertical-offset="3298">
-          <caret line="174" column="44" selection-start-line="174" selection-start-column="44" selection-end-line="174" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.34931508" vertical-offset="0" max-vertical-offset="584">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_left_corner_gray.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.494863" vertical-offset="0" max-vertical-offset="584">
+          <caret line="17" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/bg_parent_rounded_corner.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14554794" vertical-offset="0" max-vertical-offset="584">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="782">
+          <caret line="36" column="31" selection-start-line="36" selection-start-column="31" selection-end-line="36" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1688" max-vertical-offset="3587">
+          <caret line="109" column="35" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
           <folding>
             <element signature="e#450#475#0" expanded="true" />
             <element signature="e#511#536#0" expanded="true" />
@@ -1680,12 +1661,52 @@
             <element signature="e#3259#3274#0" expanded="true" />
             <element signature="e#3893#3907#0" expanded="true" />
             <element signature="e#4510#4530#0" expanded="true" />
-            <element signature="e#7181#7198#0" expanded="true" />
+            <element signature="e#6337#6355#0" expanded="true" />
+            <element signature="e#7974#7991#0" expanded="true" />
+            <element signature="e#8300#8319#0" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
+      <provider selected="true" editor-type-id="android-designer">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27054796" vertical-offset="3650" max-vertical-offset="4930">
+          <caret line="258" column="62" selection-start-line="258" selection-start-column="62" selection-end-line="258" selection-end-column="62" />
+          <folding>
+            <element signature="e#7509#9265#0" expanded="true" />
+            <element signature="e#7871#9231#0" expanded="true" />
+            <element signature="e#9208#9209#0" expanded="true" />
+            <element signature="e#9250#9251#0" expanded="true" />
+            <element signature="e#9327#13133#0" expanded="true" />
+            <element signature="e#9502#9518#0" expanded="true" />
+            <element signature="e#9775#11479#0" expanded="true" />
+            <element signature="e#9900#10694#0" expanded="true" />
+            <element signature="e#10659#10660#0" expanded="true" />
+            <element signature="e#11159#11421#0" expanded="true" />
+            <element signature="e#11386#11387#0" expanded="true" />
+            <element signature="e#11452#11453#0" expanded="true" />
+            <element signature="e#11554#13069#0" expanded="true" />
+            <element signature="e#11679#12400#0" expanded="true" />
+            <element signature="e#12365#12366#0" expanded="true" />
+            <element signature="e#12749#13011#0" expanded="true" />
+            <element signature="e#12976#12977#0" expanded="true" />
+            <element signature="e#13042#13043#0" expanded="true" />
+            <element signature="e#13118#13119#0" expanded="true" />
+            <element signature="e#13187#13418#0" expanded="true" />
+            <element signature="e#13403#13404#0" expanded="true" />
+            <element signature="e#13471#14134#0" expanded="true" />
+            <element signature="e#13603#14092#0" expanded="true" />
+            <element signature="e#13800#14042#0" expanded="true" />
+            <element signature="e#14011#14012#0" expanded="true" />
+            <element signature="e#14069#14070#0" expanded="true" />
+            <element signature="e#14119#14120#0" expanded="true" />
+            <element signature="e#14187#14784#0" expanded="true" />
+            <element signature="e#14769#14770#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

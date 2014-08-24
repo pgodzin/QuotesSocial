@@ -60,8 +60,8 @@
                 android:layout_alignParentLeft="true">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:id="@+id/mainOpenQuote"
                     android:layout_below="@+id/mainFBName"
                     android:layout_alignParentLeft="true"
@@ -79,7 +79,7 @@
                     android:textSize="15sp"
                     android:paddingLeft="15dp"
                     android:paddingTop="10dp"
-                    android:maxWidth="225dp"/>
+                    android:maxWidth="245dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -94,14 +94,30 @@
                     android:paddingBottom="15dp"/>
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:id="@+id/mainCloseQuote"
                     android:src="@drawable/closequote"
                     android:contentDescription="@string/closequote"
                     android:layout_marginLeft="10dp"
                     android:layout_alignTop="@+id/mainOpenQuote"
                     android:layout_toRightOf="@+id/mainItemText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numFavorites"
+                    android:text=" "
+                    android:textColor="#ff5c5d54"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:layout_alignTop="@+id/mainItemAuthor"
+                    android:layout_alignParentStart="true"
+                    android:paddingTop="15dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"/>
 
             </RelativeLayout>
         </RelativeLayout>
@@ -130,7 +146,7 @@
                     android:paddingRight="10dp"
                     android:focusable="false"
                     android:clickable="true"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:paddingLeft="5dp"
                     android:paddingBottom="5dp"
@@ -145,8 +161,9 @@
                     android:src="@drawable/greyheart"
                     android:layout_alignTop="@id/mainFavorite"
                     android:layout_toLeftOf="@id/mainFavorite"
-                    android:layout_marginTop="5dp"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_marginTop="7dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="heart"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -169,7 +186,7 @@
                     android:paddingTop="5dp"
                     android:text="@string/shareToFB"
                     android:textColor="#ff4f4f4f"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:paddingRight="10dp"/>

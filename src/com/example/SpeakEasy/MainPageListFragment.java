@@ -99,6 +99,8 @@ public class MainPageListFragment extends SherlockListFragment {
         TextView fbShare;
         ImageView follow;
         TextView mainFav;
+        TextView numFavs;
+        ImageView heart;
         String postID;
         String timestamp;
     }
@@ -149,6 +151,8 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder.fbShare = (TextView) convertView.findViewById(R.id.mainFBshare);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
                 viewHolder.mainFav = (TextView) convertView.findViewById(R.id.mainFavorite);
+                viewHolder.numFavs = (TextView) convertView.findViewById(R.id.numFavorites);
+                viewHolder.heart = (ImageView) convertView.findViewById(R.id.heart);
                 convertView.setTag(viewHolder);
             } else {
                 // we've just avoided calling findViewById() on resource every time
@@ -165,7 +169,6 @@ public class MainPageListFragment extends SherlockListFragment {
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
-
             final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
             final String yourName = prefs.getString("name", "");
             final String nameSpaceless = yourName.replace(" ", "");
@@ -176,7 +179,7 @@ public class MainPageListFragment extends SherlockListFragment {
 
             final Resources res = convertView.getResources();
             final String posterName = viewHolder.fbName.getText().toString();
-/*            final int[] numFavs = new int[1];
+            final int[] numFavs = new int[1];
             final boolean[] isFav = new boolean[1];
             new Thread(new Runnable() {
                 public void run() {
@@ -187,18 +190,19 @@ public class MainPageListFragment extends SherlockListFragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            viewHolder.mainFav.setText("" + numFavs[0]);
-                            //don't show number of favorites if 0
-                            if (Integer.parseInt(viewHolder.mainFav.getText().toString()) == 0) {
-                                viewHolder.mainFav.setTextColor(getResources().getColor(R.color.grayheartText));
-                            } else {
-                                viewHolder.mainFav.setTextColor(getResources().getColor(android.R.color.black));
+                            if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
+                                viewHolder.numFavs.setVisibility(View.INVISIBLE);
+                            } else if (numFavs[0] == 1) {
+                                viewHolder.numFavs.setText("1 Favorite");
+                                viewHolder.numFavs.setVisibility(View.VISIBLE);
+                            } else if (viewHolder.numFavs.getVisibility() == View.VISIBLE) {
+                                viewHolder.numFavs.setText(numFavs[0] + " Favorites");
                             }
 
                             if (isFav[0]) {
-                                viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.redheart));
-                            } else {
-                                viewHolder.mainFav.setBackground(res.getDrawable(R.drawable.greyheart));
+                                viewHolder.heart.setImageResource(R.drawable.redheart);
+                            } else if (!isFav[0]) {
+                                viewHolder.heart.setImageResource(R.drawable.greyheart);
                             }
 
                             if (isFollowed || posterName.equals(yourName)) {
@@ -220,10 +224,23 @@ public class MainPageListFragment extends SherlockListFragment {
                     } else if (isFav[0]) {
                         new Thread(new Runnable() {
                             public void run() {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        viewHolder.heart.setImageResource(R.drawable.greyheart);
+                                        if (numFavs[0] == 1) {
+                                            viewHolder.numFavs.setVisibility(View.INVISIBLE);
+                                        } else if (numFavs[0] == 2) {
+                                            viewHolder.numFavs.setText("1 Favorite");
+                                        } else {
+                                            viewHolder.numFavs.setText(numFavs[0] - 1 + " Favorites");
+                                        }
+                                    }
+                                });
                                 SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
                                 newFavAttr.put("favorites", "" + (numFavs[0] - 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
+                                //adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -235,6 +252,18 @@ public class MainPageListFragment extends SherlockListFragment {
                     } else {
                         new Thread(new Runnable() {
                             public void run() {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        viewHolder.heart.setImageResource(R.drawable.redheart);
+                                        if (numFavs[0] == 0) {
+                                            viewHolder.numFavs.setVisibility(View.VISIBLE);
+                                            viewHolder.numFavs.setText("1 Favorite");
+                                        } else {
+                                            viewHolder.numFavs.setText(numFavs[0] + 1 + " Favorites");
+                                        }
+                                    }
+                                });
                                 SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
                                 newFavAttr.put("favorites", "" + (numFavs[0] + 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
@@ -273,7 +302,7 @@ public class MainPageListFragment extends SherlockListFragment {
                     }).start();
                 }
             });
-*/
+
             viewHolder.fbName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

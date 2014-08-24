@@ -34,6 +34,7 @@
     <string name="drawer_close">Close</string>
     <string name="shareToFB">Share to Facebook</string>
     <string name="favorite">Favorite</string>
+    <string name="defaultfavs">Favorites</string>
 
 
 </resources>
