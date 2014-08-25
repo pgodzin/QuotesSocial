@@ -1,11 +1,16 @@
 package com.example.SpeakEasy;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
@@ -99,22 +104,20 @@ public class HomePageListFragment extends SherlockListFragment {
     protected static class ViewHolder {
         TextView quoteText;
         TextView quoteAuthor;
-        ImageView fbShare;
-        Button homeFav;
+        TextView fbShare;
+        TextView fav;
+        TextView homeNumFavs;
+        ImageView heart;
         String postID;
         String timestamp;
     }
 
-    /**
-     * Custom Array Adapter - different from MainPage one as it does not
-     * show name of the poster as they are all your posts.
-     */
-    public class MySimpleArrayAdapter extends ArrayAdapter<String> {
+    protected class MySimpleArrayAdapter extends ArrayAdapter<String> {
         private final Context context;
         private List<String> quoteItemNames;
 
         public MySimpleArrayAdapter(Context context, List<String> values) {
-            super(context, R.layout.home_item_view, values);
+            super(context, R.layout.main_item_view, values);
             this.context = context;
             this.quoteItemNames = values;
         }
@@ -137,6 +140,11 @@ public class HomePageListFragment extends SherlockListFragment {
         }
 
         @Override
+        public void remove(String object) {
+            super.remove(object);
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder viewHolder;
             if (convertView == null) {
@@ -147,8 +155,10 @@ public class HomePageListFragment extends SherlockListFragment {
 
                 // set up the ViewHolder
                 viewHolder = new ViewHolder();
-                viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.fbshare);
-                viewHolder.homeFav = (Button) convertView.findViewById(R.id.homeFavorite);
+                viewHolder.fbShare = (TextView) convertView.findViewById(R.id.FBshare);
+                viewHolder.fav = (TextView) convertView.findViewById(R.id.favorite);
+                viewHolder.homeNumFavs = (TextView) convertView.findViewById(R.id.homeNumFavorites);
+                viewHolder.heart = (ImageView) convertView.findViewById(R.id.homeHeart);
                 convertView.setTag(viewHolder);
             } else {
                 // we've just avoided calling findViewById() on resource every time
@@ -157,37 +167,50 @@ public class HomePageListFragment extends SherlockListFragment {
             }
 
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-
-            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
+            viewHolder.timestamp = attrMap.get("timestamp");
             viewHolder.quoteText = (TextView) convertView.findViewById(R.id.itemText);
+            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.itemAuthor);
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
-            viewHolder.timestamp = attrMap.get("timestamp");
-            viewHolder.postID = attrMap.get("fbName").replace(" ", "") + viewHolder.timestamp;
+            final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
+            final String yourName = prefs.getString("name", "");
+            final String nameSpaceless = yourName.replace(" ", "");
+            viewHolder.postID = nameSpaceless + viewHolder.timestamp;
 
+            final Resources res = convertView.getResources();
+            final int[] numFavs = new int[1];
+            final boolean[] isFav = new boolean[1];
             new Thread(new Runnable() {
                 public void run() {
-                    final int numFavs = SimpleDB.favCount(viewHolder.postID);
+                    numFavs[0] = SimpleDB.favCount(viewHolder.postID);
+                    isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
+
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            viewHolder.homeFav.setText("" + numFavs);
-                            //don't show number of favorites if 0
-                            if (Integer.parseInt(viewHolder.homeFav.getText().toString()) == 0) {
-                                viewHolder.homeFav.setTextColor(getResources().getColor(R.color.grayheartText));
-                            } else {
-                                viewHolder.homeFav.setTextColor(getResources().getColor(android.R.color.black));
+                            if (numFavs[0] == 0 && viewHolder.homeNumFavs.getVisibility() == View.VISIBLE) {
+                                viewHolder.homeNumFavs.setVisibility(View.INVISIBLE);
+                            } else if (numFavs[0] == 1) {
+                                viewHolder.homeNumFavs.setText("1 Favorite");
+                                viewHolder.homeNumFavs.setVisibility(View.VISIBLE);
+                            } else if (viewHolder.homeNumFavs.getVisibility() == View.VISIBLE) {
+                                viewHolder.homeNumFavs.setText(numFavs[0] + " Favorites");
+                            }
+
+                            if (isFav[0]) {
+                                viewHolder.heart.setImageResource(R.drawable.redheart);
+                            } else if (!isFav[0]) {
+                                viewHolder.heart.setImageResource(R.drawable.greyheart);
                             }
                         }
                     });
-
                 }
             }).start();
 
-            viewHolder.homeFav.setOnClickListener(new View.OnClickListener() {
+            viewHolder.fav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(), "Stop trying to like your own post", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -197,6 +220,7 @@ public class HomePageListFragment extends SherlockListFragment {
                     shareToFB(viewHolder.quoteText.getText().toString());
                 }
             });
+
             return convertView;
         }
     }

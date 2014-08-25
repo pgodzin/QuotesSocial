@@ -6,13 +6,16 @@
     android:background="@android:color/background_light">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:scaleType="center"
         android:id="@+id/speakeasylogo"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo"
         android:contentDescription="@string/logo"
-        android:paddingTop="10dp" />
+        android:paddingTop="75dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"/>
 
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"

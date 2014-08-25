@@ -27,7 +27,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/name"
                 android:id="@+id/mainFBName"
                 android:layout_alignParentTop="true"
@@ -71,7 +70,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/quote"
                     android:id="@+id/mainItemText"
                     android:layout_alignTop="@+id/mainOpenQuote"
@@ -84,7 +82,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/auth"
                     android:id="@+id/mainItemAuthor"
                     android:textSize="15sp"

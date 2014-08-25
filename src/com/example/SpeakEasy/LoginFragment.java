@@ -45,7 +45,7 @@ public class LoginFragment extends Fragment {
 
             final SharedPreferences prefs = getActivity().getSharedPreferences(
                     "fbInfo", Context.MODE_PRIVATE);
-            if (session != null && session.getState().isOpened()){
+            if (session != null && session.getState().isOpened()) {
                 Log.i("sessionToken", session.getAccessToken());
                 Log.i("sessionTokenDueDate", session.getExpirationDate().toLocaleString());
             }
@@ -62,8 +62,7 @@ public class LoginFragment extends Fragment {
                                 prefs.edit().putString("name", graphResponse.getString("name")).commit();
                                 Toast.makeText(getActivity(), "Welcome " + graphResponse.getString("name"), Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
-                                Log.i(TAG,
-                                        "JSON error " + e.getMessage());
+                                Log.i(TAG, "JSON error " + e.getMessage());
                             }
                         }
                     }
