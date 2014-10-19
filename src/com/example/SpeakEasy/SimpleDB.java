@@ -184,7 +184,6 @@ public class SimpleDB {
      *
      * @param posterName name of user who posted the quote and is now being followed
      * @param userName   name of the user who pressed the follow icon
-     * @return
      */
     public static boolean isFollowedByUser(String posterName, String userName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedName = '" +
@@ -209,7 +208,7 @@ public class SimpleDB {
     /**
      * Add a quote to the Quotes Table
      *
-     * @param quote
+     * @param quote quote to be added to the table
      */
     public static void addQuote(QuotePost quote) {
         ReplaceableAttribute quoteAttribute = new ReplaceableAttribute("quoteText", quote.getQuoteText(), Boolean.FALSE);
@@ -261,7 +260,7 @@ public class SimpleDB {
     }
 
     /**
-     * @param myName
+     * @param myName User name to return all quotes by them
      * @return itemNames of all the Quotes created by the user to be shown in the HomePage
      */
     public static List<String> getMyQuotesItemNames(String myName) {
@@ -279,8 +278,7 @@ public class SimpleDB {
     /**
      * Retrieve the number of favorites a specific post has
      *
-     * @param postId
-     * @return
+     * @param postId the post identifier to look up its number of favorites
      */
     public static int favCount(String postId) {
         SelectRequest selectRequest =
@@ -293,9 +291,8 @@ public class SimpleDB {
     /**
      * Check whether the user has favorited a specific post
      *
-     * @param postId
-     * @param name
-     * @return
+     * @param postId post identifier
+     * @param name user seeing the feed
      */
     public static boolean isFavoritedByUser(String postId, String name) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId +
@@ -307,8 +304,7 @@ public class SimpleDB {
     /**
      * Retrieve itemNames for all quotes that were not posted by the user
      *
-     * @param myName
-     * @return
+     * @param myName name of the viewer so that their posts do not appear in their main feed
      */
     public static List<String> getFeedItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
@@ -325,8 +321,7 @@ public class SimpleDB {
     /**
      * Retrieve quotes posted by posters the user is following
      *
-     * @param myName
-     * @return
+     * @param myName name of the user
      */
     public static List<String> getFollowingFeedItemNames(String myName) {
         //Work-around for no nested queries in SimpleDB
@@ -354,8 +349,7 @@ public class SimpleDB {
     /**
      * Retrieve itemNames for all quotes that were not posted by the user in order of favorites
      *
-     * @param myName
-     * @return
+     * @param myName name of the viewer so that their posts do not appear in their popular feed
      */
     public static List<String> getPopularFeedItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
@@ -372,8 +366,7 @@ public class SimpleDB {
     /**
      * Get quotes by a specific user
      *
-     * @param name
-     * @return
+     * @param name name of the user whose quotes you are looking up
      */
     public static List<String> getUserItemNamesByCategory(String name) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name +
@@ -391,12 +384,34 @@ public class SimpleDB {
     /**
      * Get quotes by a specific category
      *
-     * @param category
-     * @return
+     * @param category name of the quote category
      */
     public static List<String> getFeedItemNamesByCategory(String category) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where category = '" +
                 category + "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(((Item) items.get(i)).getName());
+        }
+        return itemNames;
+    }
+
+    /**
+     * Get quotes in which query term appears in the quote, author, or poster name
+     *
+     * @param query the term to search by
+     */
+    public static List<String> getItemNamesBySearchQuery(String query, String category) {
+        String categoryString = "category = '" + category + "' and";
+        if (category.equals("main")) {
+            categoryString = "";
+        }
+
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where " + categoryString +
+                "(author like '%" + query + "%' or fbName like '%" + query + "%' or quoteText like '%" +
+                query + "%') and " + "timestamp is not null order by timestamp desc limit 25").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();

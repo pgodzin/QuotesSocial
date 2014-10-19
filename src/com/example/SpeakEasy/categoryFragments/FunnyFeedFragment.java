@@ -17,7 +17,7 @@ public class FunnyFeedFragment extends MainPageListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle("Funny Quotes");
+        getActivity().setTitle(getFragmentTitle());
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNamesByCategory("funny");
@@ -32,5 +32,10 @@ public class FunnyFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
+    }
+
+    @Override
+    public String getFragmentTitle() {
+        return "Funny Quotes";
     }
 }

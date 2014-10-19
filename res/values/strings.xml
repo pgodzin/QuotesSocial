@@ -35,6 +35,8 @@
     <string name="shareToFB">Share to Facebook</string>
     <string name="favorite">Favorite</string>
     <string name="defaultfavs">Favorites</string>
+    <string name="app_label">Speakeasy</string>
+    <string name="search_hint">Search person or quote</string>
 
 
 </resources>

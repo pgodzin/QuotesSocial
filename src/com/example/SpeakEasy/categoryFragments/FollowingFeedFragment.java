@@ -19,7 +19,7 @@ public class FollowingFeedFragment extends MainPageListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle("Followed Quotes");
+        getActivity().setTitle(getFragmentTitle());
         final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
         final String name = prefs.getString("name", "");
         new Thread(new Runnable() {
@@ -36,5 +36,10 @@ public class FollowingFeedFragment extends MainPageListFragment {
             }
         }).start();
         return inflater.inflate(R.layout.main_listfragment, container, false);
+    }
+
+    @Override
+    public String getFragmentTitle() {
+        return "Followed Quotes";
     }
 }

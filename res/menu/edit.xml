@@ -8,12 +8,4 @@
             android:icon="@android:drawable/ic_menu_edit">
 
     </item>
-    <item
-            android:id="@+id/search2"
-            android:title="@string/search"
-            android:showAsAction="ifRoom"
-            android:icon="@android:drawable/ic_menu_search">
-
-    </item>
-
 </menu>

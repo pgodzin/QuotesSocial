@@ -45,7 +45,7 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                             }
                         }
                 )
-                // Set the action buttons
+                        // Set the action buttons
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
@@ -63,15 +63,11 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         //save the quote to the database in another thread
                         new Thread(new Runnable() {
                             public void run() {
+                                // TODO: show automatically? Issue with data being available right away
                                 SimpleDB.addQuote(q);
                             }
                         }).start();
 
-                        //add itemName to main activity's ListAdapter
-                        String postID = name + "" + timestamp;
-                        //HomePageListFragment.addQuoteToAdapter(postID);
-                        // TODO: How can this quote be available right after?
-                        Toast.makeText(getActivity(), "Your quote has been added!", Toast.LENGTH_SHORT).show();
                         quote.setText("");
                         author.setText("");
 
@@ -79,6 +75,8 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
                         b.setVisibility(View.GONE);
                         quote.setVisibility(View.GONE);
                         author.setVisibility(View.GONE);
+                        Toast.makeText(getActivity(), "Your quote has been added!", Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

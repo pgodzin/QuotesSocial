@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -47,7 +46,7 @@ public class HomePage extends SherlockFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
-        inflater.inflate(R.menu.search_with_edit, menu);
+        inflater.inflate(R.menu.edit, menu);
         return true;
     }
 
@@ -58,10 +57,6 @@ public class HomePage extends SherlockFragmentActivity {
             //Home Icon press returns to MainPage
             case android.R.id.home:
                 startActivity(new Intent(HomePage.this, MainPage.class));
-                return true;
-            case R.id.search:
-                // TODO: fix search
-                Toast.makeText(HomePage.this, "Searched", Toast.LENGTH_SHORT).show();
                 return true;
             //Submit a new quote
             case R.id.edit:
@@ -83,6 +78,7 @@ public class HomePage extends SherlockFragmentActivity {
                         selectCategories();
                     }
                 });
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

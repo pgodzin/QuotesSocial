@@ -34,7 +34,7 @@ public class MainPageListFragment extends SherlockListFragment {
         final String name = this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle("Main Feed");
+        getActivity().setTitle(getFragmentTitle());
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNames(name);
@@ -51,9 +51,14 @@ public class MainPageListFragment extends SherlockListFragment {
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
 
+    public String getFragmentTitle() {
+        return "Main Feed";
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().setTitle(getFragmentTitle());
         uiHelper.onResume();
     }
 

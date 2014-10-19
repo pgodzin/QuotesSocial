@@ -1,10 +1,12 @@
 package com.example.SpeakEasy;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +20,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.example.SpeakEasy.categoryFragments.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
@@ -39,7 +42,6 @@ public class MainPage extends SherlockFragmentActivity {
         uiHelper.onCreate(savedInstanceState);
         setTitle("Main Feed");
         setContentView(R.layout.mainpage);
-        getSupportFragmentManager().beginTransaction().add(R.id.content_frame, new MainPageListFragment()).commit();
 
         categoryTitles = getResources().getStringArray(R.array.navigationDrawerCategories);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -47,14 +49,18 @@ public class MainPage extends SherlockFragmentActivity {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
 
-            /** Called when a drawer has settled in a completely closed state. */
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 getSupportActionBar().setTitle(getTitle());
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
-            /** Called when a drawer has settled in a completely open state. */
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getSupportActionBar().setTitle(getTitle());
@@ -72,9 +78,35 @@ public class MainPage extends SherlockFragmentActivity {
         // Set the list's click listener
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
+            suggestions.saveRecentQuery(query, null);
+
+            switchToSearchFragment(query);
+        } else {
+            getSupportFragmentManager().beginTransaction().add(R.id.content_frame, new MainPageListFragment()).commit();
+        }
+
         // TODO: fix
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+    }
+
+    /**
+     * Places the searchFragment into the MainPage activity, which looks up by the query based on which fragment the
+     * search came from. If from the main feed, all quotes get searched.
+     *
+     * @param query query term to search author, poster, and quoteText by
+     */
+    private void switchToSearchFragment(String query) {
+        Intent intent = new Intent(MainPage.this, SearchActivity.class);
+        intent.putExtra("fragmentName", getTitle().toString().toLowerCase().split(" ")[0]);
+        intent.putExtra("query", query);
+        startActivity(intent);
     }
 
     // TODO: Maybe pop up full screen quote with comment feed
@@ -97,6 +129,13 @@ public class MainPage extends SherlockFragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.search_item, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
 
@@ -195,8 +234,9 @@ public class MainPage extends SherlockFragmentActivity {
      */
     private void selectItem(int position) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment fragment;
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right,
+                        android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         // Create a new fragment and specify the feed to show based on position
         switch (position) {
             case 0:
