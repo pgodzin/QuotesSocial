@@ -6,4 +6,8 @@
     <color name="feed_item_bg">#ffffff</color>
     <color name="feed_item_border">#c2c3c8</color>
     <color name="timestamp">#a0a3a7</color>
+    <color name="status_bar">#0d47a1</color>
+    <color name="action_bar">#2196f3</color>
+    <color name="actionbar_text_color">#ffffff</color>
+
 </resources>

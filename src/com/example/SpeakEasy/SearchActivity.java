@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 
-public class SearchActivity extends SherlockFragmentActivity {
+public class SearchActivity extends ActionBarActivity {
 
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;

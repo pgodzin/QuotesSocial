@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * ListFragment that displays user's own posts
  */
-public class HomePageListFragment extends SherlockListFragment {
+public class HomePageListFragment extends ListFragment {
     protected List<String> itemNames;
     protected static MySimpleArrayAdapter adapter;
     private UiLifecycleHelper uiHelper;

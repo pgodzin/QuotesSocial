@@ -1,12 +1,12 @@
 package com.example.SpeakEasy;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 /**
  * Main Activity opened on Launch if not signed in
  */
-public class Login extends FragmentActivity {
+public class Login extends ActionBarActivity {
     private LoginFragment mainFragment;
 
     @Override
