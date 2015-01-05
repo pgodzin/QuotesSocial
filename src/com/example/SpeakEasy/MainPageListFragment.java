@@ -3,8 +3,8 @@ package com.example.SpeakEasy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +21,7 @@ import com.facebook.model.OpenGraphAction;
 import com.facebook.model.OpenGraphObject;
 import com.facebook.widget.FacebookDialog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -97,6 +98,12 @@ public class MainPageListFragment extends SherlockListFragment {
         }
     }
 
+    // DialogFragment to select 0 or more categories
+    public void selectCategories() {
+        DialogFragment newFragment = new CategoryChooserFragment();
+        newFragment.show(getFragmentManager(), "categories");
+    }
+
     protected static class ViewHolder {
         TextView fbName;
         TextView quoteText;
@@ -127,13 +134,11 @@ public class MainPageListFragment extends SherlockListFragment {
 
         @Override
         public void add(String object) {
-            final Object mLock = new Object();
-            synchronized (mLock) {
-                if (quoteItemNames == null) {
-                    quoteItemNames.add(object);
-                } else {
-                    quoteItemNames.add(0, object);
-                }
+            if (quoteItemNames == null) {
+                quoteItemNames = new ArrayList<String>();
+                quoteItemNames.add(object);
+            } else {
+                quoteItemNames.add(0, object);
             }
         }
 
@@ -182,7 +187,6 @@ public class MainPageListFragment extends SherlockListFragment {
                 viewHolder.follow.setVisibility(View.GONE);
             }
 
-            final Resources res = convertView.getResources();
             final String posterName = viewHolder.fbName.getText().toString();
             final int[] numFavs = new int[1];
             final boolean[] isFav = new boolean[1];

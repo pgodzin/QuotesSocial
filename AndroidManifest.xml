@@ -30,7 +30,6 @@
                 android:resource="@xml/searchable"/>
         </activity>
 
-        <activity android:name=".HomePage"/>
         <activity android:name=".SearchActivity"/>
         <provider android:name=".MySuggestionProvider"
                   android:authorities="com.example.SpeakEasy.MySuggestionProvider" />

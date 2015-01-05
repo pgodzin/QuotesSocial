@@ -121,7 +121,6 @@ public class MainPage extends SherlockFragmentActivity {
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
         menu.findItem(R.id.search).setVisible(!drawerOpen);
-        menu.findItem(R.id.home).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -153,10 +152,6 @@ public class MainPage extends SherlockFragmentActivity {
             case R.id.search:
                 // TODO: Make users, authors, and words searchable
                 Toast.makeText(MainPage.this, "Searched", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.home:
-                Intent i = new Intent(MainPage.this, HomePage.class);
-                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -243,24 +238,27 @@ public class MainPage extends SherlockFragmentActivity {
                 replaceFragment(new MainPageListFragment(), fragmentTransaction);
                 break;
             case 1:
-                replaceFragment(new PopularFeedFragment(), fragmentTransaction);
+                replaceFragment(new MyQuotesFeedFragment(), fragmentTransaction);
                 break;
             case 2:
-                replaceFragment(new FollowingFeedFragment(), fragmentTransaction);
+                replaceFragment(new PopularFeedFragment(), fragmentTransaction);
                 break;
             case 3:
-                replaceFragment(new AdviceFeedFragment(), fragmentTransaction);
+                replaceFragment(new FollowingFeedFragment(), fragmentTransaction);
                 break;
             case 4:
-                replaceFragment(new FunnyFeedFragment(), fragmentTransaction);
+                replaceFragment(new AdviceFeedFragment(), fragmentTransaction);
                 break;
             case 5:
-                replaceFragment(new InspirationalFeedFragment(), fragmentTransaction);
+                replaceFragment(new FunnyFeedFragment(), fragmentTransaction);
                 break;
             case 6:
-                replaceFragment(new LoveFeedFragment(), fragmentTransaction);
+                replaceFragment(new InspirationalFeedFragment(), fragmentTransaction);
                 break;
             case 7:
+                replaceFragment(new LoveFeedFragment(), fragmentTransaction);
+                break;
+            case 8:
                 replaceFragment(new MovieFeedFragment(), fragmentTransaction);
                 break;
         }

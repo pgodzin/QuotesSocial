@@ -16,7 +16,7 @@ import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 import java.util.ArrayList;
 
 /**
- * This fragment is opened when a quote is submitted in the HomePage.
+ * This fragment is opened when a quote is submitted.
  * The user can choose 0 or more categories for the quote to go into,
  * and upon selection, the class saves the quote into the SimpleDB
  */
@@ -24,7 +24,7 @@ public class CategoryChooserFragment extends SherlockDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final ArrayList mSelectedItems = new ArrayList<Integer>();  // Where we track the selected items
+        final ArrayList<Integer> mSelectedItems = new ArrayList<Integer>();  // Where we track the selected items
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         // Set the dialog title
         builder.setTitle(R.string.pick_category)

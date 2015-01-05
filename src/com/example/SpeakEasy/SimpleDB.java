@@ -16,9 +16,7 @@ public class SimpleDB {
     public static final String QUOTES = "Quotes";
 
     public static AmazonSimpleDBClient getInstance() {
-        if (MainPage.clientManager != null)
-            return MainPage.clientManager.sdb();
-        else return HomePage.clientManager.sdb();
+        return MainPage.clientManager.sdb();
     }
 
     public static List<String> getDomainNames() {
@@ -80,7 +78,7 @@ public class SimpleDB {
 
         String[] itemNames = new String[items.size()];
         for (int i = 0; i < items.size(); i++) {
-            itemNames[i] = ((Item) items.get(i)).getName();
+            itemNames[i] = items.get(i).getName();
         }
         return itemNames;
     }
@@ -90,7 +88,7 @@ public class SimpleDB {
      *
      * @param domainName table name
      * @param itemName   itemName for the item
-     * @return
+     * @return map of attribute name to value
      */
     public static HashMap<String, String> getAttributesForItem(String domainName, String itemName) {
         GetAttributesRequest getRequest = new GetAttributesRequest(domainName, itemName).withConsistentRead(true);
@@ -261,7 +259,7 @@ public class SimpleDB {
 
     /**
      * @param myName User name to return all quotes by them
-     * @return itemNames of all the Quotes created by the user to be shown in the HomePage
+     * @return itemNames of all the Quotes created by the user
      */
     public static List<String> getMyQuotesItemNames(String myName) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName +
@@ -292,7 +290,7 @@ public class SimpleDB {
      * Check whether the user has favorited a specific post
      *
      * @param postId post identifier
-     * @param name user seeing the feed
+     * @param name   user seeing the feed
      */
     public static boolean isFavoritedByUser(String postId, String name) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId +
