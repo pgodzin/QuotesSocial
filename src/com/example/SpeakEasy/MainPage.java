@@ -3,80 +3,69 @@ package com.example.SpeakEasy;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import com.example.SpeakEasy.categoryFragments.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
+import it.neokree.materialnavigationdrawer.MaterialAccount;
+import it.neokree.materialnavigationdrawer.MaterialAccountListener;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
+import it.neokree.materialnavigationdrawer.MaterialSection;
 
-public class MainPage extends ActionBarActivity {
+import java.io.InputStream;
+import java.net.URL;
+
+public class MainPage extends MaterialNavigationDrawer implements MaterialAccountListener {
 
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;
 
-    private String[] categoryTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
+    MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, settings;
+    MaterialAccount account;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    Thread t = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+
+                Bitmap profilePic;
+                URL imgUrl = new URL(getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("profile_url", ""));
+                InputStream in = (InputStream) imgUrl.getContent();
+                profilePic = BitmapFactory.decodeStream(in);
+                account.setPhoto(profilePic);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyAccountDataChanged();
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    });
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+
         clientManager = new AmazonClientManager(getSharedPreferences("speakeasySDB", Context.MODE_PRIVATE));
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
-        setTitle("Main Feed");
-        setContentView(R.layout.mainpage);
-
-        categoryTitles = getResources().getStringArray(R.array.navigationDrawerCategories);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
-
-            /**
-             * Called when a drawer has settled in a completely closed state.
-             */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getSupportActionBar().setTitle(getTitle());
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            /**
-             * Called when a drawer has settled in a completely open state.
-             */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle(getTitle());
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-        // Set the drawer toggle as the DrawerListener
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.activity_list_item, android.R.id.text1, categoryTitles));
-        // Set the list's click listener
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        getToolbar().setTitle("All Quotes");
+        this.disableLearningPattern();
 
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
@@ -87,13 +76,54 @@ public class MainPage extends ActionBarActivity {
             suggestions.saveRecentQuery(query, null);
 
             switchToSearchFragment(query);
-        } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.content_frame, new MainPageListFragment()).commit();
         }
 
         // TODO: fix
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        final String name = getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        account = new MaterialAccount(name, "", new ColorDrawable(Color.parseColor("#9e9e9e")),
+                getResources().getDrawable(R.drawable.navigation_bar_background_blue));
+        main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MainPageListFragment()).setNotifications(10);
+        myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MyQuotesFeedFragment())
+                .setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0")).setNotifications(150);
+        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add), new FollowingFeedFragment()).setNotifications(10);
+        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off), new PopularFeedFragment()).setNotifications(10);
+        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new AdviceFeedFragment()).setNotifications(10);
+        funny = this.newSection("Funny Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new FunnyFeedFragment()).setNotifications(10);
+        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new InspirationalFeedFragment()).setNotifications(10);
+        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.greyheart), new LoveFeedFragment()).setNotifications(10);
+        movie = this.newSection("Movie Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new MovieFeedFragment()).setNotifications(10);
+        settings = this.newSection("Settings", this.getResources().getDrawable(android.R.drawable.ic_menu_manage));
+
+        // add your sections to the drawer
+        this.addSection(main);
+        this.addSection(myQuotes);
+        this.addSection(following);
+        this.addDivisor();
+        this.addSection(popular);
+        this.addSection(advice);
+        this.addSection(funny);
+        this.addSection(inspirational);
+        this.addSection(love);
+        this.addSection(movie);
+        this.addBottomSection(settings);
+
+        this.setBackPattern(MaterialNavigationDrawer.BACKPATTERN_BACK_TO_FIRST);
+
+        this.addAccount(account);
+        t.start();
+    }
+
+    @Override
+    public void onAccountOpening(MaterialAccount account) {
+        // open profile activity
+    }
+
+    @Override
+    public void onChangeAccount(MaterialAccount newAccount) {
+        // when another account is selected
     }
 
     /**
@@ -103,24 +133,30 @@ public class MainPage extends ActionBarActivity {
      * @param query query term to search author, poster, and quoteText by
      */
     private void switchToSearchFragment(String query) {
-        Intent intent = new Intent(MainPage.this, SearchActivity.class);
-        intent.putExtra("fragmentName", getTitle().toString().toLowerCase().split(" ")[0]);
-        intent.putExtra("query", query);
-        startActivity(intent);
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        String fragmentName = getToolbar().getTitle().toString().toLowerCase().split(" ")[0];
+        Fragment fragment = newInstance(query, fragmentName);
+        ft.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment).commit();
+        //getSupportFragmentManager().beginTransaction().add(it.neokree.materialnavigationdrawer.R.id.frame_container,
+        //newInstance(query, getToolbar().getTitle().toString().toLowerCase().split(" ")[0])).commit();
     }
 
-    // TODO: Maybe pop up full screen quote with comment feed
-    /*    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
-    }*/
+    public static SearchListFragment newInstance(String query, String fragmentName) {
+        SearchListFragment myFragment = new SearchListFragment();
+
+        Bundle args = new Bundle();
+        args.putString("query", query);
+        args.putString("fragmentName", fragmentName);
+        myFragment.setArguments(args);
+
+        return myFragment;
+    }
 
     /* Called whenever we call invalidateOptionsMenu() */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
-        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.search).setVisible(!drawerOpen);
+        menu.findItem(R.id.search).setVisible(true);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -142,31 +178,11 @@ public class MainPage extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case android.R.id.home:
-                if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
-                    mDrawerLayout.closeDrawer(mDrawerList);
-                } else {
-                    mDrawerLayout.openDrawer(mDrawerList);
-                }
-                return true;
             case R.id.search:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -209,59 +225,8 @@ public class MainPage extends ActionBarActivity {
         uiHelper.onDestroy();
     }
 
-    private class DrawerItemClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView parent, View view, int position, long id) {
-            selectItem(position);
-        }
-    }
-
     public void replaceFragment(Fragment fragment, android.support.v4.app.FragmentTransaction fragmentTransaction) {
         fragmentTransaction.replace(R.id.content_frame, fragment);
         fragmentTransaction.addToBackStack(null).commit();
-    }
-
-    /**
-     * Swaps fragments in the main content view
-     */
-    private void selectItem(int position) {
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right,
-                        android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-        // Create a new fragment and specify the feed to show based on position
-        switch (position) {
-            case 0:
-                replaceFragment(new MainPageListFragment(), fragmentTransaction);
-                break;
-            case 1:
-                replaceFragment(new MyQuotesFeedFragment(), fragmentTransaction);
-                break;
-            case 2:
-                replaceFragment(new PopularFeedFragment(), fragmentTransaction);
-                break;
-            case 3:
-                replaceFragment(new FollowingFeedFragment(), fragmentTransaction);
-                break;
-            case 4:
-                replaceFragment(new AdviceFeedFragment(), fragmentTransaction);
-                break;
-            case 5:
-                replaceFragment(new FunnyFeedFragment(), fragmentTransaction);
-                break;
-            case 6:
-                replaceFragment(new InspirationalFeedFragment(), fragmentTransaction);
-                break;
-            case 7:
-                replaceFragment(new LoveFeedFragment(), fragmentTransaction);
-                break;
-            case 8:
-                replaceFragment(new MovieFeedFragment(), fragmentTransaction);
-                break;
-        }
-
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }

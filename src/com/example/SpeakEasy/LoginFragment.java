@@ -9,8 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.facebook.*;
+import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,13 +60,28 @@ public class LoginFragment extends Fragment {
                                     .getInnerJSONObject();
                             try {
                                 prefs.edit().putString("name", graphResponse.getString("name")).commit();
-                                Toast.makeText(getActivity(), "Welcome " + graphResponse.getString("name"), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(), "Welcome " + graphResponse.getString("name"), Toast.LENGTH_LONG).show();
                             } catch (JSONException e) {
                                 Log.i(TAG, "JSON error " + e.getMessage());
                             }
                         }
                     }
             ).executeAsync();
+
+            Request.newMeRequest(session, new Request.GraphUserCallback() {
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                        try {
+                            prefs.edit().putString("id", user.getId()).commit();
+                            prefs.edit().putString("profile_url", "https://graph.facebook.com/"
+                                    + user.getId() + "/picture?type=large").commit();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).executeAsync();
 
             Intent i = new Intent(getActivity(), MainPage.class);
             startActivity(i);
@@ -90,10 +105,10 @@ public class LoginFragment extends Fragment {
         // For scenarios where the main activity is launched and user
         // session is not null, the session state change notification
         // may not be triggered. Trigger it if it's open/closed.
-        Session session = Session.getActiveSession();
-        if (session != null &&
-                (session.isOpened() || session.isClosed())) {
-            onSessionStateChange(session, session.getState(), null);
+                    Session session = Session.getActiveSession();
+            if (session != null &&
+                    (session.isOpened() || session.isClosed())) {
+                onSessionStateChange(session, session.getState(), null);
         }
         uiHelper.onResume();
     }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,18 +30,20 @@ public class MainPageListFragment extends ListFragment {
     protected List<String> itemNames;
     protected static MySimpleArrayAdapter adapter;
     protected UiLifecycleHelper uiHelper;
+    protected FragmentActivity mActivity;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        final String name = this.getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
-        uiHelper = new UiLifecycleHelper(this.getActivity(), null);
+        final String name = this.mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        uiHelper = new UiLifecycleHelper(this.mActivity, null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle(getFragmentTitle());
+        mActivity.setTitle(getFragmentTitle());
+
         new Thread(new Runnable() {
             public void run() {
                 itemNames = SimpleDB.getFeedItemNames(name);
                 adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
-                getActivity().runOnUiThread(new Runnable() {
+                mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         setListAdapter(adapter);
@@ -53,13 +56,13 @@ public class MainPageListFragment extends ListFragment {
     }
 
     public String getFragmentTitle() {
-        return "Main Feed";
+        return "All Quotes";
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().setTitle(getFragmentTitle());
+        mActivity.setTitle(getFragmentTitle());
         uiHelper.onResume();
     }
 
@@ -79,6 +82,12 @@ public class MainPageListFragment extends ListFragment {
     public void onDestroy() {
         super.onDestroy();
         uiHelper.onDestroy();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = (FragmentActivity) activity;
     }
 
     public static void shareToFB(Activity activity, String quoteText, UiLifecycleHelper uiHelper) {
@@ -125,6 +134,7 @@ public class MainPageListFragment extends ListFragment {
             super(context, R.layout.main_item_view, values);
             this.context = context;
             this.quoteItemNames = values;
+            notifyDataSetChanged();
         }
 
         @Override
@@ -179,7 +189,7 @@ public class MainPageListFragment extends ListFragment {
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
-            final SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
+            final SharedPreferences prefs = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
             final String yourName = prefs.getString("name", "");
             final String nameSpaceless = yourName.replace(" ", "");
 
@@ -196,7 +206,7 @@ public class MainPageListFragment extends ListFragment {
                     isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
                     final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
 
-                    getActivity().runOnUiThread(new Runnable() {
+                    mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
@@ -229,11 +239,11 @@ public class MainPageListFragment extends ListFragment {
                 public void onClick(View v) {
                     final HashMap<String, String> newFavAttr = new HashMap<String, String>();
                     if (posterName.equals(yourName)) {
-                        Toast.makeText(getActivity(), "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity, "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
                     } else if (isFav[0]) {
                         new Thread(new Runnable() {
                             public void run() {
-                                getActivity().runOnUiThread(new Runnable() {
+                                mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         viewHolder.heart.setImageResource(R.drawable.greyheart);
@@ -249,8 +259,8 @@ public class MainPageListFragment extends ListFragment {
                                 SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
                                 newFavAttr.put("favorites", "" + (numFavs[0] - 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                //adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
-                                getActivity().runOnUiThread(new Runnable() {
+                                //adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                                mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         adapter.notifyDataSetChanged();
@@ -261,7 +271,7 @@ public class MainPageListFragment extends ListFragment {
                     } else {
                         new Thread(new Runnable() {
                             public void run() {
-                                getActivity().runOnUiThread(new Runnable() {
+                                mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         viewHolder.heart.setImageResource(R.drawable.redheart);
@@ -276,7 +286,7 @@ public class MainPageListFragment extends ListFragment {
                                 SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
                                 newFavAttr.put("favorites", "" + (numFavs[0] + 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                getActivity().runOnUiThread(new Runnable() {
+                                mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         adapter.notifyDataSetChanged();
@@ -291,7 +301,7 @@ public class MainPageListFragment extends ListFragment {
             viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    shareToFB(getActivity(), viewHolder.quoteText.getText().toString(), uiHelper);
+                    shareToFB(mActivity, viewHolder.quoteText.getText().toString(), uiHelper);
                 }
             });
 
@@ -301,7 +311,7 @@ public class MainPageListFragment extends ListFragment {
                     new Thread(new Runnable() {
                         public void run() {
                             SimpleDB.addToFollowingTable(posterName, yourName);
-                            getActivity().runOnUiThread(new Runnable() {
+                            mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     adapter.notifyDataSetChanged();
@@ -315,7 +325,7 @@ public class MainPageListFragment extends ListFragment {
             viewHolder.fbName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    android.support.v4.app.FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment fragment = new UserFeedFragment(posterName);
                     fragmentTransaction.replace(R.id.content_frame, fragment);

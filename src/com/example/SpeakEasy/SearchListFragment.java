@@ -13,24 +13,29 @@ public class SearchListFragment extends MainPageListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
-        uiHelper = new UiLifecycleHelper(this.getActivity(), null);
+        uiHelper = new UiLifecycleHelper(mActivity, null);
         uiHelper.onCreate(savedInstanceState);
-        getActivity().setTitle(query);
         new Thread(new Runnable() {
             public void run() {
                 if (!getArguments().isEmpty()) {
                     query = getArguments().getString("query");
                     fragmentName = getArguments().getString("fragmentName");
                     itemNames = SimpleDB.getItemNamesBySearchQuery(query, fragmentName);
-                    adapter = new MySimpleArrayAdapter(getActivity(), itemNames);
-                    getActivity().runOnUiThread(new Runnable() {
+                    adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                    mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if (itemNames.size() == 0) {
-                                Toast.makeText(getActivity().getApplicationContext(), "No quotes available by this search term",
-                                        Toast.LENGTH_LONG).show();
+                                String cat = "";
+                                if (!fragmentName.equals("all")) {
+                                    cat = "in " + fragmentName + " quotes.";
+                                }
+                                Toast.makeText(mActivity.getApplicationContext(),
+                                        "No quotes available by this search term" + cat, Toast.LENGTH_LONG).show();
                             }
+                            mActivity.setTitle(query);
                             setListAdapter(adapter);
+
                         }
                     });
                 }

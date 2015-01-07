@@ -48,12 +48,6 @@ public class SearchActivity extends ActionBarActivity {
         return myFragment;
     }
 
-    // TODO: Maybe pop up full screen quote with comment feed
-    /*    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(MainPage.this, "Selected " + position, Toast.LENGTH_SHORT).show();
-    }*/
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

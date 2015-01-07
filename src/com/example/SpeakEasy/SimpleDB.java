@@ -403,7 +403,7 @@ public class SimpleDB {
      */
     public static List<String> getItemNamesBySearchQuery(String query, String category) {
         String categoryString = "category = '" + category + "' and";
-        if (category.equals("main")) {
+        if (category.equals("all")) {
             categoryString = "";
         }
 

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Calligraphy">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../Calligraphy-master/calligraphy/src/main/gen" />
+      <root url="file://$PROJECT_DIR$/../Calligraphy-master/calligraphy/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
