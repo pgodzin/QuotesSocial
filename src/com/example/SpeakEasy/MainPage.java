@@ -85,17 +85,18 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         final String name = getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         account = new MaterialAccount(name, "", new ColorDrawable(Color.parseColor("#9e9e9e")),
                 getResources().getDrawable(R.drawable.navigation_bar_background_blue));
-        main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MainPageListFragment()).setNotifications(10);
+        main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MainPageListFragment());
         myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MyQuotesFeedFragment())
-                .setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0")).setNotifications(150);
-        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add), new FollowingFeedFragment()).setNotifications(10);
-        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off), new PopularFeedFragment()).setNotifications(10);
-        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new AdviceFeedFragment()).setNotifications(10);
-        funny = this.newSection("Funny Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new FunnyFeedFragment()).setNotifications(10);
-        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new InspirationalFeedFragment()).setNotifications(10);
-        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.greyheart), new LoveFeedFragment()).setNotifications(10);
-        movie = this.newSection("Movie Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new MovieFeedFragment()).setNotifications(10);
+                .setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
+        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add), new FollowingFeedFragment());
+        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off), new PopularFeedFragment());
+        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new AdviceFeedFragment());
+        funny = this.newSection("Funny Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new FunnyFeedFragment());
+        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new InspirationalFeedFragment());
+        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.greyheart), new LoveFeedFragment());
+        movie = this.newSection("Movie Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new MovieFeedFragment());
         settings = this.newSection("Settings", this.getResources().getDrawable(android.R.drawable.ic_menu_manage));
+
 
         // add your sections to the drawer
         this.addSection(main);
@@ -133,6 +134,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
      * @param query query term to search author, poster, and quoteText by
      */
     private void switchToSearchFragment(String query) {
+        // TODO: Search still inconsistent, doesn't work every time. Back button issues
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String fragmentName = getToolbar().getTitle().toString().toLowerCase().split(" ")[0];
         Fragment fragment = newInstance(query, fragmentName);

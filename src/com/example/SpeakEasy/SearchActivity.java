@@ -21,8 +21,8 @@ public class SearchActivity extends ActionBarActivity {
         uiHelper.onCreate(savedInstanceState);
         setContentView(R.layout.searchpage);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        //getActionBar().setHomeButtonEnabled(true);
 
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
