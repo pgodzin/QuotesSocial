@@ -12,11 +12,12 @@ import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.*;
+import android.widget.Toast;
 import com.example.SpeakEasy.categoryFragments.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
@@ -32,6 +33,8 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
 
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;
+
+    FloatingActionButton fabButton;
 
     MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, settings;
     MaterialAccount account;
@@ -67,9 +70,65 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         getToolbar().setTitle("All Quotes");
         this.disableLearningPattern();
 
+        // Add FAB
+        fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_edit))
+                .withButtonColor(0xFF2196F3)
+                .withGravity(Gravity.BOTTOM | Gravity.END)
+                .withMargins(0, 0, 16, 16)
+                .create();
+
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Object[] toggleInfo = getToggleInfo();
+
+        // TODO: Fix so that button doesn't need to be hidden - have nav bar cover the button
+        ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
+                this,
+                (DrawerLayout) toggleInfo[1],
+                getToolbar(),
+                R.string.drawer_open,
+                R.string.drawer_close) {
+
+            public void onDrawerClosed(View view) {
+                fabButton.setVisibility(View.VISIBLE);
+                fabButton.setEnabled(true);
+                fabButton.setClickable(true);
+
+                invalidateOptionsMenu();
+                toggleInfo[4] = false;
+                setSectionsTouch(!((Boolean) toggleInfo[4]));
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerClosed(view);
+
+                fabButton.showFloatingActionButton();
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                invalidateOptionsMenu();
+                fabButton.setVisibility(View.GONE);
+                fabButton.setClickable(false);
+                fabButton.setEnabled(false);
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerOpened(drawerView);
+            }
+        };
+
+        setToggle(newToggle);
+        setDrawerListener(newToggle);
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction()))
+
+        {
             String query = intent.getStringExtra(SearchManager.QUERY);
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
@@ -97,7 +156,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         movie = this.newSection("Movie Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new MovieFeedFragment());
         settings = this.newSection("Settings", this.getResources().getDrawable(android.R.drawable.ic_menu_manage));
 
-
         // add your sections to the drawer
         this.addSection(main);
         this.addSection(myQuotes);
@@ -110,10 +168,9 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         this.addSection(love);
         this.addSection(movie);
         this.addBottomSection(settings);
-
         this.setBackPattern(MaterialNavigationDrawer.BACKPATTERN_BACK_TO_FIRST);
-
         this.addAccount(account);
+
         t.start();
     }
 
@@ -133,6 +190,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
      *
      * @param query query term to search author, poster, and quoteText by
      */
+
     private void switchToSearchFragment(String query) {
         // TODO: Search still inconsistent, doesn't work every time. Back button issues
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
