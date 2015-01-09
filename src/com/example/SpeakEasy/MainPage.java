@@ -90,24 +90,32 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         final String name = getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         account = new MaterialAccount(name, "", new ColorDrawable(Color.parseColor("#9e9e9e")),
                 getResources().getDrawable(R.drawable.navigation_bar_background_blue));
-        main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MainPageListFragment());
-        myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit), new MyQuotesFeedFragment())
-                .setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
-        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add), new FollowingFeedFragment());
-        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off), new PopularFeedFragment());
-        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new AdviceFeedFragment());
-        funny = this.newSection("Funny Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new FunnyFeedFragment());
-        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new InspirationalFeedFragment());
-        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.greyheart), new LoveFeedFragment());
-        movie = this.newSection("Movie Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help), new MovieFeedFragment());
+        main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_quotes),
+                new MainPageListFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
+        myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit),
+                new MyQuotesFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
+        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add),
+                new FollowingFeedFragment()).setSectionColor(Color.parseColor("#00CD00"), Color.parseColor("#008B00"));
+        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off),
+                new PopularFeedFragment()).setSectionColor(Color.parseColor("#FFAA00"), Color.parseColor("#FFA500"));
+        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help),
+                new AdviceFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
+        funny = this.newSection("Funny Quotes", this.getResources().getDrawable(R.drawable.ic_action_laugh),
+                new FunnyFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
+        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(R.drawable.ic_action_sunrise),
+                new InspirationalFeedFragment()).setSectionColor(Color.parseColor("#FFAA00"), Color.parseColor("#FFA500"));
+        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.ic_action_heart),
+                new LoveFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
+        movie = this.newSection("Movie Quotes", this.getResources().getDrawable(R.drawable.ic_action_movie),
+                new MovieFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
         settings = this.newSection("Settings", this.getResources().getDrawable(android.R.drawable.ic_menu_manage));
 
         // add your sections to the drawer
         this.addSection(main);
         this.addSection(myQuotes);
+        this.addSection(popular);
         this.addSection(following);
         this.addDivisor();
-        this.addSection(popular);
         this.addSection(advice);
         this.addSection(funny);
         this.addSection(inspirational);
@@ -136,7 +144,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
 
         final Object[] toggleInfo = getToggleInfo();
 
-        // TODO: Fix so that button doesn't need to be hidden - have nav bar cover the button
         ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
                 this,
                 (DrawerLayout) toggleInfo[1],

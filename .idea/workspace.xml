@@ -74,7 +74,27 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.SpeakEasy" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="Floating Action Button added, quote adding implementation still needed">
+    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="Correct FAB implementation - disappears as nav drawer is opened">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_heart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_heart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_heart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_heart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_laugh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_laugh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_laugh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_laugh.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_movie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_movie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_movie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_movie.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_quotes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_quotes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_quotes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_quotes.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_sunrise.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_sunrise.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_sunrise.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_sunrise.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -227,20 +247,20 @@
       <file leaf-file-name="MainPage.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2465374" vertical-offset="2427" max-vertical-offset="5151">
-              <caret line="148" column="39" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.2465374" vertical-offset="1866" max-vertical-offset="5270">
+              <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1531#2257#0" expanded="true" />
                 <element signature="e#1974#2152#0" expanded="true" />
                 <element signature="e#2151#2152#0" expanded="true" />
                 <element signature="e#2256#2257#0" expanded="true" />
-                <element signature="e#5998#6209#0" expanded="true" />
-                <element signature="e#6208#6209#0" expanded="true" />
-                <element signature="e#6544#6564#0" expanded="true" />
-                <element signature="e#6582#6603#0" expanded="true" />
-                <element signature="e#6698#6699#0" expanded="true" />
-                <element signature="e#6760#6761#0" expanded="true" />
+                <element signature="e#6648#6859#0" expanded="true" />
+                <element signature="e#6858#6859#0" expanded="true" />
+                <element signature="e#7100#7120#0" expanded="true" />
+                <element signature="e#7138#7159#0" expanded="true" />
+                <element signature="e#7254#7255#0" expanded="true" />
+                <element signature="e#7316#7317#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -254,6 +274,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="1.1333333" vertical-offset="34" max-vertical-offset="476">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles_speakeasy.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="493">
+              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -281,24 +321,71 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="MaterialSection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.0357144" vertical-offset="357" max-vertical-offset="6256">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MaterialNavigationDrawer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.785714" vertical-offset="6808" max-vertical-offset="18258">
-              <caret line="460" column="0" selection-start-line="460" selection-start-column="0" selection-end-line="460" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.32142857" vertical-offset="14577" max-vertical-offset="19261">
+              <caret line="858" column="34" selection-start-line="858" selection-start-column="29" selection-end-line="858" selection-end-column="34" />
               <folding>
-                <element signature="e#4039#4504#0" expanded="true" />
-                <element signature="e#4503#4504#0" expanded="true" />
-                <element signature="e#4563#5316#0" expanded="true" />
-                <element signature="e#5315#5316#0" expanded="true" />
-                <element signature="e#5374#6126#0" expanded="true" />
-                <element signature="e#6125#6126#0" expanded="true" />
-                <element signature="e#34448#34449#0" expanded="true" />
-                <element signature="e#34494#34495#0" expanded="true" />
-                <element signature="e#44711#44712#0" expanded="true" />
-                <element signature="e#44741#44742#0" expanded="true" />
-                <element signature="e#44962#44963#0" expanded="true" />
-                <element signature="e#44995#44996#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3728#4194#0" expanded="true" />
+                <element signature="e#4193#4194#0" expanded="true" />
+                <element signature="e#4253#5007#0" expanded="true" />
+                <element signature="e#5006#5007#0" expanded="true" />
+                <element signature="e#5065#5818#0" expanded="true" />
+                <element signature="e#5817#5818#0" expanded="true" />
+                <element signature="e#9869#9932#0" expanded="true" />
+                <element signature="e#10334#10399#0" expanded="true" />
+                <element signature="e#11850#11866#0" expanded="true" />
+                <element signature="e#11868#11884#0" expanded="true" />
+                <element signature="e#13688#17228#0" expanded="true" />
+                <element signature="e#17227#17228#0" expanded="true" />
+                <element signature="e#22802#22803#0" expanded="true" />
+                <element signature="e#22839#22840#0" expanded="true" />
+                <element signature="e#31049#31050#0" expanded="true" />
+                <element signature="e#31093#31094#0" expanded="true" />
+                <element signature="e#31142#31143#0" expanded="true" />
+                <element signature="e#31189#31190#0" expanded="true" />
+                <element signature="e#31244#31245#0" expanded="true" />
+                <element signature="e#31291#31292#0" expanded="true" />
+                <element signature="e#31347#31348#0" expanded="true" />
+                <element signature="e#31400#31401#0" expanded="true" />
+                <element signature="e#31455#31456#0" expanded="true" />
+                <element signature="e#31507#31508#0" expanded="true" />
+                <element signature="e#31566#31567#0" expanded="true" />
+                <element signature="e#31618#31619#0" expanded="true" />
+                <element signature="e#33988#33989#0" expanded="true" />
+                <element signature="e#34035#34036#0" expanded="true" />
+                <element signature="e#34110#34111#0" expanded="true" />
+                <element signature="e#34156#34157#0" expanded="true" />
+                <element signature="e#34197#34198#0" expanded="true" />
+                <element signature="e#34241#34242#0" expanded="true" />
+                <element signature="e#34282#34283#0" expanded="true" />
+                <element signature="e#34324#34325#0" expanded="true" />
+                <element signature="e#34368#34369#0" expanded="true" />
+                <element signature="e#34407#34408#0" expanded="true" />
+                <element signature="e#35742#35743#0" expanded="true" />
+                <element signature="e#35788#35789#0" expanded="true" />
+                <element signature="e#44406#44407#0" expanded="true" />
+                <element signature="e#44436#44437#0" expanded="true" />
+                <element signature="e#44657#44658#0" expanded="true" />
+                <element signature="e#44690#44691#0" expanded="true" />
+                <element signature="e#44740#44741#0" expanded="true" />
+                <element signature="e#44777#44778#0" expanded="true" />
+                <element signature="e#44827#44828#0" expanded="true" />
+                <element signature="e#44864#44865#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -307,8 +394,8 @@
       <file leaf-file-name="MaterialDrawerLayout.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialDrawerLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.3214285" vertical-offset="365" max-vertical-offset="782">
-              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state vertical-scroll-proportion="-7.285714" vertical-offset="357" max-vertical-offset="782">
+              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -337,7 +424,6 @@
         <option value="$PROJECT_DIR$/res/values-v14/styles_speakeasy.xml" />
         <option value="$PROJECT_DIR$/../extras/android/support/v7/appcompat/project.properties" />
         <option value="$PROJECT_DIR$/res/menu/search_item.xml" />
-        <option value="$PROJECT_DIR$/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/../Calligraphy-master/calligraphy/src/main/java/uk/co/chrisjenx/calligraphy/ReflectionUtils.java" />
         <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawer/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/res/layout/mainpage.xml" />
@@ -352,8 +438,9 @@
         <option value="$PROJECT_DIR$/res/values/styles_speakeasy.xml" />
         <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
-        <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/FloatingActionButton.java" />
+        <option value="$PROJECT_DIR$/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
       </list>
     </option>
@@ -613,42 +700,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SpeakEasy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable-ldpi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1069,7 +1120,7 @@
       <workItem from="1420446374325" duration="17888000" />
       <workItem from="1420537400975" duration="5013000" />
       <workItem from="1420542534508" duration="1252000" />
-      <workItem from="1420587280846" duration="44235000" />
+      <workItem from="1420587280846" duration="49777000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info">
       <created>1391676964820</created>
@@ -1269,11 +1320,17 @@
       <option name="project" value="LOCAL" />
       <updated>1420706907554</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Correct FAB implementation - disappears as nav drawer is opened">
+      <created>1420763865555</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1420763865555</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80570000" />
+    <option name="totallyTimeSpent" value="86112000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1349,7 +1406,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="favoriting toggles heart color but counter doesn't work yet" />
     <MESSAGE value="favorites refactored to single table - like count based on count(*)" />
     <MESSAGE value="homePage refactored into listFragment, category chooser added" />
     <MESSAGE value="added categories feature, about to refactor MainPage into listFragment" />
@@ -1374,7 +1430,8 @@
     <MESSAGE value="attempt at fixing search, still inconsistent" />
     <MESSAGE value="search still inconsistent, needs to be improved" />
     <MESSAGE value="Floating Action Button added, quote adding implementation still needed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Floating Action Button added, quote adding implementation still needed" />
+    <MESSAGE value="Correct FAB implementation - disappears as nav drawer is opened" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct FAB implementation - disappears as nav drawer is opened" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1411,13 +1468,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java</url>
-          <line>307</line>
+          <line>295</line>
           <properties />
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java</url>
-          <line>298</line>
+          <line>286</line>
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
@@ -1437,25 +1494,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2108">
-          <caret line="81" column="25" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/searchpage.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5333333" vertical-offset="0" max-vertical-offset="238">
-          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/res/layout/activity_material_navigation_drawer.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1666,26 +1704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9642856" vertical-offset="4020" max-vertical-offset="6290">
-          <caret line="259" column="16" selection-start-line="259" selection-start-column="16" selection-end-line="259" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8038#8039#0" expanded="true" />
-            <element signature="e#8082#8083#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="493">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/ic_action_edit.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1744,14 +1762,6 @@
             <element signature="e#6607#6608#0" expanded="true" />
             <element signature="e#6648#6649#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1820,35 +1830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialDrawerLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3214285" vertical-offset="365" max-vertical-offset="782">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.785714" vertical-offset="6808" max-vertical-offset="18258">
-          <caret line="460" column="0" selection-start-line="460" selection-start-column="0" selection-end-line="460" selection-end-column="0" />
-          <folding>
-            <element signature="e#4039#4504#0" expanded="true" />
-            <element signature="e#4503#4504#0" expanded="true" />
-            <element signature="e#4563#5316#0" expanded="true" />
-            <element signature="e#5315#5316#0" expanded="true" />
-            <element signature="e#5374#6126#0" expanded="true" />
-            <element signature="e#6125#6126#0" expanded="true" />
-            <element signature="e#34448#34449#0" expanded="true" />
-            <element signature="e#34494#34495#0" expanded="true" />
-            <element signature="e#44711#44712#0" expanded="true" />
-            <element signature="e#44741#44742#0" expanded="true" />
-            <element signature="e#44962#44963#0" expanded="true" />
-            <element signature="e#44995#44996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main_listfragment.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1878,22 +1859,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-92.900276" vertical-offset="33537" max-vertical-offset="33898">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="493">
+          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialDrawerLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.285714" vertical-offset="357" max-vertical-offset="782">
+          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.32142857" vertical-offset="14577" max-vertical-offset="19261">
+          <caret line="858" column="34" selection-start-line="858" selection-start-column="29" selection-end-line="858" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3728#4194#0" expanded="true" />
+            <element signature="e#4193#4194#0" expanded="true" />
+            <element signature="e#4253#5007#0" expanded="true" />
+            <element signature="e#5006#5007#0" expanded="true" />
+            <element signature="e#5065#5818#0" expanded="true" />
+            <element signature="e#5817#5818#0" expanded="true" />
+            <element signature="e#9869#9932#0" expanded="true" />
+            <element signature="e#10334#10399#0" expanded="true" />
+            <element signature="e#11850#11866#0" expanded="true" />
+            <element signature="e#11868#11884#0" expanded="true" />
+            <element signature="e#13688#17228#0" expanded="true" />
+            <element signature="e#17227#17228#0" expanded="true" />
+            <element signature="e#22802#22803#0" expanded="true" />
+            <element signature="e#22839#22840#0" expanded="true" />
+            <element signature="e#31049#31050#0" expanded="true" />
+            <element signature="e#31093#31094#0" expanded="true" />
+            <element signature="e#31142#31143#0" expanded="true" />
+            <element signature="e#31189#31190#0" expanded="true" />
+            <element signature="e#31244#31245#0" expanded="true" />
+            <element signature="e#31291#31292#0" expanded="true" />
+            <element signature="e#31347#31348#0" expanded="true" />
+            <element signature="e#31400#31401#0" expanded="true" />
+            <element signature="e#31455#31456#0" expanded="true" />
+            <element signature="e#31507#31508#0" expanded="true" />
+            <element signature="e#31566#31567#0" expanded="true" />
+            <element signature="e#31618#31619#0" expanded="true" />
+            <element signature="e#33988#33989#0" expanded="true" />
+            <element signature="e#34035#34036#0" expanded="true" />
+            <element signature="e#34110#34111#0" expanded="true" />
+            <element signature="e#34156#34157#0" expanded="true" />
+            <element signature="e#34197#34198#0" expanded="true" />
+            <element signature="e#34241#34242#0" expanded="true" />
+            <element signature="e#34282#34283#0" expanded="true" />
+            <element signature="e#34324#34325#0" expanded="true" />
+            <element signature="e#34368#34369#0" expanded="true" />
+            <element signature="e#34407#34408#0" expanded="true" />
+            <element signature="e#35742#35743#0" expanded="true" />
+            <element signature="e#35788#35789#0" expanded="true" />
+            <element signature="e#44406#44407#0" expanded="true" />
+            <element signature="e#44436#44437#0" expanded="true" />
+            <element signature="e#44657#44658#0" expanded="true" />
+            <element signature="e#44690#44691#0" expanded="true" />
+            <element signature="e#44740#44741#0" expanded="true" />
+            <element signature="e#44777#44778#0" expanded="true" />
+            <element signature="e#44827#44828#0" expanded="true" />
+            <element signature="e#44864#44865#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0357144" vertical-offset="357" max-vertical-offset="6256">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_action_laugh.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../platforms/android-21/data/res/drawable-hdpi/ic_menu_manage.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2465374" vertical-offset="2427" max-vertical-offset="5151">
-          <caret line="148" column="39" selection-start-line="148" selection-start-column="39" selection-end-line="148" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.2465374" vertical-offset="1866" max-vertical-offset="5270">
+          <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1531#2257#0" expanded="true" />
             <element signature="e#1974#2152#0" expanded="true" />
             <element signature="e#2151#2152#0" expanded="true" />
             <element signature="e#2256#2257#0" expanded="true" />
-            <element signature="e#5998#6209#0" expanded="true" />
-            <element signature="e#6208#6209#0" expanded="true" />
-            <element signature="e#6544#6564#0" expanded="true" />
-            <element signature="e#6582#6603#0" expanded="true" />
-            <element signature="e#6698#6699#0" expanded="true" />
-            <element signature="e#6760#6761#0" expanded="true" />
+            <element signature="e#6648#6859#0" expanded="true" />
+            <element signature="e#6858#6859#0" expanded="true" />
+            <element signature="e#7100#7120#0" expanded="true" />
+            <element signature="e#7138#7159#0" expanded="true" />
+            <element signature="e#7254#7255#0" expanded="true" />
+            <element signature="e#7316#7317#0" expanded="true" />
           </folding>
         </state>
       </provider>
