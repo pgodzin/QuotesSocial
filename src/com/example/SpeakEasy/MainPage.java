@@ -70,60 +70,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         getToolbar().setTitle("All Quotes");
         this.disableLearningPattern();
 
-        // Add FAB
-        fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ic_action_edit))
-                .withButtonColor(0xFF2196F3)
-                .withGravity(Gravity.BOTTOM | Gravity.END)
-                .withMargins(0, 0, 16, 16)
-                .create();
-
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        final Object[] toggleInfo = getToggleInfo();
-
-        // TODO: Fix so that button doesn't need to be hidden - have nav bar cover the button
-        ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
-                this,
-                (DrawerLayout) toggleInfo[1],
-                getToolbar(),
-                R.string.drawer_open,
-                R.string.drawer_close) {
-
-            public void onDrawerClosed(View view) {
-                fabButton.setVisibility(View.VISIBLE);
-                fabButton.setEnabled(true);
-                fabButton.setClickable(true);
-
-                invalidateOptionsMenu();
-                toggleInfo[4] = false;
-                setSectionsTouch(!((Boolean) toggleInfo[4]));
-
-                if (toggleInfo[3] != null)
-                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerClosed(view);
-
-                fabButton.showFloatingActionButton();
-
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                invalidateOptionsMenu();
-                fabButton.setVisibility(View.GONE);
-                fabButton.setClickable(false);
-                fabButton.setEnabled(false);
-
-                if (toggleInfo[3] != null)
-                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerOpened(drawerView);
-            }
-        };
-
-        setToggle(newToggle);
-        setDrawerListener(newToggle);
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction()))
@@ -172,6 +118,66 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         this.addAccount(account);
 
         t.start();
+
+        // Add FAB
+        fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_edit))
+                .withButtonColor(0xFF2196F3)
+                .withGravity(Gravity.BOTTOM | Gravity.END)
+                .withMargins(0, 0, 16, 16)
+                .create();
+
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        final Object[] toggleInfo = getToggleInfo();
+
+        // TODO: Fix so that button doesn't need to be hidden - have nav bar cover the button
+        ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
+                this,
+                (DrawerLayout) toggleInfo[1],
+                getToolbar(),
+                R.string.drawer_open,
+                R.string.drawer_close) {
+
+            @Override
+            public void onDrawerSlide(View drawerView, float offset){
+                fabButton.setAlpha(1 - offset);
+            }
+
+            public void onDrawerClosed(View view) {
+                //fabButton.setVisibility(View.VISIBLE);
+                fabButton.setEnabled(true);
+                fabButton.setClickable(true);
+
+                invalidateOptionsMenu();
+                toggleInfo[4] = false;
+                setSectionsTouch(!((Boolean) toggleInfo[4]));
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerClosed(view);
+
+                //fabButton.showFloatingActionButton();
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                invalidateOptionsMenu();
+                //fabButton.setVisibility(View.GONE);
+                fabButton.setClickable(false);
+                fabButton.setEnabled(false);
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerOpened(drawerView);
+            }
+        };
+
+        setToggle(newToggle);
+        setDrawerListener(newToggle);
     }
 
     @Override
