@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ListFragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
 import com.facebook.model.OpenGraphObject;
 import com.facebook.widget.FacebookDialog;
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +33,8 @@ public class MainPageListFragment extends ListFragment {
     protected List<String> itemNames;
     protected static MySimpleArrayAdapter adapter;
     protected UiLifecycleHelper uiHelper;
-    protected FragmentActivity mActivity;
+    protected MaterialNavigationDrawer mActivity;
+    protected FloatingActionButton fabButton;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
@@ -52,6 +56,62 @@ public class MainPageListFragment extends ListFragment {
                 });
             }
         }).start();
+
+        // Add FAB
+        fabButton = new FloatingActionButton.Builder(mActivity)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_edit))
+                .withButtonColor(0xFF2196F3)
+                .withGravity(Gravity.BOTTOM | Gravity.END)
+                .withMargins(0, 0, 16, 16)
+                .create();
+
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectCategories();
+            }
+        });
+
+        final Object[] toggleInfo = mActivity.getToggleInfo();
+
+        ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
+                mActivity,
+                (DrawerLayout) toggleInfo[1],
+                mActivity.getToolbar(),
+                R.string.drawer_open,
+                R.string.drawer_close) {
+
+            @Override
+            public void onDrawerSlide(View drawerView, float offset){
+                fabButton.setAlpha(1 - offset);
+            }
+
+            public void onDrawerClosed(View view) {
+                fabButton.setEnabled(true);
+                fabButton.setClickable(true);
+
+                mActivity.invalidateOptionsMenu();
+                toggleInfo[4] = false;
+                mActivity.setSectionsTouch(!((Boolean) toggleInfo[4]));
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerClosed(view);
+
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                mActivity.invalidateOptionsMenu();
+                //fabButton.setVisibility(View.GONE);
+                fabButton.setClickable(false);
+                fabButton.setEnabled(false);
+
+                if (toggleInfo[3] != null)
+                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerOpened(drawerView);
+            }
+        };
+
+        mActivity.setToggle(newToggle);
+        mActivity.setDrawerListener(newToggle);
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
 
@@ -87,7 +147,7 @@ public class MainPageListFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = (FragmentActivity) activity;
+        mActivity = (MaterialNavigationDrawer) activity;
     }
 
     public static void shareToFB(Activity activity, String quoteText, UiLifecycleHelper uiHelper) {

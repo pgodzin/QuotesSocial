@@ -12,12 +12,11 @@ import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.*;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import com.example.SpeakEasy.categoryFragments.*;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
@@ -126,65 +125,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         this.addAccount(account);
 
         t.start();
-
-        // Add FAB
-        fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ic_action_edit))
-                .withButtonColor(0xFF2196F3)
-                .withGravity(Gravity.BOTTOM | Gravity.END)
-                .withMargins(0, 0, 16, 16)
-                .create();
-
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        final Object[] toggleInfo = getToggleInfo();
-
-        ActionBarDrawerToggle newToggle = new ActionBarDrawerToggle(
-                this,
-                (DrawerLayout) toggleInfo[1],
-                getToolbar(),
-                R.string.drawer_open,
-                R.string.drawer_close) {
-
-            @Override
-            public void onDrawerSlide(View drawerView, float offset){
-                fabButton.setAlpha(1 - offset);
-            }
-
-            public void onDrawerClosed(View view) {
-                //fabButton.setVisibility(View.VISIBLE);
-                fabButton.setEnabled(true);
-                fabButton.setClickable(true);
-
-                invalidateOptionsMenu();
-                toggleInfo[4] = false;
-                setSectionsTouch(!((Boolean) toggleInfo[4]));
-
-                if (toggleInfo[3] != null)
-                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerClosed(view);
-
-                //fabButton.showFloatingActionButton();
-
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                invalidateOptionsMenu();
-                //fabButton.setVisibility(View.GONE);
-                fabButton.setClickable(false);
-                fabButton.setEnabled(false);
-
-                if (toggleInfo[3] != null)
-                    ((DrawerLayout.DrawerListener) toggleInfo[3]).onDrawerOpened(drawerView);
-            }
-        };
-
-        setToggle(newToggle);
-        setDrawerListener(newToggle);
     }
 
     @Override
@@ -296,10 +236,5 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
     public void onDestroy() {
         super.onDestroy();
         uiHelper.onDestroy();
-    }
-
-    public void replaceFragment(Fragment fragment, android.support.v4.app.FragmentTransaction fragmentTransaction) {
-        fragmentTransaction.replace(R.id.content_frame, fragment);
-        fragmentTransaction.addToBackStack(null).commit();
     }
 }

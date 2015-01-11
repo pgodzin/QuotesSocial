@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../android-ui-master/src/main/Android-UI.iml" filepath="$PROJECT_DIR$/../android-ui-master/src/main/Android-UI.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Calligraphy-master/calligraphy/src/main/Calligraphy.iml" filepath="$PROJECT_DIR$/../Calligraphy-master/calligraphy/src/main/Calligraphy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/MaterialDialogs.iml" filepath="$PROJECT_DIR$/../material-dialogs-master/library/src/main/MaterialDialogs.iml" />
       <module fileurl="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/NavBarOriginal.iml" filepath="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/NavBarOriginal.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpeakEasy.iml" filepath="$PROJECT_DIR$/SpeakEasy.iml" />
       <module fileurl="file://$PROJECT_DIR$/../extras/android/support/v7/appcompat/appcompat1.iml" filepath="$PROJECT_DIR$/../extras/android/support/v7/appcompat/appcompat1.iml" />

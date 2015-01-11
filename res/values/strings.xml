@@ -26,7 +26,7 @@
     <string name="lovefeed">Love Quotes</string>
     <string name="inspirationalfeed">Inspirational Quotes</string>
     <string name="moviefeed">Movie Quotes</string>
-    <string name="pick_category">Pick the Categories for your Quote</string>
+    <string name="pick_category">Enter the Quote and its Categories</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="category">Category</string>

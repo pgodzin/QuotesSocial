@@ -20,5 +20,6 @@
     <orderEntry type="library" name="aws-android-sdk-2.0.5-core" level="project" />
     <orderEntry type="library" name="aws-android-sdk-2.0.5-sdb" level="project" />
     <orderEntry type="module" module-name="NavBarOriginal" />
+    <orderEntry type="module" module-name="MaterialDialogs" />
   </component>
 </module>

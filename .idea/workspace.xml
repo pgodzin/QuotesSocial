@@ -19,7 +19,7 @@
     <shared>
       <config>
         <pickBest>false</pickBest>
-        <target>android-18</target>
+        <target>android-17</target>
       </config>
     </shared>
     <layouts>
@@ -68,34 +68,33 @@
           <theme>@android:style/Theme.Holo</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/res/layout/quote_edit.xml">
+        <config>
+          <theme>@style/Theme.Speakeasy</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.SpeakEasy" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="Correct FAB implementation - disappears as nav drawer is opened">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_heart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_heart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_heart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_heart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_laugh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_laugh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_laugh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_laugh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_movie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_movie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_movie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_movie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_quotes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_quotes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_quotes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_quotes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/ic_action_sunrise.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-mdpi/ic_action_sunrise.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xhdpi/ic_action_sunrise.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_sunrise.png" />
+    <list default="true" id="6741c265-00c2-4c9c-887e-157aa77b4283" name="Default" comment="Updated to material alert dialog for entering quote and choosing its categories; colors still need to be fixed">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_annotations.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_v7_gridlayout.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_v7_recyclerview.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/quote_edit.xml" />
+      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\res\layout\home_item_view.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\res\layout\homepage.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Phil\Android\SpeakEasy\src\com\example\SpeakEasy\HomePageListFragment.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" afterPath="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SpeakEasy.iml" afterPath="$PROJECT_DIR$/SpeakEasy.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/styles_speakeasy.xml" afterPath="$PROJECT_DIR$/res/values/styles_speakeasy.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="untitled.iws" />
@@ -244,37 +243,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainPage.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainPage.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2465374" vertical-offset="1866" max-vertical-offset="5270">
-              <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1531#2257#0" expanded="true" />
-                <element signature="e#1974#2152#0" expanded="true" />
-                <element signature="e#2151#2152#0" expanded="true" />
-                <element signature="e#2256#2257#0" expanded="true" />
-                <element signature="e#6648#6859#0" expanded="true" />
-                <element signature="e#6858#6859#0" expanded="true" />
-                <element signature="e#7100#7120#0" expanded="true" />
-                <element signature="e#7138#7159#0" expanded="true" />
-                <element signature="e#7254#7255#0" expanded="true" />
-                <element signature="e#7316#7317#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="4029">
+              <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_listfragment.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main_listfragment.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="CategoryChooserFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1333333" vertical-offset="34" max-vertical-offset="476">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.11080332" vertical-offset="402" max-vertical-offset="1717">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="e#809#818#0" expanded="true" />
+                <element signature="e#1064#1086#0" expanded="true" />
+                <element signature="e#1662#2126#0" expanded="true" />
+                <element signature="e#2125#2126#0" expanded="true" />
+                <element signature="e#3968#4144#0" expanded="true" />
+                <element signature="e#4143#4144#0" expanded="true" />
+                <element signature="e#4388#4389#0" expanded="true" />
+                <element signature="e#4445#4446#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -282,8 +275,43 @@
       <file leaf-file-name="styles_speakeasy.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="493">
-              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+              <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MaterialDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/MaterialDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.821428" vertical-offset="13914" max-vertical-offset="27336">
+              <caret line="898" column="21" selection-start-line="898" selection-start-column="21" selection-end-line="898" selection-end-column="21" />
+              <folding>
+                <element signature="e#13980#14067#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="R.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../platforms/android-21/android.jar!/android/R.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-912.56" vertical-offset="0" max-vertical-offset="41378">
+              <caret line="1381" column="32" selection-start-line="1381" selection-start-column="32" selection-end-line="1381" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quote_edit.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/quote_edit.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="459">
+              <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -293,42 +321,8 @@
         <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="36" />
+              <caret line="9" column="36" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="36" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FloatingActionButton.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/FloatingActionButton.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2834" max-vertical-offset="3230">
-              <caret line="173" column="46" selection-start-line="173" selection-start-column="46" selection-end-line="173" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchListFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SearchListFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="765">
-              <caret line="14" column="86" selection-start-line="14" selection-start-column="86" selection-end-line="14" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialSection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0357144" vertical-offset="357" max-vertical-offset="6256">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -336,67 +330,11 @@
       <file leaf-file-name="MaterialNavigationDrawer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.32142857" vertical-offset="14577" max-vertical-offset="19261">
-              <caret line="858" column="34" selection-start-line="858" selection-start-column="29" selection-end-line="858" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2005" max-vertical-offset="18411">
+              <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3728#4194#0" expanded="true" />
-                <element signature="e#4193#4194#0" expanded="true" />
-                <element signature="e#4253#5007#0" expanded="true" />
-                <element signature="e#5006#5007#0" expanded="true" />
-                <element signature="e#5065#5818#0" expanded="true" />
-                <element signature="e#5817#5818#0" expanded="true" />
-                <element signature="e#9869#9932#0" expanded="true" />
-                <element signature="e#10334#10399#0" expanded="true" />
-                <element signature="e#11850#11866#0" expanded="true" />
-                <element signature="e#11868#11884#0" expanded="true" />
-                <element signature="e#13688#17228#0" expanded="true" />
-                <element signature="e#17227#17228#0" expanded="true" />
-                <element signature="e#22802#22803#0" expanded="true" />
-                <element signature="e#22839#22840#0" expanded="true" />
-                <element signature="e#31049#31050#0" expanded="true" />
-                <element signature="e#31093#31094#0" expanded="true" />
-                <element signature="e#31142#31143#0" expanded="true" />
-                <element signature="e#31189#31190#0" expanded="true" />
-                <element signature="e#31244#31245#0" expanded="true" />
-                <element signature="e#31291#31292#0" expanded="true" />
-                <element signature="e#31347#31348#0" expanded="true" />
-                <element signature="e#31400#31401#0" expanded="true" />
-                <element signature="e#31455#31456#0" expanded="true" />
-                <element signature="e#31507#31508#0" expanded="true" />
-                <element signature="e#31566#31567#0" expanded="true" />
-                <element signature="e#31618#31619#0" expanded="true" />
-                <element signature="e#33988#33989#0" expanded="true" />
-                <element signature="e#34035#34036#0" expanded="true" />
-                <element signature="e#34110#34111#0" expanded="true" />
-                <element signature="e#34156#34157#0" expanded="true" />
-                <element signature="e#34197#34198#0" expanded="true" />
-                <element signature="e#34241#34242#0" expanded="true" />
-                <element signature="e#34282#34283#0" expanded="true" />
-                <element signature="e#34324#34325#0" expanded="true" />
-                <element signature="e#34368#34369#0" expanded="true" />
-                <element signature="e#34407#34408#0" expanded="true" />
-                <element signature="e#35742#35743#0" expanded="true" />
-                <element signature="e#35788#35789#0" expanded="true" />
-                <element signature="e#44406#44407#0" expanded="true" />
-                <element signature="e#44436#44437#0" expanded="true" />
-                <element signature="e#44657#44658#0" expanded="true" />
-                <element signature="e#44690#44691#0" expanded="true" />
-                <element signature="e#44740#44741#0" expanded="true" />
-                <element signature="e#44777#44778#0" expanded="true" />
-                <element signature="e#44827#44828#0" expanded="true" />
-                <element signature="e#44864#44865#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialDrawerLayout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialDrawerLayout.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.285714" vertical-offset="357" max-vertical-offset="782">
-              <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -419,7 +357,6 @@
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/MyQuotesFeedFragment.java" />
         <option value="$PROJECT_DIR$/../facebook-android-sdk-3.17.1/facebook/build.gradle" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/Login.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/HomePageListFragment.java" />
         <option value="$PROJECT_DIR$/res/values-v14/styles_speakeasy.xml" />
         <option value="$PROJECT_DIR$/../extras/android/support/v7/appcompat/project.properties" />
@@ -435,13 +372,19 @@
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SearchListFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/SearchActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/values/styles_speakeasy.xml" />
         <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialSection.java" />
-        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/FloatingActionButton.java" />
         <option value="$PROJECT_DIR$/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java" />
+        <option value="$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/MaterialDialogCompat.java" />
+        <option value="$PROJECT_DIR$/res/layout/quote_edit.xml" />
+        <option value="$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/util/TypefaceHelper.java" />
+        <option value="$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/MaterialDialog.java" />
         <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java" />
+        <option value="$PROJECT_DIR$/res/values/styles_speakeasy.xml" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java" />
       </list>
     </option>
   </component>
@@ -663,6 +606,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="categoryFragments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -709,6 +674,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -745,6 +728,84 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="materialdialogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpeakEasy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -759,7 +820,7 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Calligraphy-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../extras/android/support/v7/recyclerview/libs/android-support-v7-recyclerview.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -1120,7 +1181,7 @@
       <workItem from="1420446374325" duration="17888000" />
       <workItem from="1420537400975" duration="5013000" />
       <workItem from="1420542534508" duration="1252000" />
-      <workItem from="1420587280846" duration="49777000" />
+      <workItem from="1420587280846" duration="64803000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit - Facebook and ABS Integration&#10;TODO: Facebook info">
       <created>1391676964820</created>
@@ -1326,11 +1387,17 @@
       <option name="project" value="LOCAL" />
       <updated>1420763865555</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Section icons and colors implemented">
+      <created>1420792411670</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1420792411670</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86112000" />
+    <option name="totallyTimeSpent" value="101138000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1353,14 +1420,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24886535" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4493464" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45261437" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1406,8 +1473,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="favorites refactored to single table - like count based on count(*)" />
-    <MESSAGE value="homePage refactored into listFragment, category chooser added" />
     <MESSAGE value="added categories feature, about to refactor MainPage into listFragment" />
     <MESSAGE value="main page refactored, added thread to item retrieval (?), imported slidingMenu module" />
     <MESSAGE value="navigation drawer implemented, todo: fix db queries" />
@@ -1431,7 +1496,9 @@
     <MESSAGE value="search still inconsistent, needs to be improved" />
     <MESSAGE value="Floating Action Button added, quote adding implementation still needed" />
     <MESSAGE value="Correct FAB implementation - disappears as nav drawer is opened" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct FAB implementation - disappears as nav drawer is opened" />
+    <MESSAGE value="Section icons and colors implemented" />
+    <MESSAGE value="Updated to material alert dialog for entering quote and choosing its categories; colors still need to be fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to material alert dialog for entering quote and choosing its categories; colors still need to be fixed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1485,7 +1552,7 @@
           <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="79" />
+      <option name="time" value="82" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1494,144 +1561,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/res/layout/activity_material_navigation_drawer.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33139536" vertical-offset="362" max-vertical-offset="748">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../extras/android/support/v7/appcompat/libs/android-support-v7-appcompat.jar!/android/support/v7/widget/Toolbar.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35947713" vertical-offset="4650" max-vertical-offset="22746">
-          <caret line="357" column="24" selection-start-line="357" selection-start-column="24" selection-end-line="357" selection-end-column="24" />
-          <folding>
-            <element signature="e#13903#13904#0" expanded="true" />
-            <element signature="e#13941#13942#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/searchable.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#136#155#0" expanded="false" />
-            <element signature="e#181#202#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/AdviceFeedFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33139536" vertical-offset="90" max-vertical-offset="510">
-          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_item_view.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3536">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/database/Observable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="209" max-vertical-offset="1275">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/database/DataSetObservable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="782">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/widget/BaseAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="918">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/content/ContextWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="498" max-vertical-offset="9282">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding>
-            <element signature="e#2472#2473#0" expanded="false" />
-            <element signature="e#2512#2513#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/os/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1501" max-vertical-offset="9180">
-          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/os/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4697" max-vertical-offset="12393">
-          <caret line="322" column="0" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/AmazonClientManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1258">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../aws-android-sdk-2.0.5/lib/release/aws-android-sdk-2.0.5-sdb.jar!/com/amazonaws/services/simpledb/AmazonSimpleDBClient.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30357143" vertical-offset="0" max-vertical-offset="4760">
-          <caret line="82" column="13" selection-start-line="82" selection-start-column="13" selection-end-line="82" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/AwsCredentials.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../extras/android/support/v4/android-support-v4.jar!/android/support/v4/app/Fragment.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.08" vertical-offset="3307" max-vertical-offset="16558">
-          <caret line="256" column="30" selection-start-line="256" selection-start-column="30" selection-end-line="256" selection-end-column="30" />
-          <folding>
-            <element signature="e#8369#8370#0" expanded="true" />
-            <element signature="e#8406#8407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../extras/android/support/v4/android-support-v4.jar!/android/support/v4/app/FragmentTransaction.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35736677" vertical-offset="226" max-vertical-offset="1343">
@@ -1644,14 +1573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="72327" max-vertical-offset="101456">
           <caret line="4461" column="0" selection-start-line="4461" selection-start-column="0" selection-end-line="4461" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6535" max-vertical-offset="7106">
-          <caret line="408" column="0" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1746,14 +1667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.96" vertical-offset="420" max-vertical-offset="816">
-          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../extras/android/support/v4/android-support-v4.jar!/android/support/v4/widget/DrawerLayout.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.91369045" vertical-offset="1835" max-vertical-offset="22474">
@@ -1841,14 +1754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6363636" vertical-offset="136" max-vertical-offset="4539">
-          <caret line="54" column="48" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/FloatingActionButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2834" max-vertical-offset="3230">
@@ -1867,22 +1772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="493">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialDrawerLayout.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.285714" vertical-offset="357" max-vertical-offset="782">
@@ -1891,58 +1780,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_action_laugh.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../platforms/android-21/data/res/drawable-hdpi/ic_menu_manage.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/support/v4/app/DialogFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.32142857" vertical-offset="14577" max-vertical-offset="19261">
-          <caret line="858" column="34" selection-start-line="858" selection-start-column="29" selection-end-line="858" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1678" max-vertical-offset="7004">
+          <caret line="142" column="33" selection-start-line="142" selection-start-column="33" selection-end-line="142" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPageListFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2237" max-vertical-offset="6392">
+          <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3728#4194#0" expanded="true" />
-            <element signature="e#4193#4194#0" expanded="true" />
-            <element signature="e#4253#5007#0" expanded="true" />
-            <element signature="e#5006#5007#0" expanded="true" />
-            <element signature="e#5065#5818#0" expanded="true" />
-            <element signature="e#5817#5818#0" expanded="true" />
-            <element signature="e#9869#9932#0" expanded="true" />
-            <element signature="e#10334#10399#0" expanded="true" />
-            <element signature="e#11850#11866#0" expanded="true" />
-            <element signature="e#11868#11884#0" expanded="true" />
-            <element signature="e#13688#17228#0" expanded="true" />
-            <element signature="e#17227#17228#0" expanded="true" />
-            <element signature="e#22802#22803#0" expanded="true" />
-            <element signature="e#22839#22840#0" expanded="true" />
-            <element signature="e#31049#31050#0" expanded="true" />
-            <element signature="e#31093#31094#0" expanded="true" />
-            <element signature="e#31142#31143#0" expanded="true" />
-            <element signature="e#31189#31190#0" expanded="true" />
-            <element signature="e#31244#31245#0" expanded="true" />
-            <element signature="e#31291#31292#0" expanded="true" />
-            <element signature="e#31347#31348#0" expanded="true" />
-            <element signature="e#31400#31401#0" expanded="true" />
-            <element signature="e#31455#31456#0" expanded="true" />
-            <element signature="e#31507#31508#0" expanded="true" />
-            <element signature="e#31566#31567#0" expanded="true" />
-            <element signature="e#31618#31619#0" expanded="true" />
-            <element signature="e#33988#33989#0" expanded="true" />
-            <element signature="e#34035#34036#0" expanded="true" />
-            <element signature="e#34110#34111#0" expanded="true" />
-            <element signature="e#34156#34157#0" expanded="true" />
-            <element signature="e#34197#34198#0" expanded="true" />
-            <element signature="e#34241#34242#0" expanded="true" />
-            <element signature="e#34282#34283#0" expanded="true" />
-            <element signature="e#34324#34325#0" expanded="true" />
-            <element signature="e#34368#34369#0" expanded="true" />
-            <element signature="e#34407#34408#0" expanded="true" />
-            <element signature="e#35742#35743#0" expanded="true" />
-            <element signature="e#35788#35789#0" expanded="true" />
-            <element signature="e#44406#44407#0" expanded="true" />
-            <element signature="e#44436#44437#0" expanded="true" />
-            <element signature="e#44657#44658#0" expanded="true" />
-            <element signature="e#44690#44691#0" expanded="true" />
-            <element signature="e#44740#44741#0" expanded="true" />
-            <element signature="e#44777#44778#0" expanded="true" />
-            <element signature="e#44827#44828#0" expanded="true" />
-            <element signature="e#44864#44865#0" expanded="true" />
+            <element signature="e#1782#2220#0" expanded="true" />
+            <element signature="e#2018#2194#0" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="e#2219#2220#0" expanded="true" />
+            <element signature="e#2612#2764#0" expanded="true" />
+            <element signature="e#2763#2764#0" expanded="true" />
+            <element signature="e#3030#3050#0" expanded="true" />
+            <element signature="e#3068#3089#0" expanded="true" />
+            <element signature="e#3184#3185#0" expanded="true" />
+            <element signature="e#3246#3247#0" expanded="true" />
+            <element signature="e#4332#4333#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#7137#7138#0" expanded="true" />
+            <element signature="e#7189#7190#0" expanded="true" />
+            <element signature="e#7548#7549#0" expanded="true" />
+            <element signature="e#7592#7593#0" expanded="true" />
+            <element signature="e#10210#11962#0" expanded="true" />
+            <element signature="e#10568#11928#0" expanded="true" />
+            <element signature="e#11927#11928#0" expanded="true" />
+            <element signature="e#11961#11962#0" expanded="true" />
+            <element signature="e#12024#15806#0" expanded="true" />
+            <element signature="e#12199#12215#0" expanded="true" />
+            <element signature="e#12468#14160#0" expanded="true" />
+            <element signature="e#12589#13383#0" expanded="true" />
+            <element signature="e#13382#13383#0" expanded="true" />
+            <element signature="e#13840#14102#0" expanded="true" />
+            <element signature="e#14101#14102#0" expanded="true" />
+            <element signature="e#14159#14160#0" expanded="true" />
+            <element signature="e#14235#15742#0" expanded="true" />
+            <element signature="e#14356#15077#0" expanded="true" />
+            <element signature="e#15076#15077#0" expanded="true" />
+            <element signature="e#15422#15684#0" expanded="true" />
+            <element signature="e#15683#15684#0" expanded="true" />
+            <element signature="e#15741#15742#0" expanded="true" />
+            <element signature="e#15805#15806#0" expanded="true" />
+            <element signature="e#15860#16087#0" expanded="true" />
+            <element signature="e#16086#16087#0" expanded="true" />
+            <element signature="e#16140#16799#0" expanded="true" />
+            <element signature="e#16272#16757#0" expanded="true" />
+            <element signature="e#16465#16707#0" expanded="true" />
+            <element signature="e#16706#16707#0" expanded="true" />
+            <element signature="e#16756#16757#0" expanded="true" />
+            <element signature="e#16798#16799#0" expanded="true" />
+            <element signature="e#16852#17445#0" expanded="true" />
+            <element signature="e#17444#17445#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1957,32 +1862,185 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_action_laugh.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="36" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../platforms/android-21/data/res/drawable-hdpi/ic_menu_manage.png">
-      <provider selected="true" editor-type-id="images">
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="584">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/quote_edit.xml">
+      <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.8" vertical-offset="0" max-vertical-offset="459">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/QuotePost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20376712" vertical-offset="0" max-vertical-offset="612">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/gen/com/afollestad/materialdialogs/R.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27687296" vertical-offset="0" max-vertical-offset="307">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/res/values/attrs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/res/values-v21/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sources/android-21/android/graphics/Typeface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3315508" vertical-offset="1797" max-vertical-offset="6137">
+          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding>
+            <element signature="e#5681#5682#0" expanded="false" />
+            <element signature="e#5720#5721#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/util/TypefaceHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3315508" vertical-offset="437" max-vertical-offset="833">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/util/RecyclerUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27146813" vertical-offset="225" max-vertical-offset="748">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/MaterialDialogCompat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7202216" vertical-offset="3327" max-vertical-offset="4947">
+          <caret line="231" column="17" selection-start-line="231" selection-start-column="17" selection-end-line="231" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/SimpleDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35787672" vertical-offset="3242" max-vertical-offset="7106">
+          <caret line="212" column="120" selection-start-line="212" selection-start-column="120" selection-end-line="212" selection-end-column="120" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../platforms/android-21/android.jar!/android/R.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-912.56" vertical-offset="0" max-vertical-offset="41378">
+          <caret line="1381" column="32" selection-start-line="1381" selection-start-column="32" selection-end-line="1381" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/categoryFragments/MyQuotesFeedFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4090909" vertical-offset="136" max-vertical-offset="544">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MaterialNavigationDrawer-master/MaterialNavigationDrawerModule/src/main/java/it/neokree/materialnavigationdrawer/MaterialNavigationDrawer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2005" max-vertical-offset="18411">
+          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../material-dialogs-master/library/src/main/java/com/afollestad/materialdialogs/MaterialDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.821428" vertical-offset="13914" max-vertical-offset="27336">
+          <caret line="898" column="21" selection-start-line="898" selection-start-column="21" selection-end-line="898" selection-end-column="21" />
+          <folding>
+            <element signature="e#13980#14067#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/MainPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2465374" vertical-offset="1866" max-vertical-offset="5270">
-          <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="4029">
+          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35530087" vertical-offset="352" max-vertical-offset="816">
+          <caret line="28" column="67" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/styles_speakeasy.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/SpeakEasy/CategoryChooserFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11080332" vertical-offset="402" max-vertical-offset="1717">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1531#2257#0" expanded="true" />
-            <element signature="e#1974#2152#0" expanded="true" />
-            <element signature="e#2151#2152#0" expanded="true" />
-            <element signature="e#2256#2257#0" expanded="true" />
-            <element signature="e#6648#6859#0" expanded="true" />
-            <element signature="e#6858#6859#0" expanded="true" />
-            <element signature="e#7100#7120#0" expanded="true" />
-            <element signature="e#7138#7159#0" expanded="true" />
-            <element signature="e#7254#7255#0" expanded="true" />
-            <element signature="e#7316#7317#0" expanded="true" />
+            <element signature="e#809#818#0" expanded="true" />
+            <element signature="e#1064#1086#0" expanded="true" />
+            <element signature="e#1662#2126#0" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#3968#4144#0" expanded="true" />
+            <element signature="e#4143#4144#0" expanded="true" />
+            <element signature="e#4388#4389#0" expanded="true" />
+            <element signature="e#4445#4446#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2039,7 +2097,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Calligraphy</last-edited>
+          <last-edited>MaterialDialogs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2063,7 +2121,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>android-support-v4</last-edited>
+          <last-edited>android-support-v7-recyclerview</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
