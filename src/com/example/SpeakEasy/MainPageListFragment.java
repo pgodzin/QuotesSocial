@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -170,7 +171,8 @@ public class MainPageListFragment extends ListFragment {
     // DialogFragment to select 0 or more categories
     public void selectCategories() {
         DialogFragment newFragment = new CategoryChooserFragment();
-        newFragment.show(getFragmentManager(), "categories");
+        FragmentManager supportFragmentManager = mActivity.getSupportFragmentManager();
+        newFragment.show(supportFragmentManager, "categories");
     }
 
     protected static class ViewHolder {
@@ -387,8 +389,11 @@ public class MainPageListFragment extends ListFragment {
                 public void onClick(View v) {
                     android.support.v4.app.FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Fragment fragment = new UserFeedFragment(posterName);
-                    fragmentTransaction.replace(R.id.content_frame, fragment);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("username", posterName);
+                    Fragment fragment = new UserFeedFragment();
+                    fragment.setArguments(bundle);
+                    fragmentTransaction.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment);
                     fragmentTransaction.addToBackStack(null).commit();
                 }
             });

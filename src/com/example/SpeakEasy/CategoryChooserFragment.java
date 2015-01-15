@@ -3,11 +3,11 @@ package com.example.SpeakEasy;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.Theme;
 import com.amazonaws.services.simpledb.util.SimpleDBUtils;
 
 import java.util.ArrayList;
@@ -23,15 +23,12 @@ public class CategoryChooserFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final ArrayList<Integer> mSelectedItems = new ArrayList<Integer>();  // Where we track the selected items
         MaterialDialog.Builder builder = new MaterialDialog.Builder(getActivity());
-        final int action_bar_blue = Color.parseColor("#2196f3");
 
         // Set the dialog title
         builder.title(R.string.pick_category)
                 .positiveText("Submit")
                 .negativeText("Cancel")
-                .titleColor(action_bar_blue)
-                .positiveColor(action_bar_blue)
-                .negativeColor(action_bar_blue)
+                .theme(Theme.LIGHT)
                 .customView(R.layout.quote_edit, true)
                         // Specify the list array, the items to be selected by default (null for none),
                         // and the listener through which to receive callbacks when items are selected

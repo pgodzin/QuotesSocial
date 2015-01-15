@@ -12,14 +12,11 @@ import com.facebook.UiLifecycleHelper;
 public class UserFeedFragment extends MainPageListFragment {
     private String username;
 
-    public UserFeedFragment(String username) {
-        this.username = username;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this.getActivity(), null);
         uiHelper.onCreate(savedInstanceState);
+        username = getArguments().getString("username");
         getActivity().setTitle(getFragmentTitle());
         new Thread(new Runnable() {
             public void run() {

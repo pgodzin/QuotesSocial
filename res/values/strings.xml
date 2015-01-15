@@ -37,6 +37,8 @@
     <string name="defaultfavs">Favorites</string>
     <string name="app_label">Speakeasy</string>
     <string name="search_hint">Search person or quote</string>
+    <string name="enter_quote">Enter quote</string>
+    <string name="enter_author">Enter author</string>
 
 
 </resources>

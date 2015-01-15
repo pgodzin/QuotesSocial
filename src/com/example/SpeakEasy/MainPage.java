@@ -33,8 +33,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;
 
-    FloatingActionButton fabButton;
-
     MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, settings;
     MaterialAccount account;
 

@@ -2,10 +2,10 @@
 
 <resources>
 
-    <style name="Theme.Speakeasy" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Speakeasy" parent="Theme.AppCompat.Light">
 
-        <item name="android:textColorPrimary">@color/actionbar_text_color</item>
-        <item name="android:textColorSecondary">@color/actionbar_text_color</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="windowActionBar">false</item>
 
         <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/action_bar</item>
@@ -13,12 +13,36 @@
         <!-- colorPrimaryDark is used for the status bar -->
         <item name="colorPrimaryDark">@color/status_bar</item>
 
-        <!-- colorAccent is used as the default value for colorControlActivated
-             which is used to tint widgets -->
         <item name="colorAccent">@color/action_bar</item>
 
-        <!-- You can also set colorControlNormal, colorControlActivated
-             colorControlHighlight & colorSwitchThumbNormal. -->
+        <!--
+           All dialogs will default to Theme.DARK with this set to true.
+       -->
+        <item name="md_dark_theme">false</item>
+
+        <!--
+            By default, the title text is black or white based on the theme.
+        -->
+        <item name="md_title_color">@color/action_bar</item>
+
+        <!--
+            By default, the content text is derived from the
+            ?android:textColorSecondary OS attribute.
+        -->
+        <item name="md_content_color">@android:color/darker_gray</item>
+
+        <!--
+            By default, the accent color is derived from the colorAccent attribute of
+            AppCompat or android:colorAccent attribute of the Material theme.
+        -->
+        <item name="md_accent_color">@color/action_bar</item>
+
+        <!--
+            This overrides the color used for the top and bottom dividers used when
+            content is scrollable
+        -->
+        <item name="md_divider_color">@color/action_bar</item>
+
     </style>
 
 </resources>
