@@ -4,20 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.example.SpeakEasy.categoryFragments.UserFeedFragment;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphObject;
@@ -30,23 +29,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainPageListFragment extends ListFragment {
+public class MainPageListFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
     protected List<String> itemNames;
+    protected String fbName;
     protected static MySimpleArrayAdapter adapter;
     protected UiLifecycleHelper uiHelper;
     protected MaterialNavigationDrawer mActivity;
     protected FloatingActionButton fabButton;
+    protected SwipeRefreshLayout swipeLayout;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        final String name = this.mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        fbName = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         uiHelper = new UiLifecycleHelper(this.mActivity, null);
         uiHelper.onCreate(savedInstanceState);
         mActivity.setTitle(getFragmentTitle());
 
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getFeedItemNames(name);
+                itemNames = SimpleDB.getFeedItemNames(fbName);
                 adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
@@ -83,7 +84,7 @@ public class MainPageListFragment extends ListFragment {
                 R.string.drawer_close) {
 
             @Override
-            public void onDrawerSlide(View drawerView, float offset){
+            public void onDrawerSlide(View drawerView, float offset) {
                 fabButton.setAlpha(1 - offset);
             }
 
@@ -113,7 +114,77 @@ public class MainPageListFragment extends ListFragment {
 
         mActivity.setToggle(newToggle);
         mActivity.setDrawerListener(newToggle);
+
         return inflater.inflate(R.layout.main_listfragment, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setupRefresh();
+    }
+
+    public void setupRefresh(){
+        // Swipe to refresh listView
+        swipeLayout = (SwipeRefreshLayout) getView().findViewById(R.id.main_listfrag);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        final ListView listView = getListView();
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+
+                /**
+                 * This enables us to force the layout to refresh only when the first item
+                 * of the list is visible.
+                 **/
+                if (listView != null && listView.getChildCount() > 0) {
+                    // check if the first item of the list is visible
+                    boolean firstItemVisible = listView.getFirstVisiblePosition() == 0;
+                    // check if the top of the first item is visible
+                    boolean topOfFirstItemVisible = listView.getChildAt(0).getTop() == 0;
+                    // enabling or disabling the refresh layout
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                swipeLayout.setEnabled(enable);
+            }
+        });
+    }
+
+    /**
+     * Called when the listView is pulled down for the data to refresh
+     */
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new Thread(new Runnable() {
+                    public void run() {
+                        itemNames = SimpleDB.getFeedItemNames(fbName);
+                        adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                setListAdapter(adapter);
+                                swipeLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        }, 0);
     }
 
     public String getFragmentTitle() {

@@ -366,7 +366,7 @@ public class SimpleDB {
      *
      * @param name name of the user whose quotes you are looking up
      */
-    public static List<String> getUserItemNamesByCategory(String name) {
+    public static List<String> getUserItemNames(String name) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name +
                 "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();

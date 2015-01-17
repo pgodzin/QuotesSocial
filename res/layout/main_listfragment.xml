@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:id="@+id/main_listfrag"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="1dp"
-              android:background="@android:color/transparent">
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/main_listfrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
 
     <ListView
         android:id="@android:id/list"
@@ -20,4 +20,4 @@
 
     </ListView>
 
-</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
