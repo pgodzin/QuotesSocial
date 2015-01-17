@@ -89,22 +89,26 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
                 getResources().getDrawable(R.drawable.navigation_bar_background_blue));
         main = this.newSection("All Quotes", this.getResources().getDrawable(R.drawable.ic_action_quotes),
                 new MainPageListFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
-        myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_edit),
+        myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_quote),
                 new MyQuotesFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
-        following = this.newSection("Following", this.getResources().getDrawable(android.R.drawable.ic_input_add),
+        following = this.newSection("Following", this.getResources().getDrawable(R.drawable.ic_action_add),
                 new FollowingFeedFragment()).setSectionColor(Color.parseColor("#00CD00"), Color.parseColor("#008B00"));
-        popular = this.newSection("Most Popular", this.getResources().getDrawable(android.R.drawable.star_big_off),
+        popular = this.newSection("Most Popular", this.getResources().getDrawable(R.drawable.ic_action_star),
                 new PopularFeedFragment()).setSectionColor(Color.parseColor("#FFAA00"), Color.parseColor("#FFA500"));
-        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(android.R.drawable.ic_menu_help),
+        advice = this.newSection("Advice Quotes", this.getResources().getDrawable(R.drawable.ic_action_help),
                 new AdviceFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
         funny = this.newSection("Funny Quotes", this.getResources().getDrawable(R.drawable.ic_action_laugh),
                 new FunnyFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
-        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(R.drawable.ic_action_sunrise),
+        inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(R.drawable.ic_action_sunny),
                 new InspirationalFeedFragment()).setSectionColor(Color.parseColor("#FFAA00"), Color.parseColor("#FFA500"));
         love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.ic_action_heart),
                 new LoveFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
         movie = this.newSection("Movie Quotes", this.getResources().getDrawable(R.drawable.ic_action_movie),
                 new MovieFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
+        movie = this.newSection("Song Lyrics", this.getResources().getDrawable(R.drawable.ic_action_lyrics),
+                new SongLyricsFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
+
+        // TODO: make a settings fragment
         settings = this.newSection("Settings", this.getResources().getDrawable(android.R.drawable.ic_menu_manage));
 
         // add your sections to the drawer

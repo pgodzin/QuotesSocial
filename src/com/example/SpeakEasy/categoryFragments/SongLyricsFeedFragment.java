@@ -1,6 +1,5 @@
 package com.example.SpeakEasy.categoryFragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -14,19 +13,15 @@ import com.facebook.UiLifecycleHelper;
 /**
  * ListFragment that displays all the quotes posted with an 'advice' category tag
  */
-public class FollowingFeedFragment extends MainPageListFragment {
-
-    private String name;
-
+public class SongLyricsFeedFragment extends MainPageListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(mActivity, null);
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle(getFragmentTitle());
-        name = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getFollowingFeedItemNames(name);
+                itemNames = SimpleDB.getFeedItemNamesByCategory("song");
                 adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -37,6 +32,7 @@ public class FollowingFeedFragment extends MainPageListFragment {
                 });
             }
         }).start();
+
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
 
@@ -50,7 +46,7 @@ public class FollowingFeedFragment extends MainPageListFragment {
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        itemNames = SimpleDB.getFollowingFeedItemNames(name);
+                        itemNames = SimpleDB.getFeedItemNamesByCategory("song");
                         adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
@@ -67,6 +63,6 @@ public class FollowingFeedFragment extends MainPageListFragment {
 
     @Override
     public String getFragmentTitle() {
-        return "Quotes by Followed Users";
+        return "Song Lyrics";
     }
 }

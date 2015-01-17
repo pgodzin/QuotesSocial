@@ -17,5 +17,7 @@
         <item>Inspirational</item>
         <item>Love</item>
         <item>Movie</item>
+        <item>Song</item>
+
     </string-array>
 </resources>
