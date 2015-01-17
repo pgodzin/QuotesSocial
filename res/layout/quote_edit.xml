@@ -13,7 +13,8 @@
         android:hint="@string/enter_quote"
         android:singleLine="false"
         android:textIsSelectable="false"
-        />
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -21,5 +22,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/author_edit_text"
-        android:hint="@string/enter_author"/>
+        android:hint="@string/enter_author"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"/>
 </LinearLayout>
