@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class QuotePost {
     private String quoteText, authorName, fbName, timestamp;
-    private ArrayList<Integer> categories;
+    private Integer[] categories;
 
     public String getQuoteText() {
         return quoteText;
@@ -25,12 +25,12 @@ public class QuotePost {
         return timestamp;
     }
 
-    public ArrayList<Integer> getCategories() {
+    public Integer[] getCategories() {
         return categories;
     }
 
     public QuotePost(String quoteText, String authorName, String fbName, String timestamp,
-                     ArrayList<Integer> categories) {
+                     Integer[] categories) {
         this.quoteText = quoteText;
         this.authorName = authorName;
         this.fbName = fbName;

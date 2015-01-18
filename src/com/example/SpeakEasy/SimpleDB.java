@@ -215,10 +215,9 @@ public class SimpleDB {
         ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.FALSE);
         ReplaceableAttribute numFavorites = new ReplaceableAttribute("favorites", "0", Boolean.TRUE);
 
-        ArrayList<Integer> categories = quote.getCategories();
-        int numCategories = categories.size();
+        Integer[] categories = quote.getCategories();
 
-        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(5 + numCategories);
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(5 + categories.length);
         attrs.add(quoteAttribute);
         attrs.add(authorAttribute);
         attrs.add(timeAttribute);
@@ -226,8 +225,8 @@ public class SimpleDB {
         attrs.add(numFavorites);
 
         //add every category to the attribute - can have multiple values
-        for (int i = 0; i < numCategories; i++) {
-            switch (categories.get(i)) {
+        for (int i = 0; i < categories.length; i++) {
+            switch (categories[i]) {
                 case 0:
                     attrs.add(new ReplaceableAttribute("category", "advice", Boolean.FALSE));
                     break;
@@ -242,6 +241,9 @@ public class SimpleDB {
                     break;
                 case 4:
                     attrs.add(new ReplaceableAttribute("category", "movie", Boolean.FALSE));
+                    break;
+                case 5:
+                    attrs.add(new ReplaceableAttribute("category", "song", Boolean.FALSE));
                     break;
                 default:
                     throw new IllegalArgumentException("Too many categories.");

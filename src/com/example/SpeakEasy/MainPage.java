@@ -33,7 +33,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;
 
-    MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, settings;
+    MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, song, settings;
     MaterialAccount account;
 
     Thread t = new Thread(new Runnable() {
@@ -105,7 +105,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
                 new LoveFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
         movie = this.newSection("Movie Quotes", this.getResources().getDrawable(R.drawable.ic_action_movie),
                 new MovieFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
-        movie = this.newSection("Song Lyrics", this.getResources().getDrawable(R.drawable.ic_action_lyrics),
+        song = this.newSection("Song Lyrics", this.getResources().getDrawable(R.drawable.ic_action_lyrics),
                 new SongLyricsFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
 
         // TODO: make a settings fragment
@@ -122,6 +122,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         this.addSection(inspirational);
         this.addSection(love);
         this.addSection(movie);
+        this.addSection(song);
         this.addBottomSection(settings);
         this.setBackPattern(MaterialNavigationDrawer.BACKPATTERN_BACK_TO_FIRST);
         this.addAccount(account);

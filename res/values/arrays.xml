@@ -6,7 +6,9 @@
         <item>Inspirational</item>
         <item>Love</item>
         <item>Movie</item>
+        <item>Song Lyrics</item>
     </string-array>
+
     <string-array name="navigationDrawerCategories">
         <item>Main Feed</item>
         <item>My Quotes</item>
