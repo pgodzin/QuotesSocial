@@ -31,7 +31,7 @@ import java.util.List;
 
 public class MainPageListFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
     protected List<String> itemNames;
-    protected String fbName;
+    protected String userId;
     protected static MySimpleArrayAdapter adapter;
     protected UiLifecycleHelper uiHelper;
     protected MaterialNavigationDrawer mActivity;
@@ -40,14 +40,14 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-        fbName = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        userId = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("id", "");
         uiHelper = new UiLifecycleHelper(this.mActivity, null);
         uiHelper.onCreate(savedInstanceState);
         mActivity.setTitle(getFragmentTitle());
 
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getFeedItemNames(fbName);
+                itemNames = SimpleDB.getFeedItemNames(userId);
                 adapter = new MySimpleArrayAdapter(inflater.getContext(), itemNames);
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
@@ -172,7 +172,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        itemNames = SimpleDB.getFeedItemNames(fbName);
+                        itemNames = SimpleDB.getFeedItemNames(userId);
                         adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
@@ -247,7 +247,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
     }
 
     protected static class ViewHolder {
-        TextView fbName;
+        TextView authorFbName;
         TextView quoteText;
         TextView quoteAuthor;
         TextView fbShare;
@@ -256,6 +256,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
         TextView numFavs;
         ImageView heart;
         String postID;
+        String posterId;
         String timestamp;
     }
 
@@ -314,30 +315,30 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
             }
 
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-            viewHolder.fbName = (TextView) convertView.findViewById(R.id.mainFBName);
-            viewHolder.fbName.setText(attrMap.get("fbName"));
+            viewHolder.authorFbName = (TextView) convertView.findViewById(R.id.mainFBName);
+            viewHolder.authorFbName.setText(attrMap.get("fbName"));
             viewHolder.timestamp = attrMap.get("timestamp");
-            viewHolder.postID = viewHolder.fbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
+            viewHolder.postID = viewHolder.authorFbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
+            viewHolder.posterId = attrMap.get("userId");
             viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
             viewHolder.quoteAuthor.setText(attrMap.get("author"));
             viewHolder.quoteText.setText(attrMap.get("quoteText"));
             final SharedPreferences prefs = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
-            final String yourName = prefs.getString("name", "");
-            final String nameSpaceless = yourName.replace(" ", "");
+            final String username = prefs.getString("name", "");
+            final String userId = prefs.getString("id", "");
 
-            if (viewHolder.fbName.getText().toString().equals(yourName)) {
+            if (viewHolder.authorFbName.getText().toString().equals(username)) {
                 viewHolder.follow.setVisibility(View.GONE);
             }
 
-            final String posterName = viewHolder.fbName.getText().toString();
             final int[] numFavs = new int[1];
             final boolean[] isFav = new boolean[1];
             new Thread(new Runnable() {
                 public void run() {
                     numFavs[0] = SimpleDB.favCount(viewHolder.postID);
-                    isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, nameSpaceless);
-                    final boolean isFollowed = SimpleDB.isFollowedByUser(posterName, yourName);
+                    isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, userId);
+                    final boolean isFollowed = SimpleDB.isFollowedByUser(viewHolder.posterId, userId);
 
                     mActivity.runOnUiThread(new Runnable() {
                         @Override
@@ -357,7 +358,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 viewHolder.heart.setImageResource(R.drawable.greyheart);
                             }
 
-                            if (isFollowed || posterName.equals(yourName)) {
+                            if (isFollowed || viewHolder.posterId.equals(userId)) {
                                 viewHolder.follow.setVisibility(View.INVISIBLE);
                             } else {
                                 viewHolder.follow.setVisibility(View.VISIBLE);
@@ -371,7 +372,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 @Override
                 public void onClick(View v) {
                     final HashMap<String, String> newFavAttr = new HashMap<String, String>();
-                    if (posterName.equals(yourName)) {
+                    if (viewHolder.posterId.equals(userId)) {
                         Toast.makeText(mActivity, "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
                     } else if (isFav[0]) {
                         new Thread(new Runnable() {
@@ -389,10 +390,9 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                         }
                                     }
                                 });
-                                SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + nameSpaceless);
+                                SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + userId);
                                 newFavAttr.put("favorites", "" + (numFavs[0] - 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                //adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                                 mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -416,7 +416,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                         }
                                     }
                                 });
-                                SimpleDB.addToFavoriteTable(viewHolder.postID, nameSpaceless);
+                                SimpleDB.addToFavoriteTable(viewHolder.postID, userId);
                                 newFavAttr.put("favorites", "" + (numFavs[0] + 1));
                                 SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
                                 mActivity.runOnUiThread(new Runnable() {
@@ -443,7 +443,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 public void onClick(View v) {
                     new Thread(new Runnable() {
                         public void run() {
-                            SimpleDB.addToFollowingTable(posterName, yourName);
+                            SimpleDB.addToFollowingTable(viewHolder.posterId, userId);
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -455,13 +455,14 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 }
             });
 
-            viewHolder.fbName.setOnClickListener(new View.OnClickListener() {
+            viewHolder.authorFbName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     android.support.v4.app.FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Bundle bundle = new Bundle();
-                    bundle.putString("username", posterName);
+                    bundle.putString("userId", viewHolder.posterId);
+                    bundle.putString("username", viewHolder.authorFbName.getText().toString());
                     Fragment fragment = new UserFeedFragment();
                     fragment.setArguments(bundle);
                     fragmentTransaction.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment);

@@ -16,17 +16,17 @@ import com.facebook.UiLifecycleHelper;
  */
 public class MyQuotesFeedFragment extends MainPageListFragment {
 
-    private String name;
+    private String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(mActivity, null);
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle(getFragmentTitle());
-        name = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+        id = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("id", "");
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getMyQuotesItemNames(name);
+                itemNames = SimpleDB.getMyQuotesItemNames(id);
                 adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -50,7 +50,7 @@ public class MyQuotesFeedFragment extends MainPageListFragment {
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        itemNames = SimpleDB.getMyQuotesItemNames(name);
+                        itemNames = SimpleDB.getMyQuotesItemNames(id);
                         adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override

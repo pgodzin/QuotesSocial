@@ -11,17 +11,20 @@ import com.example.SpeakEasy.SimpleDB;
 import com.facebook.UiLifecycleHelper;
 
 public class UserFeedFragment extends MainPageListFragment {
-    private String username;
+    private String userId;
+    private String userName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(mActivity, null);
         uiHelper.onCreate(savedInstanceState);
-        username = getArguments().getString("username");
+        userId = getArguments().getString("userId");
+        userName = getArguments().getString("username");
+
         getActivity().setTitle(getFragmentTitle());
         new Thread(new Runnable() {
             public void run() {
-                itemNames = SimpleDB.getUserItemNames(username);
+                itemNames = SimpleDB.getUserItemNames(userId);
                 adapter = new MainPageListFragment.MySimpleArrayAdapter(mActivity, itemNames);
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -45,7 +48,7 @@ public class UserFeedFragment extends MainPageListFragment {
             public void run() {
                 new Thread(new Runnable() {
                     public void run() {
-                        itemNames = SimpleDB.getUserItemNames(username);
+                        itemNames = SimpleDB.getUserItemNames(userId);
                         adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
@@ -62,6 +65,6 @@ public class UserFeedFragment extends MainPageListFragment {
 
     @Override
     public String getFragmentTitle() {
-        return username;
+        return userName;
     }
 }

@@ -134,20 +134,20 @@ public class SimpleDB {
     }
 
     /**
-     * Adds a quote and the user who favorited it to the Favorites table
+     * Adds a quote and the userID of the user who favorited it to the Favorites table
      *
-     * @param postID      id for specific quote
-     * @param accountName user name
+     * @param postID id for specific quote
+     * @param userId facebook id of the user who favorited the quote
      */
-    public static void addToFavoriteTable(String postID, String accountName) {
+    public static void addToFavoriteTable(String postID, String userId) {
         ReplaceableAttribute favoritedPostID = new ReplaceableAttribute("postID", postID, Boolean.FALSE);
-        ReplaceableAttribute accName = new ReplaceableAttribute("likedBy", accountName, Boolean.FALSE);
+        ReplaceableAttribute accName = new ReplaceableAttribute("likedBy", userId, Boolean.FALSE);
 
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(2);
         attrs.add(favoritedPostID);
         attrs.add(accName);
 
-        PutAttributesRequest par = new PutAttributesRequest("Favorites", postID + "_likedBy_" + accountName, attrs);
+        PutAttributesRequest par = new PutAttributesRequest("Favorites", postID + "_likedBy_" + userId, attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -158,18 +158,18 @@ public class SimpleDB {
     /**
      * Adds a user and the user who will follow them to the Following table
      *
-     * @param nameToFollow the name of the person whose post are going to be followed
-     * @param followerName name of user who pressed the follow icon
+     * @param followedId the id of the person whose posts are going to be followed
+     * @param followerId id of user who pressed the follow icon
      */
-    public static void addToFollowingTable(String nameToFollow, String followerName) {
-        ReplaceableAttribute followedName = new ReplaceableAttribute("followedName", nameToFollow, Boolean.FALSE);
-        ReplaceableAttribute followedBy = new ReplaceableAttribute("followedBy", followerName, Boolean.FALSE);
+    public static void addToFollowingTable(String followedId, String followerId) {
+        ReplaceableAttribute followedIdAttr = new ReplaceableAttribute("followedId", followedId, Boolean.FALSE);
+        ReplaceableAttribute followerIdAttr = new ReplaceableAttribute("followerId", followerId, Boolean.FALSE);
 
         List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(2);
-        attrs.add(followedName);
-        attrs.add(followedBy);
+        attrs.add(followedIdAttr);
+        attrs.add(followerIdAttr);
 
-        PutAttributesRequest par = new PutAttributesRequest("Following", nameToFollow + "_followedBy_" + followerName, attrs);
+        PutAttributesRequest par = new PutAttributesRequest("Following", followedId + "_followedBy_" + followerId, attrs);
         try {
             getInstance().putAttributes(par);
         } catch (Exception exception) {
@@ -180,12 +180,12 @@ public class SimpleDB {
     /**
      * Check whether the user has followed a specific user
      *
-     * @param posterName name of user who posted the quote and is now being followed
-     * @param userName   name of the user who pressed the follow icon
+     * @param posterId id of user who posted the quote and is now being followed
+     * @param userId   id of the user who pressed the follow icon
      */
-    public static boolean isFollowedByUser(String posterName, String userName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedName = '" +
-                posterName + "' and followedBy = '" + userName + "'").withConsistentRead(true);
+    public static boolean isFollowedByUser(String posterId, String userId) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Following where followedId = '" +
+                posterId + "' and followerId = '" + userId + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return items.size() > 0;
     }
@@ -213,15 +213,17 @@ public class SimpleDB {
         ReplaceableAttribute authorAttribute = new ReplaceableAttribute("author", quote.getAuthorName(), Boolean.FALSE);
         ReplaceableAttribute timeAttribute = new ReplaceableAttribute("timestamp", "" + quote.getTimestamp(), Boolean.FALSE);
         ReplaceableAttribute fbNameAttribute = new ReplaceableAttribute("fbName", quote.getFbName(), Boolean.FALSE);
+        ReplaceableAttribute fbIdAttribute = new ReplaceableAttribute("userId", quote.getUserId(), Boolean.FALSE);
         ReplaceableAttribute numFavorites = new ReplaceableAttribute("favorites", "0", Boolean.TRUE);
 
         Integer[] categories = quote.getCategories();
 
-        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(5 + categories.length);
+        List<ReplaceableAttribute> attrs = new ArrayList<ReplaceableAttribute>(6 + categories.length);
         attrs.add(quoteAttribute);
         attrs.add(authorAttribute);
         attrs.add(timeAttribute);
         attrs.add(fbNameAttribute);
+        attrs.add(fbIdAttribute);
         attrs.add(numFavorites);
 
         //add every category to the attribute - can have multiple values
@@ -260,17 +262,17 @@ public class SimpleDB {
     }
 
     /**
-     * @param myName User name to return all quotes by them
+     * @param myUserId User ID to return all quotes posted by them
      * @return itemNames of all the Quotes created by the user
      */
-    public static List<String> getMyQuotesItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + myName +
+    public static List<String> getMyQuotesItemNames(String myUserId) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where userId = '" + myUserId +
                 "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
         for (int i = 0; i < items.size(); i++) {
-            itemNames.add(((Item) items.get(i)).getName());
+            itemNames.add(items.get(i).getName());
         }
         return itemNames;
     }
@@ -292,11 +294,11 @@ public class SimpleDB {
      * Check whether the user has favorited a specific post
      *
      * @param postId post identifier
-     * @param name   user seeing the feed
+     * @param userId user ID seeing the feed
      */
-    public static boolean isFavoritedByUser(String postId, String name) {
+    public static boolean isFavoritedByUser(String postId, String userId) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Favorites where postID = '" + postId +
-                "' and likedBy = '" + name + "'").withConsistentRead(true);
+                "' and likedBy = '" + userId + "'").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
         return items.size() > 0;
     }
@@ -304,10 +306,10 @@ public class SimpleDB {
     /**
      * Retrieve itemNames for all quotes that were not posted by the user
      *
-     * @param myName name of the viewer so that their posts do not appear in their main feed
+     * @param myUserId user ID of the viewer so that their posts do not appear in their main feed
      */
-    public static List<String> getFeedItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
+    public static List<String> getFeedItemNames(String myUserId) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where userId != '" + myUserId +
                 "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
@@ -321,21 +323,21 @@ public class SimpleDB {
     /**
      * Retrieve quotes posted by posters the user is following
      *
-     * @param myName name of the user
+     * @param myUserId facebook user ID
      */
-    public static List<String> getFollowingFeedItemNames(String myName) {
-        //Work-around for no nested queries in SimpleDB
-        SelectRequest selectRequestNames = new SelectRequest("select followedName from Following where followedBy = '" +
-                myName + "'").withConsistentRead(true);
+    public static List<String> getFollowingFeedItemNames(String myUserId) {
+        SelectRequest selectRequestNames = new SelectRequest("select followedId from Following where followerId = '" +
+                myUserId + "'").withConsistentRead(true);
         List<Item> names = getInstance().select(selectRequestNames).getItems();
 
-        String set = "(";
+        // Work-around for no nested queries in SimpleDB
+        String followedSet = "(";
         for (int j = 0; j < names.size(); j++) {
-            set += "'" + names.get(j).getAttributes().get(0).getValue() + "',";
+            followedSet += "'" + names.get(j).getAttributes().get(0).getValue() + "',";
         }
-        set = set.substring(0, set.length() - 1) + ")";
+        followedSet = followedSet.substring(0, followedSet.length() - 1) + ")";
 
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName in " + set +
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where userId in " + followedSet +
                 " and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
@@ -348,12 +350,10 @@ public class SimpleDB {
 
     /**
      * Retrieve itemNames for all quotes that were not posted by the user in order of favorites
-     *
-     * @param myName name of the viewer so that their posts do not appear in their popular feed
      */
-    public static List<String> getPopularFeedItemNames(String myName) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName != '" + myName +
-                "' and favorites is not null order by favorites desc").withConsistentRead(true);
+    public static List<String> getPopularFeedItemNames() {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where favorites is not null " +
+                "order by favorites desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
@@ -366,20 +366,19 @@ public class SimpleDB {
     /**
      * Get quotes by a specific user
      *
-     * @param name name of the user whose quotes you are looking up
+     * @param userId ID of the user whose quotes are being looked up
      */
-    public static List<String> getUserItemNames(String name) {
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where fbName = '" + name +
+    public static List<String> getUserItemNames(String userId) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where userId = '" + userId +
                 "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
         for (int i = 0; i < items.size(); i++) {
-            itemNames.add(((Item) items.get(i)).getName());
+            itemNames.add(items.get(i).getName());
         }
         return itemNames;
     }
-
 
     /**
      * Get quotes by a specific category
@@ -393,7 +392,7 @@ public class SimpleDB {
 
         List<String> itemNames = new ArrayList<String>();
         for (int i = 0; i < items.size(); i++) {
-            itemNames.add(((Item) items.get(i)).getName());
+            itemNames.add(items.get(i).getName());
         }
         return itemNames;
     }
@@ -403,20 +402,15 @@ public class SimpleDB {
      *
      * @param query the term to search by
      */
-    public static List<String> getItemNamesBySearchQuery(String query, String category) {
-        String categoryString = "category = '" + category + "' and";
-        if (category.equals("all")) {
-            categoryString = "";
-        }
-
-        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where " + categoryString +
+    public static List<String> getItemNamesBySearchQuery(String query) {
+        SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where " +
                 "(author like '%" + query + "%' or fbName like '%" + query + "%' or quoteText like '%" +
                 query + "%') and " + "timestamp is not null order by timestamp desc limit 25").withConsistentRead(true);
         List<Item> items = getInstance().select(selectRequest).getItems();
 
         List<String> itemNames = new ArrayList<String>();
         for (int i = 0; i < items.size(); i++) {
-            itemNames.add(((Item) items.get(i)).getName());
+            itemNames.add(items.get(i).getName());
         }
         return itemNames;
     }

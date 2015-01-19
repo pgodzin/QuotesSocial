@@ -20,8 +20,7 @@ public class SearchListFragment extends MainPageListFragment {
             public void run() {
                 if (!getArguments().isEmpty()) {
                     query = getArguments().getString("query");
-                    fragmentName = getArguments().getString("fragmentName");
-                    itemNames = SimpleDB.getItemNamesBySearchQuery(query, fragmentName);
+                    itemNames = SimpleDB.getItemNamesBySearchQuery(query);
                     adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                     mActivity.runOnUiThread(new Runnable() {
                         @Override
@@ -57,8 +56,7 @@ public class SearchListFragment extends MainPageListFragment {
                 new Thread(new Runnable() {
                     public void run() {
                         query = getArguments().getString("query");
-                        fragmentName = getArguments().getString("fragmentName");
-                        itemNames = SimpleDB.getItemNamesBySearchQuery(query, fragmentName);
+                        itemNames = SimpleDB.getItemNamesBySearchQuery(query);
                         adapter = new MySimpleArrayAdapter(mActivity, itemNames);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override

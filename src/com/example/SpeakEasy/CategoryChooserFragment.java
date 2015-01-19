@@ -3,6 +3,7 @@ package com.example.SpeakEasy;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.EditText;
@@ -37,12 +38,15 @@ public class CategoryChooserFragment extends DialogFragment {
 
                         // User clicked OK, so save the mSelectedItems results somewhere
                         // or return them to the component that opened the dialog
-                        String name = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("name", "");
+                        SharedPreferences prefs = getActivity().getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
+                        String name = prefs.getString("name", "");
+                        String userId = prefs.getString("userId", "");
+
                         String timestamp = SimpleDBUtils.encodeZeroPadding(System.currentTimeMillis() / 1000, 5);
                         EditText quoteText = (EditText) dialog.getCustomView().findViewById(R.id.quote_edit_text);
                         EditText author = (EditText) dialog.getCustomView().findViewById(R.id.author_edit_text);
                         final QuotePost q = new QuotePost(quoteText.getText().toString(), author.getText().toString(),
-                                name, timestamp, which);
+                                name, userId, timestamp, which);
 
                         //save the quote to the database in another thread
                         new Thread(new Runnable() {

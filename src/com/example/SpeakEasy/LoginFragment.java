@@ -73,7 +73,8 @@ public class LoginFragment extends Fragment {
                 public void onCompleted(GraphUser user, Response response) {
                     if (user != null) {
                         try {
-                            prefs.edit().putString("id", user.getId()).commit();
+                            String userId = user.getId();
+                            prefs.edit().putString("id", userId).commit();
                             prefs.edit().putString("profile_url", "https://graph.facebook.com/"
                                     + user.getId() + "/picture?type=large").commit();
                         } catch (Exception e) {

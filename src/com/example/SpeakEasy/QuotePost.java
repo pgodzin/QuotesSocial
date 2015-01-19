@@ -1,12 +1,14 @@
 package com.example.SpeakEasy;
 
-import java.util.ArrayList;
-
 /**
  * Class representing a single Quote
  */
 public class QuotePost {
-    private String quoteText, authorName, fbName, timestamp;
+    private String quoteText;
+    private String authorName;
+    private String fbName;
+    private String userId;
+    private String timestamp;
     private Integer[] categories;
 
     public String getQuoteText() {
@@ -21,6 +23,10 @@ public class QuotePost {
         return fbName;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
@@ -29,11 +35,12 @@ public class QuotePost {
         return categories;
     }
 
-    public QuotePost(String quoteText, String authorName, String fbName, String timestamp,
+    public QuotePost(String quoteText, String authorName, String fbName, String userId, String timestamp,
                      Integer[] categories) {
         this.quoteText = quoteText;
         this.authorName = authorName;
         this.fbName = fbName;
+        this.userId = userId;
         this.timestamp = timestamp;
         this.categories = categories;
     }
