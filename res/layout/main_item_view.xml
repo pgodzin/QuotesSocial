@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:card_view="http://schemas.android.com/apk/res-auto"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/feed_bg"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/feed_bg"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="4dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/feed_item_margin"
         android:layout_marginRight="@dimen/feed_item_margin"
         android:layout_marginTop="@dimen/feed_item_margin"
-        >
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="4dp">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-                    app:border_width="0dp"
+                    android:layout_margin="16dp"
                     app:border_color="#FFFFFFFF"
-                    android:layout_margin="16dp"/>
+                    app:border_width="0dp" />
 
                 <TextView
+                    android:id="@+id/mainFBName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:id="@+id/mainFBName"
-                    android:textSize="16sp"
-                    android:clickable="true"
-                    android:textColor="#060c4d"
-                    android:textStyle="bold"
-                    android:layout_toEndOf="@+id/profile_image"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="4dp"/>
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/profile_image"
+                    android:clickable="true"
+                    android:text="@string/name"
+                    android:textColor="#060c4d"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RelativeLayout
+                    android:id="@+id/relativeLayout"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/relativeLayout"
                     android:layout_below="@+id/mainFBName"
-                    android:layout_toRightOf="@+id/profile_image"
-                    android:layout_toEndOf="@+id/profile_image"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_toEndOf="@+id/profile_image"
+                    android:layout_toRightOf="@+id/profile_image">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/quote"
                         android:id="@+id/mainItemText"
-                        android:textSize="16sp"
-                        android:layout_below="@+id/mainFBName"
-                        android:layout_marginBottom="8dp"/>
-
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/auth"
+                        android:layout_below="@+id/mainFBName"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/quote"
+                        android:textSize="16sp" />
+
+                    <TextView
                         android:id="@+id/mainItemAuthor"
-                        android:textSize="16sp"
-                        android:textStyle="italic"
-                        android:layout_below="@+id/mainItemText"
-                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        />
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/mainItemText"
+                        android:text="@string/auth"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
 
                 </RelativeLayout>
 
@@ -94,88 +89,88 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_margin="16dp">
+                android:weightSum="2">
 
                 <TextView
+                    android:id="@+id/numFavorites"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/numFavorites"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="0dp"
+                    android:paddingEnd="8dp"
                     android:text=""
                     android:textColor="#ff5c5d54"
-                    android:textStyle="italic"
                     android:textSize="12sp"
-                    android:visibility="visible"
-                    android:layout_centerVertical="true"
-                    android:paddingEnd="8dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="0dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="0dp"/>
+                    android:textStyle="italic"
+                    android:visibility="visible" />
 
                 <TextView
+                    android:id="@+id/numComments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/numComments"
-                    android:text= "2 comments"
-                    android:textColor="#ff5c5d54"
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:visibility="visible"
                     android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
                     android:layout_toRightOf="@+id/numFavorites"
-                    android:layout_marginRight="8dp"/>
+                    android:text="2 comments"
+                    android:textColor="#ff5c5d54"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:visibility="visible" />
 
                 <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:scaleType="centerCrop"
                     android:id="@+id/mainFollow"
-                    android:src="@drawable/ic_action_add"
-                    android:focusable="false"
-                    android:contentDescription="@string/follow"
-                    android:clickable="true"
-                    android:visibility="visible"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/heart"
-                    android:layout_toStartOf="@+id/heart"
-                    android:layout_marginLeft="8dp"
-                    />
-
-                <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:id="@+id/heart"
-                android:src="@drawable/ic_action_heart"
-                android:contentDescription="heart"
-                android:clickable="true"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/comment"
-                android:layout_toStartOf="@+id/comment"
-                android:layout_marginLeft="8dp"/>
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:id="@+id/comment"
-                    android:src="@drawable/ic_action_comment"
-                    android:contentDescription="comment"
-                    android:clickable="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/shareIcon"
-                    android:layout_toStartOf="@+id/shareIcon"
-                    android:layout_marginLeft="8dp"/>
-
-                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:id="@+id/shareIcon"
-                    android:src="@drawable/fbshare"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/heart"
+                    android:layout_toStartOf="@+id/heart"
+                    android:clickable="true"
+                    android:contentDescription="@string/follow"
+                    android:focusable="false"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_action_add"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/heart"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/comment"
+                    android:layout_toStartOf="@+id/comment"
+                    android:clickable="true"
+                    android:contentDescription="heart"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/transition" />
+
+                <ImageView
+                    android:id="@+id/comment"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toLeftOf="@+id/shareIcon"
+                    android:layout_toStartOf="@+id/shareIcon"
+                    android:clickable="true"
+                    android:contentDescription="comment"
+                    android:src="@drawable/ic_action_comment" />
+
+                <ImageView
+                    android:id="@+id/shareIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginLeft="8dp"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/fbshare" />
             </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

@@ -15,33 +15,33 @@
 
         <item name="colorAccent">@color/action_bar</item>
 
-        <!--
-           All dialogs will default to Theme.DARK with this set to true.
-       -->
-        <item name="md_dark_theme">false</item>
+        <!--        &lt;!&ndash;
+                   All dialogs will default to Theme.DARK with this set to true.
+               &ndash;&gt;
+                <item name="md_dark_theme">false</item>
 
-        <!--
-            By default, the title text is black or white based on the theme.
-        -->
-        <item name="md_title_color">@color/action_bar</item>
+                &lt;!&ndash;
+                    By default, the title text is black or white based on the theme.
+                &ndash;&gt;
+                <item name="md_title_color">@color/action_bar</item>
 
-        <!--
-            By default, the content text is derived from the
-            ?android:textColorSecondary OS attribute.
-        -->
-        <item name="md_content_color">@android:color/darker_gray</item>
+                &lt;!&ndash;
+                    By default, the content text is derived from the
+                    ?android:textColorSecondary OS attribute.
+                &ndash;&gt;
+                <item name="md_content_color">@android:color/darker_gray</item>
 
-        <!--
-            By default, the accent color is derived from the colorAccent attribute of
-            AppCompat or android:colorAccent attribute of the Material theme.
-        -->
-        <item name="md_accent_color">@color/action_bar</item>
+                &lt;!&ndash;
+                    By default, the accent color is derived from the colorAccent attribute of
+                    AppCompat or android:colorAccent attribute of the Material theme.
+                &ndash;&gt;
+                <item name="md_accent_color">@color/action_bar</item>
 
-        <!--
-            This overrides the color used for the top and bottom dividers used when
-            content is scrollable
-        -->
-        <item name="md_divider_color">@color/action_bar</item>
+                &lt;!&ndash;
+                    This overrides the color used for the top and bottom dividers used when
+                    content is scrollable
+                &ndash;&gt;
+                <item name="md_divider_color">@color/action_bar</item>-->
 
     </style>
 
