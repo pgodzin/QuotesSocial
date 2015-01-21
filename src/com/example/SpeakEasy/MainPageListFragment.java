@@ -3,6 +3,8 @@ package com.example.SpeakEasy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.*;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
@@ -23,8 +25,11 @@ import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
 import com.facebook.model.OpenGraphObject;
 import com.facebook.widget.FacebookDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,7 +129,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
         setupRefresh();
     }
 
-    public void setupRefresh(){
+    public void setupRefresh() {
         // Swipe to refresh listView
         swipeLayout = (SwipeRefreshLayout) getView().findViewById(R.id.main_listfrag);
         swipeLayout.setOnRefreshListener(this);
@@ -247,12 +252,14 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
     }
 
     protected static class ViewHolder {
+        CircleImageView profilePicture;
         TextView authorFbName;
         TextView quoteText;
         TextView quoteAuthor;
-        TextView fbShare;
+        ImageView fbShare;
         ImageView follow;
-        TextView mainFav;
+        ImageView comment;
+        ImageView favorite;
         TextView numFavs;
         ImageView heart;
         String postID;
@@ -302,9 +309,11 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
 
                 // set up the ViewHolder
                 viewHolder = new ViewHolder();
-                viewHolder.fbShare = (TextView) convertView.findViewById(R.id.mainFBshare);
+                viewHolder.profilePicture = (CircleImageView) convertView.findViewById(R.id.profile_image);
+                viewHolder.fbShare = (ImageView) convertView.findViewById(R.id.shareIcon);
                 viewHolder.follow = (ImageView) convertView.findViewById(R.id.mainFollow);
-                viewHolder.mainFav = (TextView) convertView.findViewById(R.id.mainFavorite);
+                viewHolder.comment = (ImageView) convertView.findViewById(R.id.comment);
+                viewHolder.favorite = (ImageView) convertView.findViewById(R.id.heart);
                 viewHolder.numFavs = (TextView) convertView.findViewById(R.id.numFavorites);
                 viewHolder.heart = (ImageView) convertView.findViewById(R.id.heart);
                 convertView.setTag(viewHolder);
@@ -315,6 +324,30 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
             }
 
             HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+            viewHolder.posterId = attrMap.get("userId");
+
+            // Set profile picture of the poster
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        final Bitmap profilePic;
+                        String profileUrlString = "https://graph.facebook.com/" + viewHolder.posterId + "/picture?type=large";
+                        URL imgUrl = new URL(profileUrlString);
+                        InputStream in = (InputStream) imgUrl.getContent();
+                        profilePic = BitmapFactory.decodeStream(in);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                viewHolder.profilePicture.setImageBitmap(profilePic);
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
             viewHolder.authorFbName = (TextView) convertView.findViewById(R.id.mainFBName);
             viewHolder.authorFbName.setText(attrMap.get("fbName"));
             viewHolder.timestamp = attrMap.get("timestamp");
@@ -322,11 +355,27 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
             viewHolder.posterId = attrMap.get("userId");
             viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
             viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
-            viewHolder.quoteAuthor.setText(attrMap.get("author"));
-            viewHolder.quoteText.setText(attrMap.get("quoteText"));
+            viewHolder.quoteAuthor.setText("- " + attrMap.get("author"));
+            viewHolder.quoteText.setText("\"" + attrMap.get("quoteText") + "\"  ");
             final SharedPreferences prefs = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
             final String username = prefs.getString("name", "");
             final String userId = prefs.getString("id", "");
+
+            final ColorFilter filter = new LightingColorFilter(Color.parseColor("#ff5c5d54"), Color.parseColor("#ff5c5d54"));
+
+            Drawable shareIcon = mActivity.getResources().getDrawable(R.drawable.fbshare);
+            Drawable followIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_add);
+            final Drawable heartIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_heart);
+            Drawable commentIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_comment);
+
+            shareIcon.setColorFilter(filter);
+            viewHolder.fbShare.setImageDrawable(shareIcon);
+            followIcon.setColorFilter(filter);
+            viewHolder.follow.setImageDrawable(followIcon);
+            heartIcon.setColorFilter(filter);
+            viewHolder.heart.setImageDrawable(heartIcon);
+            commentIcon.setColorFilter(filter);
+            viewHolder.comment.setImageDrawable(commentIcon);
 
             if (viewHolder.authorFbName.getText().toString().equals(username)) {
                 viewHolder.follow.setVisibility(View.GONE);
@@ -344,7 +393,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                         @Override
                         public void run() {
                             if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
-                                viewHolder.numFavs.setVisibility(View.INVISIBLE);
+                                viewHolder.numFavs.setVisibility(View.GONE);
                             } else if (numFavs[0] == 1) {
                                 viewHolder.numFavs.setText("1 Favorite");
                                 viewHolder.numFavs.setVisibility(View.VISIBLE);
@@ -353,13 +402,16 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                             }
 
                             if (isFav[0]) {
-                                viewHolder.heart.setImageResource(R.drawable.redheart);
+                                ColorFilter redFilter = new LightingColorFilter(Color.RED, Color.RED);
+                                heartIcon.setColorFilter(redFilter);
+                                viewHolder.heart.setImageDrawable(heartIcon);
                             } else if (!isFav[0]) {
-                                viewHolder.heart.setImageResource(R.drawable.greyheart);
+                                heartIcon.setColorFilter(filter);
+                                viewHolder.heart.setImageDrawable(heartIcon);
                             }
 
                             if (isFollowed || viewHolder.posterId.equals(userId)) {
-                                viewHolder.follow.setVisibility(View.INVISIBLE);
+                                viewHolder.follow.setVisibility(View.GONE);
                             } else {
                                 viewHolder.follow.setVisibility(View.VISIBLE);
                             }
@@ -368,7 +420,7 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 }
             }).start();
 
-            viewHolder.mainFav.setOnClickListener(new View.OnClickListener() {
+            viewHolder.favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final HashMap<String, String> newFavAttr = new HashMap<String, String>();
@@ -380,9 +432,10 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        viewHolder.heart.setImageResource(R.drawable.greyheart);
+                                        heartIcon.setColorFilter(filter);
+                                        viewHolder.heart.setImageDrawable(heartIcon);
                                         if (numFavs[0] == 1) {
-                                            viewHolder.numFavs.setVisibility(View.INVISIBLE);
+                                            viewHolder.numFavs.setVisibility(View.GONE);
                                         } else if (numFavs[0] == 2) {
                                             viewHolder.numFavs.setText("1 Favorite");
                                         } else {
@@ -407,7 +460,9 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        viewHolder.heart.setImageResource(R.drawable.redheart);
+                                        ColorFilter redFilter = new LightingColorFilter(Color.RED, Color.RED);
+                                        heartIcon.setColorFilter(redFilter);
+                                        viewHolder.heart.setImageDrawable(heartIcon);
                                         if (numFavs[0] == 0) {
                                             viewHolder.numFavs.setVisibility(View.VISIBLE);
                                             viewHolder.numFavs.setText("1 Favorite");

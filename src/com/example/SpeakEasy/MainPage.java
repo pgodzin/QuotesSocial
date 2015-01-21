@@ -40,7 +40,6 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         @Override
         public void run() {
             try {
-
                 Bitmap profilePic;
                 URL imgUrl = new URL(getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("profile_url", ""));
                 InputStream in = (InputStream) imgUrl.getContent();

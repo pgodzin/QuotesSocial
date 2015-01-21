@@ -49,7 +49,6 @@ public class LoginFragment extends Fragment {
                 Log.i("sessionToken", session.getAccessToken());
                 Log.i("sessionTokenDueDate", session.getExpirationDate().toLocaleString());
             }
-            // TODO: get ID to uniquely identify people, not name
             Bundle params = new Bundle();
             params.putString("access_token", session.getAccessToken());
             new Request(session, "/me", params, HttpMethod.GET,
