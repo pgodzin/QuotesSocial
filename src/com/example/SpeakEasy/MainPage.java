@@ -33,7 +33,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
     public static AmazonClientManager clientManager = null;
     protected UiLifecycleHelper uiHelper;
 
-    MaterialSection main, myQuotes, following, popular, advice, funny, inspirational, love, movie, song, settings;
+    MaterialSection main, myQuotes, myFavorites, following, popular, advice, funny, inspirational, love, movie, song, settings;
     MaterialAccount account;
 
     Thread t = new Thread(new Runnable() {
@@ -90,6 +90,8 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
                 new MainPageListFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
         myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_quote),
                 new MyQuotesFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
+        myFavorites = this.newSection("My Favorites", this.getResources().getDrawable(R.drawable.ic_action_heart),
+                new MyFavoritesFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
         following = this.newSection("Following", this.getResources().getDrawable(R.drawable.ic_action_add),
                 new FollowingFeedFragment()).setSectionColor(Color.parseColor("#00CD00"), Color.parseColor("#008B00"));
         popular = this.newSection("Most Popular", this.getResources().getDrawable(R.drawable.ic_action_star),
@@ -113,8 +115,9 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         // add your sections to the drawer
         this.addSection(main);
         this.addSection(myQuotes);
-        this.addSection(popular);
+        this.addSection(myFavorites);
         this.addSection(following);
+        this.addSection(popular);
         this.addDivisor();
         this.addSection(advice);
         this.addSection(funny);

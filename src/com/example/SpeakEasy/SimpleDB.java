@@ -381,6 +381,23 @@ public class SimpleDB {
     }
 
     /**
+     * Get quotes favorited by a specific user
+     *
+     * @param userId ID of the user whose favorites are being looked up
+     */
+    public static List<String> getFavoriteFeedItemNames(String userId) {
+        SelectRequest selectRequest = new SelectRequest("select postID from Favorites where likedBy = '" + userId +
+                "' and postID is not null order by postID asc").withConsistentRead(true);
+        List<Item> items = getInstance().select(selectRequest).getItems();
+
+        List<String> itemNames = new ArrayList<String>();
+        for (int i = 0; i < items.size(); i++) {
+            itemNames.add(items.get(i).getAttributes().get(0).getValue());
+        }
+        return itemNames;
+    }
+
+    /**
      * Get quotes by a specific category
      *
      * @param category name of the quote category
