@@ -3,19 +3,20 @@ package main.java.com.example.SpeakEasy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -413,21 +414,20 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
             final String userId = prefs.getString("id", "");
 
             final ColorFilter filter = new LightingColorFilter(Color.parseColor("#ff5c5d54"), Color.parseColor("#ff5c5d54"));
-            final TransitionDrawable transition = (TransitionDrawable) viewHolder.heart.getDrawable();
-            final int transitionTime = 500;
+            Resources res = mActivity.getResources();
 
-            Drawable shareIcon = mActivity.getResources().getDrawable(R.drawable.fbshare);
-            Drawable followIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_add);
-            Drawable commentIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_comment);
-            final Drawable heartIcon = mActivity.getResources().getDrawable(R.drawable.ic_action_heart);
-            final Drawable heartIconRed = mActivity.getResources().getDrawable(R.drawable.ic_action_heart_red);
+            Drawable shareIcon = res.getDrawable(R.drawable.fbshare);
+            Drawable followIcon = res.getDrawable(R.drawable.ic_action_add);
+            Drawable commentIcon = res.getDrawable(R.drawable.ic_action_comment);
+            final Drawable heartIconGrey = res.getDrawable(R.drawable.ic_action_heart_grey);
+            final Drawable heartIconRed = res.getDrawable(R.drawable.ic_action_heart_red);
 
             shareIcon.setColorFilter(filter);
             viewHolder.fbShare.setImageDrawable(shareIcon);
             followIcon.setColorFilter(filter);
             viewHolder.follow.setImageDrawable(followIcon);
-            //heartIcon.setColorFilter(filter);
-            viewHolder.heart.setImageDrawable(heartIcon);
+            heartIconGrey.setColorFilter(filter);
+            //viewHolder.heart.setImageDrawable(heartIcon);
             commentIcon.setColorFilter(filter);
             viewHolder.comment.setImageDrawable(commentIcon);
 
@@ -446,6 +446,8 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                     mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
+                            // Change the visibility of the comment text based on how many comments there are
                             if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
                                 viewHolder.numFavs.setVisibility(View.GONE);
                             } else if (numFavs[0] == 1) {
@@ -455,12 +457,14 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 viewHolder.numFavs.setText(numFavs[0] + " Favorites");
                             }
 
-                            if (isFav[0] && viewHolder.heart.getDrawable().getConstantState().equals(heartIcon.getConstantState())) {
-                                transition.startTransition(transitionTime);
-                            } else if (!isFav[0] && viewHolder.heart.getDrawable().getConstantState().equals(heartIconRed.getConstantState())) {
-                                transition.reverseTransition(transitionTime);
+                            // Determine the color of the favorites heart
+                            if (isFav[0]) {
+                                viewHolder.heart.setImageDrawable(heartIconRed);
+                            } else if (!isFav[0]) {
+                                viewHolder.heart.setImageDrawable(heartIconGrey);
                             }
 
+                            // Determine visibility of the follow icon
                             if (isFollowed || viewHolder.posterId.equals(userId)) {
                                 viewHolder.follow.setVisibility(View.GONE);
                             } else {
@@ -483,27 +487,32 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (viewHolder.heart.getDrawable().getConstantState().equals(heartIconRed.getConstantState())) {
-                                            transition.reverseTransition(transitionTime);
-                                        }
+                                        // change heart back to grey
+                                        viewHolder.heart.setImageDrawable(heartIconGrey);
+                                        isFav[0] = false;
+
                                         if (numFavs[0] == 1) {
                                             viewHolder.numFavs.setVisibility(View.GONE);
+                                            numFavs[0] = 0;
                                         } else if (numFavs[0] == 2) {
                                             viewHolder.numFavs.setText("1 Favorite");
-                                        } else {
+                                            numFavs[0] = 1;
+                                        } else if (numFavs[0] > 0) {
+                                            // Minimize the number of favorites by 1
                                             viewHolder.numFavs.setText(numFavs[0] - 1 + " Favorites");
+                                            numFavs[0]--;
                                         }
                                     }
                                 });
-                                SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + userId);
-                                newFavAttr.put("favorites", "" + (numFavs[0] - 1));
-                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                mActivity.runOnUiThread(new Runnable() {
+                                new AsyncTask<Void, Void, Void>() {
                                     @Override
-                                    public void run() {
-                                        adapter.notifyDataSetChanged();
+                                    protected Void doInBackground(Void... params) {
+                                        SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + userId);
+                                        newFavAttr.put("favorites", "" + numFavs[0]);
+                                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                        return null;
                                     }
-                                });
+                                }.execute();
                             }
                         }).start();
                     } else {
@@ -512,32 +521,36 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                                 mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        if (viewHolder.heart.getDrawable().getConstantState().equals(heartIcon.getConstantState())) {
-                                            transition.startTransition(transitionTime);
-                                        }
+                                        // Change heart icon to red
+                                        viewHolder.heart.setImageDrawable(heartIconRed);
+                                        isFav[0] = true;
+
                                         if (numFavs[0] == 0) {
                                             viewHolder.numFavs.setVisibility(View.VISIBLE);
                                             viewHolder.numFavs.setText("1 Favorite");
+                                            numFavs[0] = 1;
                                         } else {
                                             viewHolder.numFavs.setText(numFavs[0] + 1 + " Favorites");
+                                            numFavs[0]++;
                                         }
                                     }
                                 });
-                                SimpleDB.addToFavoriteTable(viewHolder.postID, userId);
-                                newFavAttr.put("favorites", "" + (numFavs[0] + 1));
-                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                mActivity.runOnUiThread(new Runnable() {
+                                new AsyncTask<Void, Void, Void>() {
                                     @Override
-                                    public void run() {
-                                        adapter.notifyDataSetChanged();
+                                    protected Void doInBackground(Void... params) {
+                                        SimpleDB.addToFavoriteTable(viewHolder.postID, userId);
+                                        newFavAttr.put("favorites", "" + numFavs[0]);
+                                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                        return null;
                                     }
-                                });
+                                }.execute();
                             }
                         }).start();
                     }
                 }
             });
 
+            // Click on share icon to share on Facebook
             viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -562,11 +575,12 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 }
             });
 
-            viewHolder.authorFbName.setOnClickListener(new View.OnClickListener() {
+            // Go to user's posts when clicking on name or profile picture
+            final View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    android.support.v4.app.FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Bundle bundle = new Bundle();
                     bundle.putString("userId", viewHolder.posterId);
                     bundle.putString("username", viewHolder.authorFbName.getText().toString());
@@ -575,8 +589,29 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                     fragmentTransaction.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment);
                     fragmentTransaction.addToBackStack(null).commit();
                 }
-            });
+            };
+
+            viewHolder.authorFbName.setOnClickListener(onClickListener);
+            viewHolder.profilePicture.setOnClickListener(onClickListener);
             return convertView;
         }
+
+        private class UpdateFavorites extends AsyncTask<String, Void, Void> {
+
+            private Exception exception;
+
+            protected Void doInBackground(String... urls) {
+                try {
+                } catch (Exception e) {
+                    this.exception = e;
+                    return null;
+                }
+                return null;
+            }
+
+            protected void onPostExecute(AmazonSimpleDBClient client) {
+            }
+        }
+
     }
 }

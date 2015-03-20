@@ -69,6 +69,7 @@
                         android:layout_below="@+id/mainFBName"
                         android:layout_marginBottom="8dp"
                         android:text="@string/quote"
+                        android:textColor="@android:color/primary_text_light"
                         android:textSize="16sp" />
 
                     <TextView
@@ -79,6 +80,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/mainItemText"
                         android:text="@string/auth"
+                        android:textColor="@android:color/primary_text_light"
                         android:textSize="16sp"
                         android:textStyle="italic" />
 

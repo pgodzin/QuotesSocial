@@ -111,7 +111,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
                 new MainPageListFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
         myQuotes = this.newSection("My Quotes", this.getResources().getDrawable(R.drawable.ic_action_quote),
                 new MyQuotesFeedFragment()).setSectionColor(Color.parseColor("#2196f3"), Color.parseColor("#1565c0"));
-        myFavorites = this.newSection("My Favorites", this.getResources().getDrawable(R.drawable.ic_action_heart),
+        myFavorites = this.newSection("My Favorites", this.getResources().getDrawable(R.drawable.ic_action_heart_grey),
                 new MyFavoritesFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
         following = this.newSection("Following", this.getResources().getDrawable(R.drawable.ic_action_add),
                 new FollowingFeedFragment()).setSectionColor(Color.parseColor("#00CD00"), Color.parseColor("#008B00"));
@@ -123,7 +123,7 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
                 new FunnyFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
         inspirational = this.newSection("Inspirational Quotes", this.getResources().getDrawable(R.drawable.ic_action_sunny),
                 new InspirationalFeedFragment()).setSectionColor(Color.parseColor("#FFAA00"), Color.parseColor("#FFA500"));
-        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.ic_action_heart),
+        love = this.newSection("Love Quotes", this.getResources().getDrawable(R.drawable.ic_action_heart_grey),
                 new LoveFeedFragment()).setSectionColor(Color.parseColor("#FC1501"), Color.parseColor("#E3170D"));
         movie = this.newSection("Movie Quotes", this.getResources().getDrawable(R.drawable.ic_action_movie),
                 new MovieFeedFragment()).setSectionColor(Color.BLACK, Color.BLACK);
