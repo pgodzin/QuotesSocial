@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    tools:ignore="MissingPrefix">
+
+    <at.markushi.ui.RevealColorView
+        android:id="@+id/section_ripple"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fafafa" />
+
+    <ImageView
+        android:id="@+id/section_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:alpha="0.54" />
+
+    <TextView
+        android:id="@+id/section_text"
+        fontPath="fonts/Roboto-Medium.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="72dp"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/section_notification"
+        android:layout_toStartOf="@+id/section_notification"
+        android:alpha="0.87"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/section_notification"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:gravity="center_horizontal"
+        android:lines="1"
+        android:maxLength="3"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
