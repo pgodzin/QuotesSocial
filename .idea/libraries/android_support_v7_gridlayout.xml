@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="android-support-v7-gridlayout">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../extras/android/support/v7/gridlayout/libs/android-support-v7-gridlayout.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
