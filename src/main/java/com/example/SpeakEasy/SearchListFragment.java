@@ -17,6 +17,7 @@ public class SearchListFragment extends MainPageListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(mActivity, null);
         uiHelper.onCreate(savedInstanceState);
+
         new Thread(new Runnable() {
             public void run() {
                 if (!getArguments().isEmpty()) {

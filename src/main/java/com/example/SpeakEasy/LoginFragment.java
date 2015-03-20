@@ -1,14 +1,18 @@
 package main.java.com.example.SpeakEasy;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.facebook.HttpMethod;
 import com.facebook.Request;
@@ -36,6 +40,17 @@ public class LoginFragment extends Fragment {
         }
     };
 
+    public static boolean isNetworkAvailable(Activity context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean available = activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+        if (!available) {
+            Toast.makeText(context, "No internet service currently available.", Toast.LENGTH_LONG).show();
+        }
+        return available;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +69,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
-        if (state.isOpened()) {
-
+        if (state.isOpened() && isNetworkAvailable(getActivity())) {
             final SharedPreferences prefs = getActivity().getSharedPreferences(
                     "fbInfo", Context.MODE_PRIVATE);
             if (session != null && session.getState().isOpened()) {

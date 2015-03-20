@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +80,22 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
         } else {
             Toast.makeText(activity, "Facebook not available", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public static boolean isNetworkAvailable(final Activity context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean available = activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+        if (!available) {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, "No internet service currently available.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        return available;
     }
 
     @Override
@@ -196,24 +214,28 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
      */
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new Thread(new Runnable() {
-                    public void run() {
-                        itemNames = SimpleDB.getFeedItemNames(userId);
-                        adapter = new MySimpleArrayAdapter(mActivity, itemNames);
-                        mActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                setListAdapter(adapter);
-                                swipeLayout.setRefreshing(false);
-                            }
-                        });
-                    }
-                }).start();
-            }
-        }, 0);
+        if (isNetworkAvailable(getActivity())) {
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            itemNames = SimpleDB.getFeedItemNames(userId);
+                            adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setListAdapter(adapter);
+                                    swipeLayout.setRefreshing(false);
+                                }
+                            });
+                        }
+
+                    }).start();
+                }
+            }, 0);
+        }
     }
 
     public String getFragmentTitle() {
@@ -278,45 +300,47 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
         private Exception exception;
 
         protected AmazonSimpleDBClient doInBackground(String... urls) {
-            try {
-                // Initialize the Amazon Cognito credentials provider
-                CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-                        getActivity().getApplicationContext(), // Context
-                        "us-east-1:1caef7b3-7585-4ded-961d-0cc8f4bbc87f", // Identity Pool ID
-                        Regions.US_EAST_1 // Region
-                );
+            if (isNetworkAvailable(getActivity())) {
+                try {
 
-                Map<String, String> logins = new HashMap<String, String>();
-                logins.put("graph.facebook.com", Session.getActiveSession().getAccessToken());
-                credentialsProvider.withLogins(logins);
+                    // Initialize the Amazon Cognito credentials provider
+                    CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                            getActivity().getApplicationContext(), // Context
+                            "us-east-1:1caef7b3-7585-4ded-961d-0cc8f4bbc87f", // Identity Pool ID
+                            Regions.US_EAST_1 // Region
+                    );
 
-                Log.d("SimpleDBClient", "My ID is " + credentialsProvider.getIdentityId());
-                AmazonSimpleDBClient client = new AmazonSimpleDBClient(credentialsProvider);
-                return client;
-            } catch (Exception e) {
-                this.exception = e;
-                return null;
-            }
+                    Map<String, String> logins = new HashMap<String, String>();
+                    logins.put("graph.facebook.com", Session.getActiveSession().getAccessToken());
+                    credentialsProvider.withLogins(logins);
+
+                    Log.d("SimpleDBClient", "My ID is " + credentialsProvider.getIdentityId());
+                    AmazonSimpleDBClient client = new AmazonSimpleDBClient(credentialsProvider);
+                    return client;
+                } catch (Exception e) {
+                    this.exception = e;
+                    return null;
+                }
+            } else return null;
         }
 
         protected void onPostExecute(AmazonSimpleDBClient client) {
-            if (exception != null) {
-                Log.e("SimpleDBClient", exception.getMessage());
-            }
-            MainPage.simpleDBClient = client;
-            new Thread(new Runnable() {
-                public void run() {
-                    itemNames = SimpleDB.getFeedItemNames(userId);
-                    adapter = new MySimpleArrayAdapter(getActivity().getApplicationContext(), itemNames);
-                    mActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            setListAdapter(adapter);
+            if (isNetworkAvailable(getActivity())) {
+                MainPage.simpleDBClient = client;
+                new Thread(new Runnable() {
+                    public void run() {
+                        itemNames = SimpleDB.getFeedItemNames(userId);
+                        adapter = new MySimpleArrayAdapter(getActivity().getApplicationContext(), itemNames);
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                setListAdapter(adapter);
 
-                        }
-                    });
-                }
-            }).start();
+                            }
+                        });
+                    }
+                }).start();
+            }
         }
     }
 
@@ -375,242 +399,239 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
-            viewHolder.posterId = attrMap.get("userId");
+            if (isNetworkAvailable(getActivity())) {
+                HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", quoteItemNames.get(position));
+                viewHolder.posterId = attrMap.get("userId");
 
-            // Set profile picture of the poster
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        final Bitmap profilePic;
-                        String profileUrlString = "https://graph.facebook.com/" + viewHolder.posterId + "/picture?type=large";
-                        URL imgUrl = new URL(profileUrlString);
-                        InputStream in = (InputStream) imgUrl.getContent();
-                        profilePic = BitmapFactory.decodeStream(in);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                viewHolder.profilePicture.setImageBitmap(profilePic);
-                            }
-                        });
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
-            viewHolder.authorFbName = (TextView) convertView.findViewById(R.id.mainFBName);
-            viewHolder.authorFbName.setText(attrMap.get("fbName"));
-            viewHolder.timestamp = attrMap.get("timestamp");
-            viewHolder.postID = viewHolder.authorFbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
-            viewHolder.posterId = attrMap.get("userId");
-            viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
-            viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
-            viewHolder.quoteAuthor.setText("- " + attrMap.get("author"));
-            viewHolder.quoteText.setText("\"" + attrMap.get("quoteText") + "\"  ");
-            final SharedPreferences prefs = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
-            final String username = prefs.getString("name", "");
-            final String userId = prefs.getString("id", "");
-
-            final ColorFilter filter = new LightingColorFilter(Color.parseColor("#ff5c5d54"), Color.parseColor("#ff5c5d54"));
-            Resources res = mActivity.getResources();
-
-            Drawable shareIcon = res.getDrawable(R.drawable.fbshare);
-            Drawable followIcon = res.getDrawable(R.drawable.ic_action_add);
-            Drawable commentIcon = res.getDrawable(R.drawable.ic_action_comment);
-            final Drawable heartIconGrey = res.getDrawable(R.drawable.ic_action_heart_grey);
-            final Drawable heartIconRed = res.getDrawable(R.drawable.ic_action_heart_red);
-
-            shareIcon.setColorFilter(filter);
-            viewHolder.fbShare.setImageDrawable(shareIcon);
-            followIcon.setColorFilter(filter);
-            viewHolder.follow.setImageDrawable(followIcon);
-            heartIconGrey.setColorFilter(filter);
-            //viewHolder.heart.setImageDrawable(heartIcon);
-            commentIcon.setColorFilter(filter);
-            viewHolder.comment.setImageDrawable(commentIcon);
-
-            if (viewHolder.authorFbName.getText().toString().equals(username)) {
-                viewHolder.follow.setVisibility(View.GONE);
-            }
-
-            final int[] numFavs = new int[1];
-            final boolean[] isFav = new boolean[1];
-            new Thread(new Runnable() {
-                public void run() {
-                    numFavs[0] = SimpleDB.favCount(viewHolder.postID);
-                    isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, userId);
-                    final boolean isFollowed = SimpleDB.isFollowedByUser(viewHolder.posterId, userId);
-
-                    mActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            // Change the visibility of the comment text based on how many comments there are
-                            if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
-                                viewHolder.numFavs.setVisibility(View.GONE);
-                            } else if (numFavs[0] == 1) {
-                                viewHolder.numFavs.setText("1 Favorite");
-                                viewHolder.numFavs.setVisibility(View.VISIBLE);
-                            } else if (viewHolder.numFavs.getVisibility() == View.VISIBLE) {
-                                viewHolder.numFavs.setText(numFavs[0] + " Favorites");
-                            }
-
-                            // Determine the color of the favorites heart
-                            if (isFav[0]) {
-                                viewHolder.heart.setImageDrawable(heartIconRed);
-                            } else if (!isFav[0]) {
-                                viewHolder.heart.setImageDrawable(heartIconGrey);
-                            }
-
-                            // Determine visibility of the follow icon
-                            if (isFollowed || viewHolder.posterId.equals(userId)) {
-                                viewHolder.follow.setVisibility(View.GONE);
-                            } else {
-                                viewHolder.follow.setVisibility(View.VISIBLE);
-                            }
+                // Set profile picture of the poster
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            final Bitmap profilePic;
+                            String profileUrlString = "https://graph.facebook.com/" + viewHolder.posterId + "/picture?type=large";
+                            URL imgUrl = new URL(profileUrlString);
+                            InputStream in = (InputStream) imgUrl.getContent();
+                            profilePic = BitmapFactory.decodeStream(in);
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    viewHolder.profilePicture.setImageBitmap(profilePic);
+                                }
+                            });
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    });
-                }
-            }).start();
-
-            viewHolder.heart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final HashMap<String, String> newFavAttr = new HashMap<String, String>();
-                    if (viewHolder.posterId.equals(userId)) {
-                        Toast.makeText(mActivity, "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
-                    } else if (isFav[0]) {
-                        new Thread(new Runnable() {
-                            public void run() {
-                                mActivity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // change heart back to grey
-                                        viewHolder.heart.setImageDrawable(heartIconGrey);
-                                        isFav[0] = false;
-
-                                        if (numFavs[0] == 1) {
-                                            viewHolder.numFavs.setVisibility(View.GONE);
-                                            numFavs[0] = 0;
-                                        } else if (numFavs[0] == 2) {
-                                            viewHolder.numFavs.setText("1 Favorite");
-                                            numFavs[0] = 1;
-                                        } else if (numFavs[0] > 0) {
-                                            // Minimize the number of favorites by 1
-                                            viewHolder.numFavs.setText(numFavs[0] - 1 + " Favorites");
-                                            numFavs[0]--;
-                                        }
-                                    }
-                                });
-                                new AsyncTask<Void, Void, Void>() {
-                                    @Override
-                                    protected Void doInBackground(Void... params) {
-                                        SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + userId);
-                                        newFavAttr.put("favorites", "" + numFavs[0]);
-                                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                        return null;
-                                    }
-                                }.execute();
-                            }
-                        }).start();
-                    } else {
-                        new Thread(new Runnable() {
-                            public void run() {
-                                mActivity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // Change heart icon to red
-                                        viewHolder.heart.setImageDrawable(heartIconRed);
-                                        isFav[0] = true;
-
-                                        if (numFavs[0] == 0) {
-                                            viewHolder.numFavs.setVisibility(View.VISIBLE);
-                                            viewHolder.numFavs.setText("1 Favorite");
-                                            numFavs[0] = 1;
-                                        } else {
-                                            viewHolder.numFavs.setText(numFavs[0] + 1 + " Favorites");
-                                            numFavs[0]++;
-                                        }
-                                    }
-                                });
-                                new AsyncTask<Void, Void, Void>() {
-                                    @Override
-                                    protected Void doInBackground(Void... params) {
-                                        SimpleDB.addToFavoriteTable(viewHolder.postID, userId);
-                                        newFavAttr.put("favorites", "" + numFavs[0]);
-                                        SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
-                                        return null;
-                                    }
-                                }.execute();
-                            }
-                        }).start();
                     }
-                }
-            });
+                }).start();
 
-            // Click on share icon to share on Facebook
-            viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    shareToFB(mActivity, viewHolder.quoteText.getText().toString(), uiHelper);
-                }
-            });
+                viewHolder.authorFbName = (TextView) convertView.findViewById(R.id.mainFBName);
+                viewHolder.authorFbName.setText(attrMap.get("fbName"));
+                viewHolder.timestamp = attrMap.get("timestamp");
+                viewHolder.postID = viewHolder.authorFbName.getText().toString().replace(" ", "") + viewHolder.timestamp;
+                viewHolder.posterId = attrMap.get("userId");
+                viewHolder.quoteText = (TextView) convertView.findViewById(R.id.mainItemText);
+                viewHolder.quoteAuthor = (TextView) convertView.findViewById(R.id.mainItemAuthor);
+                viewHolder.quoteAuthor.setText("- " + attrMap.get("author"));
+                viewHolder.quoteText.setText("\"" + attrMap.get("quoteText") + "\"  ");
+                final SharedPreferences prefs = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE);
+                final String username = prefs.getString("name", "");
+                final String userId = prefs.getString("id", "");
 
-            viewHolder.follow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new Thread(new Runnable() {
-                        public void run() {
-                            SimpleDB.addToFollowingTable(viewHolder.posterId, userId);
+                final ColorFilter filter = new LightingColorFilter(Color.parseColor("#ff5c5d54"), Color.parseColor("#ff5c5d54"));
+                Resources res = mActivity.getResources();
+
+                Drawable shareIcon = res.getDrawable(R.drawable.fbshare);
+                Drawable followIcon = res.getDrawable(R.drawable.ic_action_add);
+                Drawable commentIcon = res.getDrawable(R.drawable.ic_action_comment);
+                final Drawable heartIconGrey = res.getDrawable(R.drawable.ic_action_heart_grey);
+                final Drawable heartIconRed = res.getDrawable(R.drawable.ic_action_heart_red);
+
+                shareIcon.setColorFilter(filter);
+                viewHolder.fbShare.setImageDrawable(shareIcon);
+                followIcon.setColorFilter(filter);
+                viewHolder.follow.setImageDrawable(followIcon);
+                heartIconGrey.setColorFilter(filter);
+                //viewHolder.heart.setImageDrawable(heartIcon);
+                commentIcon.setColorFilter(filter);
+                viewHolder.comment.setImageDrawable(commentIcon);
+
+                if (viewHolder.authorFbName.getText().toString().equals(username)) {
+                    viewHolder.follow.setVisibility(View.GONE);
+                }
+
+                final int[] numFavs = new int[1];
+                final boolean[] isFav = new boolean[1];
+                new Thread(new Runnable() {
+                    public void run() {
+                        if (isNetworkAvailable(getActivity())) {
+
+                            numFavs[0] = SimpleDB.favCount(viewHolder.postID);
+                            isFav[0] = SimpleDB.isFavoritedByUser(viewHolder.postID, userId);
+                            final boolean isFollowed = SimpleDB.isFollowedByUser(viewHolder.posterId, userId);
+
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    adapter.notifyDataSetChanged();
+
+                                    // Change the visibility of the comment text based on how many comments there are
+                                    if (numFavs[0] == 0 && viewHolder.numFavs.getVisibility() == View.VISIBLE) {
+                                        viewHolder.numFavs.setVisibility(View.GONE);
+                                    } else if (numFavs[0] == 1) {
+                                        viewHolder.numFavs.setText("1 Favorite");
+                                        viewHolder.numFavs.setVisibility(View.VISIBLE);
+                                    } else if (viewHolder.numFavs.getVisibility() == View.VISIBLE) {
+                                        viewHolder.numFavs.setText(numFavs[0] + " Favorites");
+                                    }
+
+                                    // Determine the color of the favorites heart
+                                    if (isFav[0]) {
+                                        viewHolder.heart.setImageDrawable(heartIconRed);
+                                    } else if (!isFav[0]) {
+                                        viewHolder.heart.setImageDrawable(heartIconGrey);
+                                    }
+
+                                    // Determine visibility of the follow icon
+                                    if (isFollowed || viewHolder.posterId.equals(userId)) {
+                                        viewHolder.follow.setVisibility(View.GONE);
+                                    } else {
+                                        viewHolder.follow.setVisibility(View.VISIBLE);
+                                    }
                                 }
                             });
                         }
-                    }).start();
-                }
-            });
+                    }
+                }).start();
 
-            // Go to user's posts when clicking on name or profile picture
-            final View.OnClickListener onClickListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("userId", viewHolder.posterId);
-                    bundle.putString("username", viewHolder.authorFbName.getText().toString());
-                    Fragment fragment = new UserFeedFragment();
-                    fragment.setArguments(bundle);
-                    fragmentTransaction.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment);
-                    fragmentTransaction.addToBackStack(null).commit();
-                }
-            };
+                viewHolder.heart.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final HashMap<String, String> newFavAttr = new HashMap<String, String>();
+                        if (viewHolder.posterId.equals(userId)) {
+                            Toast.makeText(mActivity, "Stop trying to like your own post!", Toast.LENGTH_SHORT).show();
+                        } else if (isFav[0]) {
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    if (isNetworkAvailable(mActivity)) {
+                                        mActivity.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // change heart back to grey
+                                                viewHolder.heart.setImageDrawable(heartIconGrey);
+                                                isFav[0] = false;
 
-            viewHolder.authorFbName.setOnClickListener(onClickListener);
-            viewHolder.profilePicture.setOnClickListener(onClickListener);
-            return convertView;
-        }
+                                                if (numFavs[0] == 1) {
+                                                    viewHolder.numFavs.setVisibility(View.GONE);
+                                                    numFavs[0] = 0;
+                                                } else if (numFavs[0] == 2) {
+                                                    viewHolder.numFavs.setText("1 Favorite");
+                                                    numFavs[0] = 1;
+                                                } else if (numFavs[0] > 0) {
+                                                    // Minimize the number of favorites by 1
+                                                    viewHolder.numFavs.setText(numFavs[0] - 1 + " Favorites");
+                                                    numFavs[0]--;
+                                                }
+                                            }
+                                        });
+                                        new AsyncTask<Void, Void, Void>() {
+                                            @Override
+                                            protected Void doInBackground(Void... params) {
+                                                SimpleDB.deleteItem("Favorites", viewHolder.postID + "_likedBy_" + userId);
+                                                newFavAttr.put("favorites", "" + numFavs[0]);
+                                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                                return null;
+                                            }
+                                        }.execute();
+                                    }
+                                }
+                            }).start();
+                        } else {
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    if (isNetworkAvailable(mActivity)) {
+                                        mActivity.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                // Change heart icon to red
+                                                viewHolder.heart.setImageDrawable(heartIconRed);
+                                                isFav[0] = true;
 
-        private class UpdateFavorites extends AsyncTask<String, Void, Void> {
+                                                if (numFavs[0] == 0) {
+                                                    viewHolder.numFavs.setVisibility(View.VISIBLE);
+                                                    viewHolder.numFavs.setText("1 Favorite");
+                                                    numFavs[0] = 1;
+                                                } else {
+                                                    viewHolder.numFavs.setText(numFavs[0] + 1 + " Favorites");
+                                                    numFavs[0]++;
+                                                }
+                                            }
+                                        });
+                                        new AsyncTask<Void, Void, Void>() {
+                                            @Override
+                                            protected Void doInBackground(Void... params) {
+                                                SimpleDB.addToFavoriteTable(viewHolder.postID, userId);
+                                                newFavAttr.put("favorites", "" + numFavs[0]);
+                                                SimpleDB.updateAttributesForItem("Quotes", viewHolder.postID, newFavAttr);
+                                                return null;
+                                            }
+                                        }.execute();
+                                    }
+                                }
+                            }).start();
+                        }
+                    }
+                });
 
-            private Exception exception;
+                // Click on share icon to share on Facebook
+                viewHolder.fbShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (isNetworkAvailable(mActivity)) {
+                            shareToFB(mActivity, viewHolder.quoteText.getText().toString(), uiHelper);
+                        }
+                    }
+                });
 
-            protected Void doInBackground(String... urls) {
-                try {
-                } catch (Exception e) {
-                    this.exception = e;
-                    return null;
-                }
-                return null;
-            }
+                viewHolder.follow.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            public void run() {
+                                if (isNetworkAvailable(mActivity)) {
 
-            protected void onPostExecute(AmazonSimpleDBClient client) {
-            }
+                                    SimpleDB.addToFollowingTable(viewHolder.posterId, userId);
+                                    mActivity.runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            adapter.notifyDataSetChanged();
+                                        }
+                                    });
+                                }
+                            }
+                        }).start();
+                    }
+                });
+
+                // Go to user's posts when clicking on name or profile picture
+                final View.OnClickListener onClickListener = new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("userId", viewHolder.posterId);
+                        bundle.putString("username", viewHolder.authorFbName.getText().toString());
+                        Fragment fragment = new UserFeedFragment();
+                        fragment.setArguments(bundle);
+                        fragmentTransaction.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment);
+                        fragmentTransaction.addToBackStack(null).commit();
+                    }
+                };
+
+                viewHolder.authorFbName.setOnClickListener(onClickListener);
+                viewHolder.profilePicture.setOnClickListener(onClickListener);
+                return convertView;
+            } else return convertView;
         }
 
     }

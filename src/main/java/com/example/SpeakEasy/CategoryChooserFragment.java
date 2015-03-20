@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -24,6 +26,22 @@ import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 public class CategoryChooserFragment extends DialogFragment {
 
     protected MaterialNavigationDrawer mActivity;
+
+    public static boolean isNetworkAvailable(final Activity context) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean available = activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+        if (!available) {
+            context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, "No internet service currently available.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        return available;
+    }
 
     @NonNull
     @Override
@@ -53,11 +71,13 @@ public class CategoryChooserFragment extends DialogFragment {
                                 name, userId, timestamp, which);
 
                         //save the quote to the database in another thread
-                        new Thread(new Runnable() {
-                            public void run() {
-                                SimpleDB.addQuote(q);
-                            }
-                        }).start();
+                        if (isNetworkAvailable(mActivity)) {
+                            new Thread(new Runnable() {
+                                public void run() {
+                                    SimpleDB.addQuote(q);
+                                }
+                            }).start();
+                        }
                     }
                 })
                 .callback(new MaterialDialog.ButtonCallback() {

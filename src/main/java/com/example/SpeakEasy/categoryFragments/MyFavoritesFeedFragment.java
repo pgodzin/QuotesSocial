@@ -26,19 +26,21 @@ public class MyFavoritesFeedFragment extends MainPageListFragment {
         uiHelper.onCreate(savedInstanceState);
         getActivity().setTitle(getFragmentTitle());
         id = mActivity.getSharedPreferences("fbInfo", Context.MODE_PRIVATE).getString("id", "");
-        new Thread(new Runnable() {
-            public void run() {
-                itemNames = SimpleDB.getFavoriteFeedItemNames(id);
-                adapter = new MainPageListFragment.MySimpleArrayAdapter(mActivity, itemNames);
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setListAdapter(adapter);
+        if (isNetworkAvailable(mActivity)) {
+            new Thread(new Runnable() {
+                public void run() {
+                    itemNames = SimpleDB.getFavoriteFeedItemNames(id);
+                    adapter = new MainPageListFragment.MySimpleArrayAdapter(mActivity, itemNames);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            setListAdapter(adapter);
 
-                    }
-                });
-            }
-        }).start();
+                        }
+                    });
+                }
+            }).start();
+        }
         return inflater.inflate(R.layout.main_listfragment, container, false);
     }
 
@@ -47,24 +49,26 @@ public class MyFavoritesFeedFragment extends MainPageListFragment {
      */
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new Thread(new Runnable() {
-                    public void run() {
-                        itemNames = SimpleDB.getFavoriteFeedItemNames(id);
-                        adapter = new MySimpleArrayAdapter(mActivity, itemNames);
-                        mActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                setListAdapter(adapter);
-                                swipeLayout.setRefreshing(false);
-                            }
-                        });
-                    }
-                }).start();
-            }
-        }, 0);
+        if (isNetworkAvailable(mActivity)) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            itemNames = SimpleDB.getFavoriteFeedItemNames(id);
+                            adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                            mActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setListAdapter(adapter);
+                                    swipeLayout.setRefreshing(false);
+                                }
+                            });
+                        }
+                    }).start();
+                }
+            }, 0);
+        }
     }
 
     @Override

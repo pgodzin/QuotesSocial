@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.SearchRecentSuggestions;
@@ -17,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.amazonaws.services.simpledb.AmazonSimpleDBClient;
 import com.facebook.UiLifecycleHelper;
@@ -174,10 +177,28 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         // TODO: Search still inconsistent, doesn't work every time. Back button issues
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String fragmentName = getToolbar().getTitle().toString().toLowerCase().split(" ")[0];
-        Fragment fragment = newInstance(query, fragmentName);
-        ft.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment).commit();
+        if (isNetworkAvailable()) {
+            Fragment fragment = newInstance(query, fragmentName);
+            ft.replace(it.neokree.materialnavigationdrawer.R.id.frame_container, fragment).commit();
+        }
         //getSupportFragmentManager().beginTransaction().add(it.neokree.materialnavigationdrawer.R.id.frame_container,
         //newInstance(query, getToolbar().getTitle().toString().toLowerCase().split(" ")[0])).commit();
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        boolean available = activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+        if (!available) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "No internet service currently available.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        return available;
     }
 
     /* Called whenever we call invalidateOptionsMenu() */
