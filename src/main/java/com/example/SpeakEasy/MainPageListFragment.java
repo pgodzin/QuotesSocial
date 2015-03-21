@@ -58,6 +58,7 @@ import main.java.com.example.SpeakEasy.categoryFragments.UserFeedFragment;
 
 public class MainPageListFragment extends ListFragment implements SwipeRefreshLayout.OnRefreshListener {
     protected static MySimpleArrayAdapter adapter;
+    protected static AdListAdapter adAdapter;
     protected List<String> itemNames;
     protected String userId;
     protected UiLifecycleHelper uiHelper;
@@ -223,10 +224,11 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                         public void run() {
                             itemNames = SimpleDB.getFeedItemNames(userId);
                             adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                            adAdapter = new AdListAdapter(mActivity, adapter);
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    setListAdapter(adapter);
+                                    setListAdapter(adAdapter);
                                     swipeLayout.setRefreshing(false);
                                 }
                             });
@@ -331,10 +333,11 @@ public class MainPageListFragment extends ListFragment implements SwipeRefreshLa
                     public void run() {
                         itemNames = SimpleDB.getFeedItemNames(userId);
                         adapter = new MySimpleArrayAdapter(getActivity().getApplicationContext(), itemNames);
+                        adAdapter = new AdListAdapter(mActivity, adapter);
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                setListAdapter(adapter);
+                                setListAdapter(adAdapter);
 
                             }
                         });

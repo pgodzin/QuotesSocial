@@ -39,5 +39,7 @@
     <string name="search_hint">Search person or quote</string>
     <string name="enter_quote">Enter quote</string>
     <string name="enter_author">Enter author</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5224158361540926/5747405893</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.facebook.UiLifecycleHelper;
 
+import main.java.com.example.SpeakEasy.AdListAdapter;
 import main.java.com.example.SpeakEasy.MainPageListFragment;
 import main.java.com.example.SpeakEasy.R;
 import main.java.com.example.SpeakEasy.SimpleDB;
@@ -25,11 +26,12 @@ public class InspirationalFeedFragment extends MainPageListFragment {
             new Thread(new Runnable() {
                 public void run() {
                     itemNames = SimpleDB.getFeedItemNamesByCategory("inspirational");
-                    adapter = new MainPageListFragment.MySimpleArrayAdapter(mActivity, itemNames);
-                    getActivity().runOnUiThread(new Runnable() {
+                    adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                    adAdapter = new AdListAdapter(mActivity, adapter);
+                    mActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            setListAdapter(adapter);
+                            setListAdapter(adAdapter);
 
                         }
                     });
@@ -53,10 +55,11 @@ public class InspirationalFeedFragment extends MainPageListFragment {
                         public void run() {
                             itemNames = SimpleDB.getFeedItemNamesByCategory("inspirational");
                             adapter = new MySimpleArrayAdapter(mActivity, itemNames);
+                            adAdapter = new AdListAdapter(mActivity, adapter);
                             mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    setListAdapter(adapter);
+                                    setListAdapter(adAdapter);
                                     swipeLayout.setRefreshing(false);
                                 }
                             });

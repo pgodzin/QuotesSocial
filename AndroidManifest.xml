@@ -39,6 +39,11 @@
                 android:resource="@xml/searchable" />
         </activity>
 
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+
         <provider
             android:name=".MySuggestionProvider"
             android:authorities="main.java.com.example.SpeakEasy.MySuggestionProvider"
@@ -51,5 +56,9 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="9280f08b2e2a31849556433f00ba717567cda213" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 </manifest>

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_listfrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="@color/feed_bg"
+    android:orientation="vertical">
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:drawSelectorOnTop="false"
         android:layout_margin="2dp"
+        android:layout_weight="1"
         android:divider="@android:color/transparent"
-        android:dividerHeight="0dp">
+        android:dividerHeight="0dp"
+        android:drawSelectorOnTop="false"
+        android:paddingLeft="@dimen/feed_item_margin"
+        android:paddingRight="@dimen/feed_item_margin">
 
     </ListView>
 
