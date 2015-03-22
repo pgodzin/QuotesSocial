@@ -20,6 +20,16 @@
         <item>Love</item>
         <item>Movie</item>
         <item>Song</item>
+    </string-array>
 
+    <string-array name="widgetCategories">
+        <item>All</item>
+        <item>Following</item>
+        <item>Advice</item>
+        <item>Funny</item>
+        <item>Inspirational</item>
+        <item>Love</item>
+        <item>Movie</item>
+        <item>Song</item>
     </string-array>
 </resources>
