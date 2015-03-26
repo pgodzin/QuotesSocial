@@ -322,13 +322,17 @@ public class SimpleDB {
     public static List<String> getFeedItemNames(String myUserId) {
         SelectRequest selectRequest = new SelectRequest("select itemName() from Quotes where userId != '" + myUserId +
                 "' and timestamp is not null order by timestamp desc").withConsistentRead(true);
-        List<Item> items = getInstance().select(selectRequest).getItems();
 
-        List<String> itemNames = new ArrayList<String>();
-        for (int i = 0; i < items.size(); i++) {
-            itemNames.add((items.get(i)).getName());
-        }
-        return itemNames;
+        AmazonSimpleDBClient client = getInstance();
+        if (client != null) {
+            List<Item> items = client.select(selectRequest).getItems();
+
+            List<String> itemNames = new ArrayList<String>();
+            for (int i = 0; i < items.size(); i++) {
+                itemNames.add((items.get(i)).getName());
+            }
+            return itemNames;
+        } else return new ArrayList<String>();
     }
 
     /**

@@ -34,10 +34,11 @@ public class Widget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
-        HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", itemNames.get(0));
-        views.setTextViewText(R.id.widgetQuote, "\"" + attrMap.get("quoteText") + "\"  ");
-        views.setTextViewText(R.id.widgetAuthor, "- " + attrMap.get("author"));
-
+        if (itemNames.size() > 0) {
+            HashMap<String, String> attrMap = SimpleDB.getAttributesForItem("Quotes", itemNames.get(0));
+            views.setTextViewText(R.id.widgetQuote, "\"" + attrMap.get("quoteText") + "\"  ");
+            views.setTextViewText(R.id.widgetAuthor, "- " + attrMap.get("author"));
+        }
         // Create an Intent to launch MainPage Activity
         Intent intent = new Intent(context, MainPage.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -56,7 +57,9 @@ public class Widget extends AppWidgetProvider {
         // There may be multiple widgets active, so update all of them
         final int N = appWidgetIds.length;
         for (int i = 0; i < N; i++) {
-            updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+            if (context != null) {
+                updateAppWidget(context, appWidgetManager, appWidgetIds[i]);
+            }
         }
     }
 
@@ -67,16 +70,6 @@ public class Widget extends AppWidgetProvider {
         for (int i = 0; i < N; i++) {
             WidgetConfigureActivity.deleteCategoryPref(context, appWidgetIds[i]);
         }
-    }
-
-    @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
     }
 }
 

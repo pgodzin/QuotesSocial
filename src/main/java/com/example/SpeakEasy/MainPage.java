@@ -28,6 +28,8 @@ import com.facebook.widget.FacebookDialog;
 import java.io.InputStream;
 import java.net.URL;
 
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
 import it.neokree.materialnavigationdrawer.MaterialAccount;
 import it.neokree.materialnavigationdrawer.MaterialAccountListener;
 import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
@@ -83,13 +85,31 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         return myFragment;
     }
 
+    public void checkAppRate() {
+        AppRate.with(this)
+                .setInstallDays(5) // default 10, 0 means install day.
+                .setLaunchTimes(10) // default 10
+                .setRemindInterval(2) // default 1
+                .setShowNeutralButton(false) // default true
+                .setDebug(false) // default false
+                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                    @Override
+                    public void onClickButton(int which) {
+                        Log.d(MainPage.class.getName(), Integer.toString(which));
+                    }
+                })
+                .monitor();
+
+        // Show a dialog if meets conditions
+        AppRate.showRateDialogIfMeetsConditions(this);
+    }
+
     @Override
     public void init(Bundle savedInstanceState) {
         uiHelper = new UiLifecycleHelper(this, null);
         uiHelper.onCreate(savedInstanceState);
         getToolbar().setTitle("All Quotes");
         this.disableLearningPattern();
-
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction()))
@@ -154,6 +174,19 @@ public class MainPage extends MaterialNavigationDrawer implements MaterialAccoun
         this.addAccount(account);
 
         t.start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        checkAppRate();
+                    }
+                });
+            }
+        }).start();
+
     }
 
     @Override
